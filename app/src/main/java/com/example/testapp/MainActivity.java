@@ -1,4 +1,4 @@
-package com.example.firsttest;
+package com.example.testapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
