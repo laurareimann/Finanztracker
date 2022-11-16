@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     EditText username, password, password_rep;
     Button btn_register, btn_login;
@@ -40,22 +40,22 @@ public class MainActivity extends AppCompatActivity {
                 String pass_rep = password_rep.getText().toString();
 
                 if (user.equals("")|| pass.equals("")|| pass_rep.equals("")){
-                    Toast.makeText(MainActivity.this, "Bitte fülle alle Felder aus", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Bitte fülle alle Felder aus", Toast.LENGTH_SHORT).show();
                 } else {
                     if(pass.equals(pass_rep)){
                         Boolean userCheckResult = db.checkUsername(user);
                         if(userCheckResult == false){
                             Boolean regResult = db.insertData(user, pass);
                             if (regResult == true){
-                                Toast.makeText(MainActivity.this, "Registrierung erfolgreich.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, "Registrierung erfolgreich.", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(MainActivity.this, "Registrierung fehlgeschlagen.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, "Registrierung fehlgeschlagen.", Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Toast.makeText(MainActivity.this, "Benutzername existiert bereits.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Benutzername existiert bereits.", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(MainActivity.this, "Die Passwörter stimmen nicht überein.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "Die Passwörter stimmen nicht überein.", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
