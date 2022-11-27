@@ -63,6 +63,13 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+        btn_login.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

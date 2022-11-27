@@ -4,8 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_login_farbverlauf"
     tools:context=".MainActivity">
 
+    <!--  Logo -->
+    <ImageView
+        android:id="@+id/img_main_earny_logo"
+        android:layout_width="300dp"
+        android:layout_height="210dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo_earny_bunt"
+        android:scaleType="centerCrop"
+        android:foreground="@drawable/logo_earny_bunt"
+        />
 
+    <!-- Main Headertext -->
+    <TextView
+        android:id="@+id/txt_main_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_main_earny_logo"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Willkommen"
+        android:textColor="@color/white"
+        android:textSize="35dp"
+        android:textStyle="bold" />
+
+
+    <!-- Register Button -->
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_main_register"
+        android:layout_below="@id/txt_main_welcome"
+        android:text="Registrieren"
+        android:backgroundTint="#2E43F5"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        />
+
+    <!-- Login Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_main_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_main_register"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#2E43F5"
+        android:text="Login" />
 
 </RelativeLayout>
