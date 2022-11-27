@@ -99,14 +99,13 @@
 
     <!-- Back to login Button -->
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_register_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_register_login"
         android:layout_below="@id/btn_register_register"
-        android:text="Zurück zum Login"
-        android:backgroundTint="#2E43F5"
         android:layout_centerHorizontal="true"
-        />
+        android:backgroundTint="#2E43F5"
+        android:text="zum Login" />
 
 
 </RelativeLayout>

@@ -55,7 +55,7 @@ public class DB_user extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("select * from users where user_name = ?", new String[] {username});
 
         // check if cursor has data --> if true user is already in Database
-        if(cursor.getColumnCount() > 0){
+        if(cursor.getCount() > 0){
             return true;
         } else {
             return false;
