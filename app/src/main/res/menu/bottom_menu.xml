@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/icon_menu_home"
+        android:title="Übersicht" />
+    <item
+        android:icon="@drawable/icon_menu_plusbutton"
+        android:title="neue Ausgabe" />
+    <!-->android:id="@+id/tbd"/> TODO: @Julia Activity muss noch erstellt werden<-->
+    <item
+        android:icon="@drawable/icon_menu_statistics"
+        android:title="Statistiken" />
+    <!--> android:id="@+id/statistics"/> TODO: @Laura Activity muss noch erstellt werden<-->
+</menu>

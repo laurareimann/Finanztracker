@@ -7,22 +7,55 @@
     android:background="#F0F0F0"
     tools:context=".HomeActivity">
 
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="Übersicht"
-    android:textSize="35sp"
-    android:gravity="center"
-    android:layout_centerInParent="true"
-    android:textColor="@color/white"
-    />
+    <TextView
+        android:id="@+id/txt_home_title_uebersicht"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="Übersicht"
+        android:textColor="@color/white"
+        android:textSize="35sp" />
 
     <!-- List for showing Entries (not final, change if you like)-->
     <ListView
+        android:id="@+id/listview_home_entries"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/home_listview_entries"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"></ListView>
+
+    <!-->Menu Bar<-->
+    <!-->TODO: @everyone folgenden Block in alle Activities mit Menü einbauen<-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MenuBarActivity">
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_menu" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--> Menu Bar end <-->
 
 </RelativeLayout>
 

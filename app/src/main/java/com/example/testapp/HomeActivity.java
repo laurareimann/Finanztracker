@@ -7,6 +7,7 @@ import android.util.Log;
 
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
@@ -34,7 +35,7 @@ public class HomeActivity extends AppCompatActivity {
         // Read Data of Database
         // TODO: this next line is just for Testing purposes and
         //  can be removed once the rest of the code is written
-        Entries entries = dataSource.createEntries(1,2,2,10041998,"Beschreibung",10);
+        Entries entries = dataSource.createEntries(1, 2, 2, 10041998, "Beschreibung", 10);
         Log.d(LOG_TAG, "The following entry was written to the database: ");
         Log.d(LOG_TAG, "ID: " + entries.getId() + ", Content: " + entries.toString());
 
@@ -52,7 +53,7 @@ public class HomeActivity extends AppCompatActivity {
     /*
     Method to put Entries onto Homescreen
      */
-    private void showAllListEntries(){
+    private void showAllListEntries() {
         // Save DB Entries in List
         List<Entries> entriesList = dataSource.getAllShoppingMemos();
 
@@ -64,7 +65,7 @@ public class HomeActivity extends AppCompatActivity {
                 entriesList);
 
         // Put Entries onto Homescreen
-        ListView shoppingMemosListView = (ListView) findViewById(R.id.home_listview_entries);
+        ListView shoppingMemosListView = (ListView) findViewById(R.id.listview_home_entries);
         shoppingMemosListView.setAdapter(entriesArrayAdapter);
     }
 }
