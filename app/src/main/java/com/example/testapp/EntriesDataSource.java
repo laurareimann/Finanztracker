@@ -80,14 +80,14 @@ public class EntriesDataSource {
         // Then we call the cursorToEntries() method and thereby
         // convert the record of the cursor object into an Entries object
         cursor.moveToFirst();
-        Entries entries = cursorToShoppingMemo(cursor);
+        Entries entries = cursorToEntry(cursor);
         cursor.close();
 
         return entries;
     };
 
     // Convert Data into Entries objects
-    private Entries cursorToShoppingMemo(Cursor cursor){
+    private Entries cursorToEntry(Cursor cursor){
         // Read indexes of the table columns
         int idIndex = cursor.getColumnIndex(EntriesDbHelper.COLUMN_ID);
         int idUserId = cursor.getColumnIndex(EntriesDbHelper.COLUMN_USER_ID);
@@ -116,7 +116,7 @@ public class EntriesDataSource {
     }
 
     // Read all existing records from the table
-    public List<Entries> getAllShoppingMemos(){
+    public List<Entries> getAllEntries(){
         List<Entries> entriesList = new ArrayList<>();
 
         // Search query where all records are returned
@@ -131,7 +131,7 @@ public class EntriesDataSource {
         // Add them to the EntriesList
         // Output to the console
         while(!cursor.isAfterLast()){
-            entries = cursorToShoppingMemo(cursor);
+            entries = cursorToEntry(cursor);
             entriesList.add(entries);
             Log.d(LOG_TAG, "ID: " + entries.getId() + ", Inhalt: "
                     + entries.toString());

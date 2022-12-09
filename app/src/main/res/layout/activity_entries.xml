@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="202dp"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editxt_entries_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="125dp"
+            android:layout_weight="1"
+            android:hint="Ausgabe"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/editxt_entries_kategory"
+            android:layout_width="123dp"
+            android:layout_height="125dp"
+            android:layout_weight="4"
+            android:hint="Kategorie" />
+
+        <EditText
+            android:id="@+id/editxt_entries_notice"
+            android:layout_width="65dp"
+            android:layout_height="118dp"
+            android:layout_weight="4"
+            android:hint="Notiz" />
+
+        <Button
+            android:id="@+id/button_entries_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eintragen" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_entries_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home" />
+
+
+</LinearLayout>
