@@ -11,6 +11,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.testapp.databinding.ActivityEntriesBinding;
+
 public class EntriesActivity extends AppCompatActivity {
 
     // LOGTAG
@@ -18,11 +20,33 @@ public class EntriesActivity extends AppCompatActivity {
 
     private EntriesDataSource dataSource;
     Button btn_backHome;
+    ActivityEntriesBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entries);
+
+        setContentView(R.layout.activity_home);
+
+        /*** Menubar ***/
+        binding = ActivityEntriesBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        binding.bottomNavigationViewEntries.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.home:
+                    startActivity(new Intent(this, HomeActivity.class));
+                    break;
+                case R.id.addEntry:
+                    startActivity(new Intent(this, EntriesActivity.class));
+                    break;
+                case R.id.statistics:
+                    startActivity(new Intent(this, StatisticsActivity.class));
+                    break;
+            }
+            return true;
+        });
 
         /****** START DATABASE *******/
         // the object calls the two constructors of the EntriesDataSource and
