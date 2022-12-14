@@ -55,20 +55,10 @@ public class HomeActivity extends AppCompatActivity {
         // EntriesDbHelper classes.
         Log.d(LOG_TAG, "The data source is opened.");
         dataSource = new EntriesDataSource(this);
-
-        /*** Buttons ***/
-        btn_addEntry = (Button)findViewById(R.id.button_home_add);
-        btn_addEntry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), EntriesActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
 
         Log.d(LOG_TAG, "Die Datenquelle wird geöffnet");
@@ -79,7 +69,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause(){
+    protected void onPause() {
         super.onPause();
 
         Log.d(LOG_TAG, "Die Datenquelle wird geschlossen.");
