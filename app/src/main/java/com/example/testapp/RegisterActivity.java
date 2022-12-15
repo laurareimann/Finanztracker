@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText username, password, password_rep;
+    EditText username, password, password_rep, acc_balance;
     Button btn_register, btn_login;
     DB_user db;
 
@@ -25,6 +25,8 @@ public class RegisterActivity extends AppCompatActivity {
         // declare variables with input from frontend
         username = (EditText)findViewById(R.id.txt_register_username);
         password = (EditText) findViewById(R.id.txt_register_password);
+        // TODO: edittext View mit Balance verknüpfen
+        // acc_balance =
         password_rep = (EditText) findViewById(R.id.txt_register_password_rep);
 
         btn_register = (Button) findViewById(R.id.btn_register_register);
@@ -39,6 +41,8 @@ public class RegisterActivity extends AppCompatActivity {
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
                 String pass_rep = password_rep.getText().toString();
+                // TODO: get Balace und in einem float speichern
+                float balance;
 
                 if (user.equals("")|| pass.equals("")|| pass_rep.equals("")){
                     Toast.makeText(RegisterActivity.this, "Bitte fülle alle Felder aus", Toast.LENGTH_SHORT).show();
@@ -46,6 +50,8 @@ public class RegisterActivity extends AppCompatActivity {
                     if(pass.equals(pass_rep)){
                         Boolean userCheckResult = db.checkUsername(user);
                         if(userCheckResult == false){
+                            // TODO: Balance der DB zufügen
+                            //Boolean regResult = db.insertData(user, pass, balance);
                             Boolean regResult = db.insertData(user, pass);
                             if (regResult == true){
                                 Toast.makeText(RegisterActivity.this, "Registrierung erfolgreich.", Toast.LENGTH_SHORT).show();
@@ -63,6 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+
         btn_login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

@@ -21,7 +21,7 @@ public class DB_user extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // TODO: add account balance and mail here later
-        db.execSQL("create Table users(user_id integer primary key autoincrement, user_name text, user_password text)");
+        db.execSQL("create Table users(user_id integer primary key autoincrement, user_name text, user_password text, balance float)");
 
     }
 
@@ -32,7 +32,8 @@ public class DB_user extends SQLiteOpenHelper {
 
     // TODO: Do we need user_id?
     // insert Data into Database, return true if successful
-    public Boolean insertData (String username, String password){
+    // TODO: balance dem konstruktor zufügen
+    public Boolean insertData (String username, String password /*,float balance*/){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("user_name", username);
