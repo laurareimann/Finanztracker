@@ -2,15 +2,16 @@ package com.example.testapp;
 /**
  * SOURCES:
  * BarChart: CodingMark: "Android Studio: Create a Bar Chart using SqLite", URL: https://www.youtube.com/watch?v=niLkRACZEMg, 16.12.2022
- * MenuBar:
+ * MenuBar: jangirkaran17: "How to Implement Bottom Navigation With Activities in Android?", MenuBar: URL: https://www.geeksforgeeks.org/how-to-implement-bottom-navigation-with-activities-in-android/, 19.12.2022
  **/
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,13 +26,14 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class StatisticsActivity extends AppCompatActivity {
 
-    ActivityStatisticsBinding binding;
+    BottomNavigationView bNV_statistics;
 
     private BarChart barChart_statistics_monthOverview;
     private Button button;
@@ -39,51 +41,56 @@ public class StatisticsActivity extends AppCompatActivity {
     private Database db;
     long date = System.currentTimeMillis();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
 
         /** BarChart **/
-
         barChart_statistics_monthOverview = (BarChart) findViewById(R.id.barchart_statistics);
+
         button = (Button) findViewById(R.id.button_statistics);
         editText = (EditText) findViewById(R.id.editText_statistics);
 
         addDataToGraph();
         barChart_statistics_monthOverview.invalidate();
 
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("click detectet"); // TODO: Kommentare nach Debugging löschen
+                System.out.println("click detectet");
                 SaveToDatabase();
             }
         });
 
 
         /*** Menubar ***/
-        binding = ActivityStatisticsBinding.inflate(getLayoutInflater());
-        //setContentView(binding.getRoot());
+        // Initialize and assign variable
+        bNV_statistics = findViewById(R.id.bottomNav_statistics);
 
-        binding.bottomNavigationViewStatistics.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.home:
-                    startActivity(new Intent(this, HomeActivity.class));
-                    break;
-                case R.id.addEntry:
-                    startActivity(new Intent(this, EntriesActivity.class));
-                    break;
-                case R.id.statistics:
-                    startActivity(new Intent(this, StatisticsActivity.class));
-                    break;
+        // Set Home selected
+        bNV_statistics.setSelectedItemId(R.id.statistics);
+
+        // Perform item selected listener
+        bNV_statistics.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.addEntry:
+                        startActivity(new Intent(getApplicationContext(), EntriesActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.statistics:
+                        return true;
+                }
+                return false;
             }
-            return true;
         });
-
-
     }
 
 

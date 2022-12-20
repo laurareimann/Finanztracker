@@ -11,61 +11,58 @@
         android:id="@+id/button_statistics"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Save"
-        app:layout_constraintBottom_toTopOf="@+id/barchart_statistics"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="@dimen/margins_sides"
+        android:backgroundTint="@color/dark_blue_buttons"
+        android:text="@string/btn_save"
+        android:textSize="@dimen/font_buttons"
+        app:layout_constraintBottom_toBottomOf="@+id/editText_statistics"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/editText_statistics"
-        app:layout_constraintTop_toTopOf="@+id/frameLayout2"></Button>
-
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/barchart_statistics"
-        android:layout_width="match_parent"
-        android:layout_height="462dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView_statistics"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </com.github.mikephil.charting.charts.BarChart>
+        app:layout_constraintTop_toTopOf="@+id/editText_statistics"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/editText_statistics"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginStart="@dimen/margins_sides"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:ems="10"
-        android:hint="hint"
+        android:hint="@string/hint_newEntry"
         android:inputType="number"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/barchart_statistics"
+        app:layout_constraintEnd_toStartOf="@+id/button_statistics"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/frameLayout2"></EditText>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.66" />
 
-
-    <FrameLayout
-        android:id="@+id/frameLayout2"
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/barchart_statistics"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView_statistics"
+        android:layout_marginStart="@dimen/margins_sides"
+        android:layout_marginEnd="@dimen/margins_sides"
+        android:layout_marginBottom="@dimen/margins_sides"
+        android:layout_height="400dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNav_statistics"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent" />
 
-
-    </FrameLayout>
-
+    <!--> Menü <-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView_statistics"
+        android:id="@+id/bottomNav_statistics"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         app:itemBackground="@color/blue_primary"
-        app:itemIconTint="@color/white_primary"
-        app:itemTextColor="@color/white_primary"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_menu">
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:menu="@menu/menu_navigation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

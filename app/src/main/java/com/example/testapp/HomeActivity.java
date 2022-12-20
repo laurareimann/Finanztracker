@@ -1,17 +1,24 @@
 package com.example.testapp;
 
+/**
+ * SOURCES:
+ * MenuBar: jangirkaran17: "How to Implement Bottom Navigation With Activities in Android?", MenuBar: URL: https://www.geeksforgeeks.org/how-to-implement-bottom-navigation-with-activities-in-android/, 19.12.2022
+ **/
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import android.view.View;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.testapp.databinding.ActivityHomeBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -22,33 +29,40 @@ public class HomeActivity extends AppCompatActivity {
 
     // Reference to the EntriesDataSource-Object
     private EntriesDataSource dataSource;
-    Button btn_addEntry;
-    ActivityHomeBinding binding;
+    BottomNavigationView bNV_home;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        /*** Menubar ***/
-        binding = ActivityHomeBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        // Initialize and assign variable
+        bNV_home = findViewById(R.id.bottomNav_home);
 
-        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.home:
-                    startActivity(new Intent(this, HomeActivity.class));
-                    break;
-                case R.id.addEntry:
-                    startActivity(new Intent(this, EntriesActivity.class));
-                    break;
-                case R.id.statistics:
-                    startActivity(new Intent(this, StatisticsActivity.class));
-                    break;
+        // Set Home selected
+        bNV_home.setSelectedItemId(R.id.home);
+
+        // Perform item selected listener
+        bNV_home.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        return true;
+                    case R.id.addEntry:
+                        startActivity(new Intent(getApplicationContext(), EntriesActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.statistics:
+                        startActivity(new Intent(getApplicationContext(), StatisticsActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
             }
-            return true;
         });
-
 
         /****** Database *******/
         // the object calls the two constructors of the EntriesDataSource and

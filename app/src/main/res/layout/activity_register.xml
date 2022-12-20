@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstrainedLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_login_farbverlauf"
@@ -12,100 +13,118 @@
         android:id="@+id/img_register_earny_logo"
         android:layout_width="300dp"
         android:layout_height="210dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/logo_earny_bunt"
-        android:scaleType="centerCrop"
         android:foreground="@drawable/logo_earny_bunt"
-        />
+        android:scaleType="centerCrop"
+        android:src="@drawable/logo_earny_bunt"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Register Headertext -->
     <TextView
         android:id="@+id/txt_register_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/img_register_earny_logo"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="Erstelle einen Account"
+        android:layout_marginStart="@dimen/margins_sides"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="@dimen/margins_sides"
+        android:text="@string/h_register"
         android:textColor="@color/white"
-        android:textSize="35dp"
-        android:textStyle="bold" />
+        android:textSize="@dimen/font_h1"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_register_earny_logo" />
 
     <!--  Username Textfield -->
     <EditText
         android:id="@+id/txt_register_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txt_register_register"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="@dimen/margins_sides"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="#30ffffff"
+        android:layout_marginEnd="@dimen/margins_sides"
+        android:background="@color/white_transparent_background"
         android:drawableLeft="@drawable/icon_person_white"
         android:drawablePadding="20dp"
-        android:hint="Username"
+        android:hint="@string/hint_username"
         android:padding="20dp"
         android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/white"
+        android:textSize="@dimen/font_hints"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_register_register" />
 
     <!--  Password Textfield -->
     <EditText
+        android:id="@+id/txt_register_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txt_register_password"
-        android:layout_below="@id/txt_register_username"
-        android:background="#30ffffff"
-        android:hint="Password"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:layout_margin="5dp"
-        android:padding="20dp"
+        android:layout_marginStart="@dimen/margins_sides"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="@dimen/margins_sides"
+        android:background="@color/white_transparent_background"
         android:drawableLeft="@drawable/icon_password_lock_white"
         android:drawablePadding="20dp"
+        android:hint="@string/hint_password"
         android:inputType="textPassword"
-        />
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="@dimen/font_hints"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_register_username" />
 
     <!--  Password WDH Textfield -->
     <EditText
+        android:id="@+id/txt_register_password_rep"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txt_register_password_rep"
-        android:layout_below="@id/txt_register_password"
-        android:background="#30ffffff"
-        android:hint="Enter Password"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:layout_margin="5dp"
-        android:padding="20dp"
+        android:layout_marginStart="@dimen/margins_sides"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="@dimen/margins_sides"
+        android:background="@color/white_transparent_background"
         android:drawableLeft="@drawable/icon_password_lock_white"
         android:drawablePadding="20dp"
+        android:hint="@string/hint_password_rep"
         android:inputType="textPassword"
-        />
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_register_password" />
 
     <!-- Register Button -->
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_register_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_register_register"
-        android:layout_below="@id/txt_register_password_rep"
-        android:text="Registrieren"
-        android:backgroundTint="#2E43F5"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
-        />
+        android:layout_marginStart="@dimen/margins_sides"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="@dimen/margins_sides"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/dark_blue_buttons"
+        android:text="@string/btn_register"
+        android:textSize="@dimen/font_buttons"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_register_password_rep" />
 
     <!-- Back to login Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_register_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_register_register"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="#2E43F5"
-        android:text="zum Login" />
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/dark_blue_buttons"
+        android:text="@string/btn_login_nav"
+        android:textSize="@dimen/font_buttons"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_register_register" />
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
