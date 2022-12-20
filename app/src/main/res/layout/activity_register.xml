@@ -97,31 +97,56 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_register_password" />
 
+
+    <!--  Balance Textfield -->
+
     <!-- Register Button -->
+
+    <!-- Back to login Button -->
+
+    <EditText
+        android:id="@+id/txt_register_balance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_register_password_rep"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#30ffffff"
+        android:drawableLeft="@android:drawable/btn_star"
+        android:drawablePadding="20dp"
+        android:ems="10"
+        android:hint="Enter Balance"
+        android:inputType="numberDecimal"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/btn_register_register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_register_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margins_sides"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="@dimen/margins_sides"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="104dp"
         android:backgroundTint="@color/dark_blue_buttons"
         android:text="@string/btn_register"
         android:textSize="@dimen/font_buttons"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_register_password_rep" />
 
-    <!-- Back to login Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_register_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="@color/dark_blue_buttons"
         android:text="@string/btn_login_nav"
         android:textSize="@dimen/font_buttons"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_register_register" />

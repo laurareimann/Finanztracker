@@ -16,7 +16,6 @@ public class RegisterActivity extends AppCompatActivity {
     DB_user db;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
         username = (EditText)findViewById(R.id.txt_register_username);
         password = (EditText) findViewById(R.id.txt_register_password);
         // TODO: edittext View mit Balance verknüpfen
-        // acc_balance =
+        acc_balance = (EditText) findViewById(R.id.txt_register_balance);
         password_rep = (EditText) findViewById(R.id.txt_register_password_rep);
 
         btn_register = (Button) findViewById(R.id.btn_register_register);
@@ -42,9 +41,11 @@ public class RegisterActivity extends AppCompatActivity {
                 String pass = password.getText().toString();
                 String pass_rep = password_rep.getText().toString();
                 // TODO: get Balace und in einem float speichern
-                float balance;
+                float balance = Float.parseFloat(acc_balance.getText().toString());
+                System.out.println(balance);
+                String str_balance = acc_balance.getText().toString();
 
-                if (user.equals("")|| pass.equals("")|| pass_rep.equals("")){
+                if (user.equals("")|| pass.equals("")|| pass_rep.equals("") || str_balance.equals("")){
                     Toast.makeText(RegisterActivity.this, "Bitte fülle alle Felder aus", Toast.LENGTH_SHORT).show();
                 } else {
                     if(pass.equals(pass_rep)){
@@ -52,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if(userCheckResult == false){
                             // TODO: Balance der DB zufügen
                             //Boolean regResult = db.insertData(user, pass, balance);
-                            Boolean regResult = db.insertData(user, pass);
+                            Boolean regResult = db.insertData(user, pass, balance);
                             if (regResult == true){
                                 Toast.makeText(RegisterActivity.this, "Registrierung erfolgreich.", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);

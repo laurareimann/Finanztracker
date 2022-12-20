@@ -33,11 +33,12 @@ public class DB_user extends SQLiteOpenHelper {
     // TODO: Do we need user_id?
     // insert Data into Database, return true if successful
     // TODO: balance dem konstruktor zufügen
-    public Boolean insertData (String username, String password /*,float balance*/){
+    public Boolean insertData (String username, String password, float balance){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("user_name", username);
         contentValues.put("user_password", password);
+        contentValues.put("user_balance", balance);
         long result = db.insert("users", null, contentValues);
 
         // check if adding Data is successful (?)
