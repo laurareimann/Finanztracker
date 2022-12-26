@@ -40,8 +40,11 @@ public class RegisterActivity extends AppCompatActivity {
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
                 String pass_rep = password_rep.getText().toString();
-                // TODO: get Balace und in einem float speichern
-                float balance = Float.parseFloat(acc_balance.getText().toString());
+                // TODO: get Balance und in einem float speichern
+                //float balance = Float.parseFloat(acc_balance.getText().toString());
+                int balance = Integer.parseInt(acc_balance.getText().toString());
+                System.out.println(user);
+                System.out.println(pass);
                 System.out.println(balance);
                 String str_balance = acc_balance.getText().toString();
 

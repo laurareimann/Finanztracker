@@ -99,19 +99,15 @@
 
 
     <!--  Balance Textfield -->
-
-    <!-- Register Button -->
-
-    <!-- Back to login Button -->
-
     <EditText
         android:id="@+id/txt_register_balance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_register_password_rep"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="10dp"
         android:background="#30ffffff"
         android:drawableLeft="@android:drawable/btn_star"
         android:drawablePadding="20dp"
@@ -123,7 +119,11 @@
         android:textColorHint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/btn_register_register"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_register_password_rep" />
+
+    <!-- Register Button -->
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_register_register"
@@ -137,6 +137,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_register_password_rep" />
+
+    <!-- Back to login Button -->
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_register_login"
