@@ -24,6 +24,7 @@
     <string name="hint_newEntry">neue Ausgabe</string>
     <string name="hint_category">Kategorie</string>
     <string name="hint_note">Notiz</string>
+    <string name="hint_date">Datum auswählen</string>
 
 
     <!-->Menu Strings<-->
