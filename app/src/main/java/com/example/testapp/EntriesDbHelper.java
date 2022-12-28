@@ -17,12 +17,13 @@ public class EntriesDbHelper extends SQLiteOpenHelper{
     // Columns for the Table
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_USER_ID = "user_id";
-    public static final String COLUMN_ENTRY_VALUE = "entry_value";
     public static final String COLUMN_ENTRY_AMOUNT = "entry_amount";
-    public static final String COLUMN_ENTRY_DATE = "entry_date";
     public static final String COLUMN_ENTRY_NOTICE = "entry_notice";
-    //public static final String COLUMN_ENTRY_REPETITION = "entry_repetition";
-    public static final String COLUMN_CAT_ID = "cat_id";
+    public static final String COLUMN_ENTRY_DATE = "entry_date";
+    public static final String COLUMN_ENTRY_DAY = "entry_day";
+    public static final String COLUMN_ENTRY_MONTH = "entry_month";
+    public static final String COLUMN_ENTRY_YEAR = "entry_year";
+
 
     // Command to create Table as String
     // TODO: Category raus, value erstmal raus, date als 3 seperate ints speichern und einmal datum als string
@@ -30,12 +31,12 @@ public class EntriesDbHelper extends SQLiteOpenHelper{
             "CREATE TABLE " + ENTRIES_LIST +
                     "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_USER_ID + " INTEGER NOT NULL, " +
-                    COLUMN_ENTRY_VALUE + " INTEGER NOT NULL, " +
                     COLUMN_ENTRY_AMOUNT + " INTEGER NOT NULL, " +
-                    COLUMN_ENTRY_DATE + " INTEGER NOT NULL, " +
-                    COLUMN_ENTRY_NOTICE + " STRING, " +
-                    /*COLUMN_ENTRY_REPETITION + "INTEGER NOT NULL, " + */
-                    COLUMN_CAT_ID + " INTEGER NOT NULL);";
+                    COLUMN_ENTRY_DATE + " STRING NOT NULL, " +
+                    COLUMN_ENTRY_DAY + " INTEGER NOT NULL, " +
+                    COLUMN_ENTRY_MONTH + " INTEGER NOT NULL, " +
+                    COLUMN_ENTRY_YEAR + " INTEGER NOT NULL, " +
+                    COLUMN_ENTRY_NOTICE + " STRING);";
 
       // Constructor
     public EntriesDbHelper(Context context){

@@ -88,4 +88,15 @@ public class DB_user extends SQLiteOpenHelper {
 
         return balanceString;
     }
+
+    // return userID to username
+    public int getUserID(String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT user_id FROM users WHERE user_name=\"" + username + "\"", null);
+
+        cursor.moveToFirst();
+        int idInt = cursor.getInt(0);
+
+        return idInt;
+    }
 }

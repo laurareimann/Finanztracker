@@ -4,22 +4,23 @@ public class Entries {
 
     private long id;
     private long user_id;
-    private int entry_value;
     private int entry_amount;
-    private int entry_date;
+    private String entry_date;
     private String entry_notice;
-    /*private int entry_repetition;*/
-    private int cat_id;
+    private int entry_day;
+    private int entry_month;
+    private int entry_year;
 
-    public Entries(long id, long user_id, int entry_value, int entry_amount,
-                   int entry_date, String entry_notice, int cat_id) {
+    public Entries(long id, long user_id, int entry_amount, String entry_notice,
+                   String entry_date, int entry_day, int entry_month, int entry_year) {
         this.id = id;
         this.user_id = user_id;
-        this.entry_value = entry_value;
         this.entry_amount = entry_amount;
         this.entry_date = entry_date;
         this.entry_notice = entry_notice;
-        this.cat_id = cat_id;
+        this.entry_day = entry_day;
+        this.entry_month = entry_month;
+        this.entry_month = entry_year;
     }
 
     public long getId() {
@@ -38,14 +39,6 @@ public class Entries {
         this.user_id = user_id;
     }
 
-    public int getEntry_value() {
-        return entry_value;
-    }
-
-    public void setEntry_value(int entry_value) {
-        this.entry_value = entry_value;
-    }
-
     public int getEntry_amount() {
         return entry_amount;
     }
@@ -54,11 +47,11 @@ public class Entries {
         this.entry_amount = entry_amount;
     }
 
-    public int getEntry_date() {
+    public String getEntry_date() {
         return entry_date;
     }
 
-    public void setEntry_date(int entry_date) {
+    public void setEntry_date(String entry_date) {
         this.entry_date = entry_date;
     }
 
@@ -70,12 +63,28 @@ public class Entries {
         this.entry_notice = entry_notice;
     }
 
-    public int getCat_id() {
-        return cat_id;
+    public int getEntry_day() {
+        return entry_day;
     }
 
-    public void setCat_id(int cat_id) {
-        this.cat_id = cat_id;
+    public void setEntry_day(int entry_day) {
+        this.entry_day = entry_day;
+    }
+
+    public int getEntry_month() {
+        return entry_month;
+    }
+
+    public void setEntry_month(int entry_month) {
+        this.entry_month = entry_month;
+    }
+
+    public int getEntry_year() {
+        return entry_year;
+    }
+
+    public void setEntry_year(int entry_year) {
+        this.entry_year = entry_year;
     }
 
     @Override

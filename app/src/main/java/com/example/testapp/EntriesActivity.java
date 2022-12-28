@@ -35,8 +35,11 @@ public class EntriesActivity extends AppCompatActivity {
     private static final String TAG = "EntriesActivity";
 
     private EntriesDataSource dataSource;
+    private DB_user dbUser;
     Button btn_backHome;
     BottomNavigationView bNV_entries;
+    private String currentUser;
+    private int currentUserID;
 
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -75,17 +78,23 @@ public class EntriesActivity extends AppCompatActivity {
             }
         });
 
-        /****** START DATABASE *******/
+        /*** DATABASE ***/
         // the object calls the two constructors of the EntriesDataSource and
         // EntriesDbHelper classes.
         dataSource = new EntriesDataSource(this);
+        dbUser = new DB_user(this);
 
         Log.d(LOG_TAG, "The data source is opened.");
         dataSource.open();
 
-        activateAddButton();
 
-        // Date
+        /*** Views ***/
+        activateAddButton();
+        currentUser = LoginActivity.currentUsername;
+        currentUserID = dbUser.getUserID(currentUser);
+
+
+        /*** Date ***/
         mDisplayDate.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -136,24 +145,22 @@ public class EntriesActivity extends AppCompatActivity {
     }
 
     private void activateAddButton() {
-        // Referenzen der Widget-Objekte
+        // References Widget-Objects
         Button buttonAddProduct = (Button) findViewById(R.id.button_entries_add);
         final EditText editTextAmount = (EditText) findViewById(R.id.editxt_entries_amount);
         final EditText editTextNotice = (EditText) findViewById(R.id.editxt_entries_notice);
-        final EditText editTextKategory = (EditText) findViewById(R.id.editxt_entries_kategory);
+        final EditText editTextCategory = (EditText) findViewById(R.id.editxt_entries_kategory);
 
-        // OnClickListener erstellen
+        // OnClickListener
         buttonAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                // Inhalt der Textfelder auslesen
+                // get content of EditTextViews
                 String amountString = editTextAmount.getText().toString();
                 String notice = editTextNotice.getText().toString();
-                String kategoryString = editTextKategory.getText().toString();
 
-
-                // Falls Eingabefelder leer, gib eine Errornachricht zurück
+                // In Case fields are empty
                 if (TextUtils.isEmpty(amountString)) {
                     editTextAmount.setError("Ausgabe darf nicht leer sein");
                     return;
@@ -162,24 +169,23 @@ public class EntriesActivity extends AppCompatActivity {
                     editTextNotice.setError("Notiz darf nicht leer sein");
                     return;
                 }
-                if (TextUtils.isEmpty(kategoryString)) {
-                    editTextKategory.setError("Kategorie darf nicht leer sein");
-                    return;
-                }
 
-                // Speicher die Quantity als Integer statt als String
+                // Cast amount to string
                 int amount = Integer.parseInt(amountString);
-                //int kategory = Integer.parseInt(kategoryString);
 
-                // Textfelder leeren
+                // clear EditTextViews
                 editTextAmount.setText("");
                 editTextNotice.setText("");
-                editTextKategory.setText("");
+                editTextCategory.setText("");
 
-                // der DB übergeben
-                dataSource.createEntries(111, 0, amount, 8112022, notice, 1);
 
-                // Tastatur ausblenden
+                // create new row in DB
+                // Constructor: userID, amount, notice, String date, day, month, year
+                // TODO: Datum einlesen
+                dataSource.createEntries(currentUserID, amount, notice, "11.11.22", 11,11,2022);
+
+
+                // Hide Keyboard
                 InputMethodManager inputMethodManager;
                 inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
                 if (getCurrentFocus() != null) {

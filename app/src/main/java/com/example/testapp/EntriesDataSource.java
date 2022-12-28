@@ -22,12 +22,12 @@ public class EntriesDataSource {
     private String[] columns = {
             EntriesDbHelper.COLUMN_ID,
             EntriesDbHelper.COLUMN_USER_ID,
-            EntriesDbHelper.COLUMN_ENTRY_VALUE,
             EntriesDbHelper.COLUMN_ENTRY_AMOUNT,
-            EntriesDbHelper.COLUMN_ENTRY_DATE,
             EntriesDbHelper.COLUMN_ENTRY_NOTICE,
-            /*EntriesDbHelper.COLUMN_ENTRY_REPETITION */
-            EntriesDbHelper.COLUMN_CAT_ID
+            EntriesDbHelper.COLUMN_ENTRY_DATE,
+            EntriesDbHelper.COLUMN_ENTRY_DAY,
+            EntriesDbHelper.COLUMN_ENTRY_MONTH,
+            EntriesDbHelper.COLUMN_ENTRY_YEAR
     };
 
 
@@ -52,17 +52,16 @@ public class EntriesDataSource {
     }
 
     // Insert Data into the table of our SQLite database
-    public Entries createEntries(int userID, int entryValue, int entryAmount,
-                                      int entryDate, String entryNotice, /*entryRepetition,*/
-                                        int catID){
+    public Entries createEntries(int userID, int entryAmount, String entryNotice,
+                                 String entryDate,  int entryDay, int entryMonth, int entryYear){
         ContentValues values = new ContentValues();
         values.put(EntriesDbHelper.COLUMN_USER_ID, userID);
-        values.put(EntriesDbHelper.COLUMN_ENTRY_VALUE, entryValue);
         values.put(EntriesDbHelper.COLUMN_ENTRY_AMOUNT, entryAmount);
-        values.put(EntriesDbHelper.COLUMN_ENTRY_DATE, entryDate);
         values.put(EntriesDbHelper.COLUMN_ENTRY_NOTICE, entryNotice);
-        /*values.put(EntriesDbHelper.COLUMN_ENTRY_REPETITION, entryRepetition);*/
-        values.put(EntriesDbHelper.COLUMN_CAT_ID, catID);
+        values.put(EntriesDbHelper.COLUMN_ENTRY_DATE, entryDate);
+        values.put(EntriesDbHelper.COLUMN_ENTRY_DAY, entryDay);
+        values.put(EntriesDbHelper.COLUMN_ENTRY_MONTH, entryMonth);
+        values.put(EntriesDbHelper.COLUMN_ENTRY_YEAR, entryYear);
 
 
 
@@ -91,26 +90,27 @@ public class EntriesDataSource {
         // Read indexes of the table columns
         int idIndex = cursor.getColumnIndex(EntriesDbHelper.COLUMN_ID);
         int idUserId = cursor.getColumnIndex(EntriesDbHelper.COLUMN_USER_ID);
-        int idValue = cursor.getColumnIndex(EntriesDbHelper.COLUMN_ENTRY_VALUE);
         int idAmount = cursor.getColumnIndex(EntriesDbHelper.COLUMN_ENTRY_AMOUNT);
-        int idDate = cursor.getColumnIndex(EntriesDbHelper.COLUMN_ENTRY_DATE);
         int idNotice = cursor.getColumnIndex(EntriesDbHelper.COLUMN_ENTRY_NOTICE);
-        /*int idRepetition = cursor.getColumnIndex(EntriesDbHelper.COLUMN_ENTRY_REPETITION);*/
-        int idCatID = cursor.getColumnIndex(EntriesDbHelper.COLUMN_CAT_ID);
+        int idDate = cursor.getColumnIndex(EntriesDbHelper.COLUMN_ENTRY_DATE);
+        int idDay = cursor.getColumnIndex(EntriesDbHelper.COLUMN_ENTRY_DAY);
+        int idMonth = cursor.getColumnIndex(EntriesDbHelper.COLUMN_ENTRY_MONTH);
+        int idYear = cursor.getColumnIndex(EntriesDbHelper.COLUMN_ENTRY_YEAR);
+
 
         // get contents with indexes from above
         long id = cursor.getLong(idIndex);
         int user_id = cursor.getInt(idUserId);
-        int entry_value = cursor.getInt(idValue);
         int entry_amount = cursor.getInt(idAmount);
-        int entry_date = cursor.getInt(idDate);
         String entry_notice = cursor.getString(idNotice);
-        int cat_id = cursor.getInt(idCatID);
-        /*int entry_repetition = cursor.getInt(idRepetition);*/
+        String entry_date = cursor.getString(idDate);
+        int entry_day = cursor.getInt(idDay);
+        int entry_month = cursor.getInt(idMonth);
+        int entry_year = cursor.getInt(idYear);
 
         // Save read data for further use
-        Entries entries = new Entries(id,user_id,entry_value,entry_amount,
-                                        entry_date,entry_notice,cat_id);
+        Entries entries = new Entries(id,user_id,entry_amount,entry_notice,
+                                        entry_date, entry_day, entry_month, entry_year);
 
         return entries;
     }

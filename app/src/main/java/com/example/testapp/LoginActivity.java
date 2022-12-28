@@ -7,17 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.material.button.MaterialButton;
 
 public class LoginActivity extends AppCompatActivity {
     // variables
     EditText username, password;
     Button btn_register, btn_login;
     DB_user db;
-    public static String currentUser;
+    public static String currentUsername;
+    public static int currentUserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // save the name of current User
     public void setCurrentUser(){
-        currentUser = username.getText().toString();
+        currentUsername = username.getText().toString();
     }
 
 

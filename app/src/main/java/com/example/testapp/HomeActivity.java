@@ -14,11 +14,9 @@ import android.util.Log;
 
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.testapp.databinding.ActivityHomeBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
@@ -77,7 +75,7 @@ public class HomeActivity extends AppCompatActivity {
         dbUser = new DB_user(this);
 
         /*** Views ***/
-        currentUser = LoginActivity.currentUser;
+        currentUser = LoginActivity.currentUsername;
         balance = findViewById(R.id.text_home_balance);
         balance.setText(dbUser.getUserBalance(currentUser) + " €");
     }
