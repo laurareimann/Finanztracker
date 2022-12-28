@@ -180,7 +180,7 @@ public class EntriesActivity extends AppCompatActivity {
 
 
                 // create new row in DB
-                // Constructor: userID, amount, notice, String date, day, month, year
+                // Constructor: userID, amount, notice, String date, day, month, yea r
                 // TODO: Datum einlesen
                 dataSource.createEntries(currentUserID, amount, notice, "11.11.22", 11,11,2022);
 
