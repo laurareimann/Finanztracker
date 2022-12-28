@@ -9,7 +9,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
 
 public class DB_user extends SQLiteOpenHelper {
@@ -77,5 +76,16 @@ public class DB_user extends SQLiteOpenHelper {
         } else {
             return false;
         }
+    }
+
+    // return user balance as String
+    public String getUserBalance(String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT user_balance FROM users WHERE user_name=\"" + username + "\"", null);
+
+        cursor.moveToFirst();
+        String balanceString = cursor.getString(0);
+
+        return balanceString;
     }
 }

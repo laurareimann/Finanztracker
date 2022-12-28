@@ -17,6 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText username, password;
     Button btn_register, btn_login;
     DB_user db;
+    public static String currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,8 @@ public class LoginActivity extends AppCompatActivity {
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
 
+                setCurrentUser();
+
                 // Check if fields are empty
                 if(user.equals(null)|| pass.equals(null)){
                     Toast.makeText(LoginActivity.this, "Bitte fülle alle Felder aus.",Toast.LENGTH_SHORT).show();
@@ -52,11 +55,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
 
-
-
-
-
-
             }
         });
 
@@ -68,5 +66,13 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
+
+    // save the name of current User
+    public void setCurrentUser(){
+        currentUser = username.getText().toString();
+    }
+
+
 }

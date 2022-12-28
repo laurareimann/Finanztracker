@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.testapp.databinding.ActivityHomeBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -29,7 +30,10 @@ public class HomeActivity extends AppCompatActivity {
 
     // Reference to the EntriesDataSource-Object
     private EntriesDataSource dataSource;
+    private DB_user dbUser;
+    private TextView balance;
     BottomNavigationView bNV_home;
+    private String currentUser;
 
 
     @Override
@@ -37,6 +41,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        /*** Nagivation Bar ***/
         // Initialize and assign variable
         bNV_home = findViewById(R.id.bottomNav_home);
 
@@ -64,11 +69,17 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        /****** Database *******/
+        /*** Databases ***/
         // the object calls the two constructors of the EntriesDataSource and
         // EntriesDbHelper classes.
         Log.d(LOG_TAG, "The data source is opened.");
         dataSource = new EntriesDataSource(this);
+        dbUser = new DB_user(this);
+
+        /*** Views ***/
+        currentUser = LoginActivity.currentUser;
+        balance = findViewById(R.id.text_home_balance);
+        balance.setText(dbUser.getUserBalance(currentUser) + " €");
     }
 
     @Override

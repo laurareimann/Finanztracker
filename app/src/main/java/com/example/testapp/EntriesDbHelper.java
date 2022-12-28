@@ -16,7 +16,7 @@ public class EntriesDbHelper extends SQLiteOpenHelper{
 
     // Columns for the Table
     public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_USER_ID = "user_id"; /****/
+    public static final String COLUMN_USER_ID = "user_id";
     public static final String COLUMN_ENTRY_VALUE = "entry_value";
     public static final String COLUMN_ENTRY_AMOUNT = "entry_amount";
     public static final String COLUMN_ENTRY_DATE = "entry_date";
@@ -25,6 +25,7 @@ public class EntriesDbHelper extends SQLiteOpenHelper{
     public static final String COLUMN_CAT_ID = "cat_id";
 
     // Command to create Table as String
+    // TODO: Category raus, value erstmal raus, date als 3 seperate ints speichern und einmal datum als string
     public static final String SQL_CREATE =
             "CREATE TABLE " + ENTRIES_LIST +
                     "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
