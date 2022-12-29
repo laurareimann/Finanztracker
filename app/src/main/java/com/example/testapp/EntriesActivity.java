@@ -150,6 +150,7 @@ public class EntriesActivity extends AppCompatActivity {
         final EditText editTextAmount = (EditText) findViewById(R.id.editxt_entries_amount);
         final EditText editTextNotice = (EditText) findViewById(R.id.editxt_entries_notice);
         final EditText editTextCategory = (EditText) findViewById(R.id.editxt_entries_kategory);
+        final TextView textViewDate = (TextView) findViewById(R.id.editxt_entries_date);
 
         // OnClickListener
         buttonAddProduct.setOnClickListener(new View.OnClickListener() {
@@ -159,6 +160,7 @@ public class EntriesActivity extends AppCompatActivity {
                 // get content of EditTextViews
                 String amountString = editTextAmount.getText().toString();
                 String notice = editTextNotice.getText().toString();
+                String date = textViewDate.getText().toString();
 
                 // In Case fields are empty
                 if (TextUtils.isEmpty(amountString)) {
@@ -169,6 +171,9 @@ public class EntriesActivity extends AppCompatActivity {
                     editTextNotice.setError("Notiz darf nicht leer sein");
                     return;
                 }
+                if(TextUtils.isEmpty(date)){
+                    textViewDate.setError("Datum darf nicht leer sein");
+                }
 
                 // Cast amount to string
                 int amount = Integer.parseInt(amountString);
@@ -177,12 +182,13 @@ public class EntriesActivity extends AppCompatActivity {
                 editTextAmount.setText("");
                 editTextNotice.setText("");
                 editTextCategory.setText("");
+                textViewDate.setText("");
 
 
                 // create new row in DB
-                // Constructor: userID, amount, notice, String date, day, month, yea r
+                // Constructor: userID, amount, notice, String date, day, month, year
                 // TODO: Datum einlesen
-                dataSource.createEntries(currentUserID, amount, notice, "11.11.22", 11,11,2022);
+                dataSource.createEntries(currentUserID, amount, notice, date, 11,11,2022);
 
 
                 // Hide Keyboard
