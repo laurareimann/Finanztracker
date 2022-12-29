@@ -173,6 +173,7 @@ public class EntriesActivity extends AppCompatActivity {
                 }
                 if(TextUtils.isEmpty(date)){
                     textViewDate.setError("Datum darf nicht leer sein");
+                    return;
                 }
 
                 // Cast amount to string
@@ -187,7 +188,6 @@ public class EntriesActivity extends AppCompatActivity {
 
                 // create new row in DB
                 // Constructor: userID, amount, notice, String date, day, month, year
-                // TODO: Datum einlesen
                 dataSource.createEntries(currentUserID, amount, notice, date, 11,11,2022);
 
 
