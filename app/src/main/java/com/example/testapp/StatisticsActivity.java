@@ -2,6 +2,7 @@ package com.example.testapp;
 /**
  * SOURCES:
  * BarChart: CodingMark: "Android Studio: Create a Bar Chart using SqLite", URL: https://www.youtube.com/watch?v=niLkRACZEMg, 16.12.2022
+ *           Wilson Yeung: "Using MPAndroidChart for Android Application — BarChart", URL: https://medium.com/@clyeung0714/using-mpandroidchart-for-android-application-barchart-540a55b4b9ef, 31.12.2022
  * MenuBar: jangirkaran17: "How to Implement Bottom Navigation With Activities in Android?", MenuBar: URL: https://www.geeksforgeeks.org/how-to-implement-bottom-navigation-with-activities-in-android/, 19.12.2022
  **/
 
@@ -9,9 +10,11 @@ import static com.example.testapp.R.id.barchart_statistics_months;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +23,8 @@ import android.widget.EditText;
 
 import com.example.testapp.data.Database;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -50,6 +55,8 @@ public class StatisticsActivity extends AppCompatActivity {
         /** BarChart **/
         barChart_statistics_monthOverview = (BarChart) findViewById(R.id.barchart_statistics_months);
         barChart_statistics_yearOverview = (BarChart) findViewById(R.id.barchart_statistics_years);
+        initBarChart(barChart_statistics_monthOverview);
+        initBarChart(barChart_statistics_yearOverview);
 
         showBarChartYears();
         showBarChartMonths();
@@ -104,22 +111,73 @@ public class StatisticsActivity extends AppCompatActivity {
      * Methoden für BarChart Database
      **/
 
-    public void formatGraph() {
-        // Zur Formattierung:
-        XAxis xAxis = barChart_statistics_monthOverview.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setAvoidFirstLastClipping(true);
-        xAxis.setDrawLabels(true);
-        xAxis.isCenterAxisLabelsEnabled();
-        xAxis.setGranularityEnabled(true);
+    // Formattierung:
+    private void initBarDataSet(BarDataSet barDataSet){ //TODO: muss noch eingestellt werden und aufgerufen wernden
+        //Changing the color of the bar
+        barDataSet.setColor(Color.parseColor("#0099FF"));
+        //barDataSet.setColor(Color.parseColor(String.valueOf(ContextCompat.getColor(this, R.color.blue_primary))));
+        //TODO: Farbe aufrufen mit ContextComat funktioniert noch nicht, ist aber erstmal nicht wichtig
 
-        YAxis yAxis = barChart_statistics_monthOverview.getAxisRight();
-        yAxis.setEnabled(false);
-
-        barChart_statistics_monthOverview.setMaxVisibleValueCount(5);
-        barChart_statistics_monthOverview.setFitBars(true);
+        //Setting the size of the form in the legend
+        barDataSet.setFormSize(15f);
+        //showing the value of the bar, default true if not set
+        barDataSet.setDrawValues(false);
+        //setting the text size of the value of the bar
+        barDataSet.setValueTextSize(12f);
     }
 
+    // TODO: anpassen an Designvorlage
+    private void initBarChart(BarChart barChart){
+        //hiding the grey background of the chart, default false if not set
+        barChart.setDrawGridBackground(false);
+        //remove the bar shadow, default false if not set
+        barChart.setDrawBarShadow(false);
+        //remove border of the chart, default false if not set
+        barChart.setDrawBorders(false);
+
+        //remove the description label text located at the lower right corner
+        Description description = new Description();
+        description.setEnabled(false);
+        barChart.setDescription(description);
+
+        //setting animation for y-axis, the bar will pop up from 0 to its value within the time we set
+        barChart.animateY(1000);
+        //setting animation for x-axis, the bar will pop up separately within the time we set
+        barChart.animateX(1000);
+
+        XAxis xAxis = barChart.getXAxis();
+        //change the position of x-axis to the bottom
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        //set the horizontal distance of the grid line
+        xAxis.setGranularity(1f);
+        //hiding the x-axis line, default true if not set
+        xAxis.setDrawAxisLine(false);
+        //hiding the vertical grid lines, default true if not set
+        xAxis.setDrawGridLines(false);
+
+        YAxis leftAxis = barChart.getAxisLeft();
+        //hiding the left y-axis line, default true if not set
+        leftAxis.setDrawAxisLine(false);
+
+        YAxis rightAxis = barChart.getAxisRight();
+        //hiding the right y-axis line, default true if not set
+        rightAxis.setDrawAxisLine(false);
+
+        Legend legend = barChart.getLegend();
+        //setting the shape of the legend form to line, default square shape
+        legend.setForm(Legend.LegendForm.LINE);
+        //setting the text size of the legend
+        legend.setTextSize(11f);
+        //setting the alignment of legend toward the chart
+        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+        //setting the stacking direction of legend
+        legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        //setting the location of legend outside the chart, default false if not set
+        legend.setDrawInside(false);
+    }
+
+    // Jahresübersicht:
     private void showBarChartYears(){
         ArrayList<Integer> valueList = new ArrayList<Integer>();
         ArrayList<BarEntry> entries = new ArrayList<>();
@@ -138,11 +196,15 @@ public class StatisticsActivity extends AppCompatActivity {
         }
 
         BarDataSet barDataSet = new BarDataSet(entries, title);
-
+        // Formattierung:
+        initBarDataSet(barDataSet);
         BarData data = new BarData(barDataSet);
+
         barChart_statistics_yearOverview.setData(data);
         barChart_statistics_yearOverview.invalidate();
     }
+
+    // Monatsübersicht:
     private void showBarChartMonths(){
         ArrayList<Integer> valueList = new ArrayList<Integer>();
         ArrayList<BarEntry> entries = new ArrayList<>();
@@ -160,6 +222,9 @@ public class StatisticsActivity extends AppCompatActivity {
         }
 
         BarDataSet barDataSet = new BarDataSet(entries, title);
+        // Formattierung:
+        initBarDataSet(barDataSet);
+
         BarData data = new BarData(barDataSet);
         barChart_statistics_monthOverview.setData(data);
         barChart_statistics_monthOverview.invalidate();
