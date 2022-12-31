@@ -5,6 +5,8 @@ package com.example.testapp;
  * MenuBar: jangirkaran17: "How to Implement Bottom Navigation With Activities in Android?", MenuBar: URL: https://www.geeksforgeeks.org/how-to-implement-bottom-navigation-with-activities-in-android/, 19.12.2022
  **/
 
+import static com.example.testapp.R.id.barchart_statistics_months;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,7 +19,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.testapp.data.Database;
-import com.example.testapp.databinding.ActivityStatisticsBinding;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -30,38 +31,30 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class StatisticsActivity extends AppCompatActivity {
 
     BottomNavigationView bNV_statistics;
-
     private BarChart barChart_statistics_monthOverview;
-    private Button button;
-    private EditText editText;
-    private Database db;
-    long date = System.currentTimeMillis();
+    private BarChart barChart_statistics_yearOverview;
+    private EntriesDataSource dataSource;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
+        dataSource = new EntriesDataSource(this);
 
         /** BarChart **/
-        barChart_statistics_monthOverview = (BarChart) findViewById(R.id.barchart_statistics);
+        barChart_statistics_monthOverview = (BarChart) findViewById(R.id.barchart_statistics_months);
+        barChart_statistics_yearOverview = (BarChart) findViewById(R.id.barchart_statistics_years);
 
-        button = (Button) findViewById(R.id.button_statistics);
-        editText = (EditText) findViewById(R.id.editText_statistics);
+        showBarChartYears();
+        showBarChartMonths();
 
-        addDataToGraph();
-        barChart_statistics_monthOverview.invalidate();
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("click detectet");
-                SaveToDatabase();
-            }
-        });
+        barChart_statistics_monthOverview.invalidate(); // TODO: kann weg?
 
 
         /*** Menubar ***/
@@ -93,50 +86,25 @@ public class StatisticsActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        dataSource.open();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        dataSource.close();
+    }
+
 
     /**
      * Methoden für BarChart Database
      **/
 
-    public void SaveToDatabase() {
-        db = new Database(this);
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd mm yyyy");
-        String xValue = sdf.format(date);
-        String yValue = editText.getText().toString();
-
-        db.saveData(xValue, yValue);
-        addDataToGraph(); // Graph wird refreshed, wenn neue Daten gespeichert werden
-        barChart_statistics_monthOverview.invalidate();
-        db.close();
-    }
-
-    public void addDataToGraph() {
-        db = new Database(this);
-
-        final ArrayList<BarEntry> yVals = new ArrayList<BarEntry>();
-        final ArrayList<String> yData = db.queryYData();
-
-        for (int i = 0; i < db.queryYData().size(); i++) {
-            BarEntry newBarEntry = new BarEntry(i, Float.parseFloat(db.queryYData().get(i)));
-            yVals.add(newBarEntry);
-        }
-
-        final ArrayList<String> xVals = new ArrayList<String>();
-        final ArrayList<String> xData = db.queryXData();
-
-        for (int i = 0; i < db.queryXData().size(); i++) {
-            xVals.add(xData.get(i));
-        }
-
-        BarDataSet dataSet = new BarDataSet(yVals, "Überblick Monat");
-        ArrayList<IBarDataSet> dataSetsList = new ArrayList<>();
-        dataSetsList.add(dataSet);
-        BarData data = new BarData(dataSetsList);
-
-        barChart_statistics_monthOverview.getXAxis().setValueFormatter(new IndexAxisValueFormatter(xVals));
-        barChart_statistics_monthOverview.setData(data);
-
-
+    public void formatGraph() {
         // Zur Formattierung:
         XAxis xAxis = barChart_statistics_monthOverview.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -152,5 +120,48 @@ public class StatisticsActivity extends AppCompatActivity {
         barChart_statistics_monthOverview.setFitBars(true);
     }
 
+    private void showBarChartYears(){
+        ArrayList<Integer> valueList = new ArrayList<Integer>();
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        ArrayList<Integer> yearsWithData = dataSource.yearsWithData();
+        String title = "Jahre";
 
+        //input data
+        for(int i = 0; i < yearsWithData.size(); i++){
+            valueList.add(dataSource.sumExpensesYear(yearsWithData.get(i)));
+        }
+
+        //fit the data into a bar
+        for (int i = 0; i < valueList.size(); i++) {
+            BarEntry barEntry = new BarEntry(yearsWithData.get(i), valueList.get(i).floatValue());
+            entries.add(barEntry);
+        }
+
+        BarDataSet barDataSet = new BarDataSet(entries, title);
+
+        BarData data = new BarData(barDataSet);
+        barChart_statistics_yearOverview.setData(data);
+        barChart_statistics_yearOverview.invalidate();
+    }
+    private void showBarChartMonths(){
+        ArrayList<Integer> valueList = new ArrayList<Integer>();
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        String title = "Monate";
+
+        //input data
+        for(int i = 0; i < 12; i++){
+            valueList.add(dataSource.sumExpensesMonth(i,2022));
+        }
+
+        //fit the data into a bar
+        for (int i = 0; i < valueList.size(); i++) {
+            BarEntry barEntry = new BarEntry(i, valueList.get(i).floatValue());
+            entries.add(barEntry);
+        }
+
+        BarDataSet barDataSet = new BarDataSet(entries, title);
+        BarData data = new BarData(barDataSet);
+        barChart_statistics_monthOverview.setData(data);
+        barChart_statistics_monthOverview.invalidate();
+    }
 }
