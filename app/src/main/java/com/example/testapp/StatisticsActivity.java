@@ -2,9 +2,12 @@ package com.example.testapp;
 /**
  * SOURCES:
  * BarChart: CodingMark: "Android Studio: Create a Bar Chart using SqLite", URL: https://www.youtube.com/watch?v=niLkRACZEMg, 16.12.2022
- *           Wilson Yeung: "Using MPAndroidChart for Android Application — BarChart", URL: https://medium.com/@clyeung0714/using-mpandroidchart-for-android-application-barchart-540a55b4b9ef, 31.12.2022
+ * Wilson Yeung: "Using MPAndroidChart for Android Application — BarChart", URL: https://medium.com/@clyeung0714/using-mpandroidchart-for-android-application-barchart-540a55b4b9ef, 31.12.2022
  * MenuBar: jangirkaran17: "How to Implement Bottom Navigation With Activities in Android?", MenuBar: URL: https://www.geeksforgeeks.org/how-to-implement-bottom-navigation-with-activities-in-android/, 19.12.2022
  **/
+
+// TODO: Budget Monat anpassen an aktuellen Monat
+// TODO: Budget Menge anpassen an aktuelle Ausgaben in dem Monat
 
 import static com.example.testapp.R.id.barchart_statistics_months;
 
@@ -40,9 +43,9 @@ import java.util.Arrays;
 
 public class StatisticsActivity extends AppCompatActivity {
 
+    Button btn_months, btn_years;
     BottomNavigationView bNV_statistics;
-    private BarChart barChart_statistics_monthOverview;
-    private BarChart barChart_statistics_yearOverview;
+    private BarChart barChart_statistics_monthOverview, barChart_statistics_yearOverview;
     private EntriesDataSource dataSource;
 
     @SuppressLint("MissingInflatedId")
@@ -52,7 +55,39 @@ public class StatisticsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_statistics);
         dataSource = new EntriesDataSource(this);
 
+        /** Buttons **/
+        // Switch between Month and Year Graph
+        btn_months = findViewById(R.id.btn_statistics_months);
+        btn_years = findViewById(R.id.btn_statistics_years);
+        barChart_statistics_monthOverview = (BarChart) findViewById(R.id.barchart_statistics_months);
+        barChart_statistics_yearOverview = (BarChart) findViewById(R.id.barchart_statistics_years);
+
+        btn_months.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btn_years.setSelected(false);
+                initBarChart(barChart_statistics_monthOverview);
+                barChart_statistics_yearOverview.setVisibility(View.INVISIBLE);
+                barChart_statistics_monthOverview.setVisibility(View.VISIBLE);
+                showBarChartMonths();
+            }
+        });
+
+        btn_years.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btn_months.setSelected(false);
+                initBarChart(barChart_statistics_yearOverview);
+                barChart_statistics_monthOverview.setVisibility(View.INVISIBLE);
+                barChart_statistics_yearOverview.setVisibility(View.VISIBLE);
+                showBarChartYears();
+
+            }
+        });
+
+
         /** BarChart **/
+        /*
         barChart_statistics_monthOverview = (BarChart) findViewById(R.id.barchart_statistics_months);
         barChart_statistics_yearOverview = (BarChart) findViewById(R.id.barchart_statistics_years);
         initBarChart(barChart_statistics_monthOverview);
@@ -62,6 +97,8 @@ public class StatisticsActivity extends AppCompatActivity {
         showBarChartMonths();
 
         barChart_statistics_monthOverview.invalidate(); // TODO: kann weg?
+
+         */
 
 
         /*** Menubar ***/
@@ -99,6 +136,7 @@ public class StatisticsActivity extends AppCompatActivity {
 
         dataSource.open();
     }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -112,7 +150,7 @@ public class StatisticsActivity extends AppCompatActivity {
      **/
 
     // Formattierung:
-    private void initBarDataSet(BarDataSet barDataSet){ //TODO: muss noch eingestellt werden und aufgerufen wernden
+    private void initBarDataSet(BarDataSet barDataSet) { //TODO: muss noch eingestellt werden und aufgerufen wernden
         //Changing the color of the bar
         barDataSet.setColor(Color.parseColor("#0099FF"));
         //barDataSet.setColor(Color.parseColor(String.valueOf(ContextCompat.getColor(this, R.color.blue_primary))));
@@ -127,7 +165,7 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     // TODO: anpassen an Designvorlage
-    private void initBarChart(BarChart barChart){
+    private void initBarChart(BarChart barChart) {
         //hiding the grey background of the chart, default false if not set
         barChart.setDrawGridBackground(false);
         //remove the bar shadow, default false if not set
@@ -141,9 +179,9 @@ public class StatisticsActivity extends AppCompatActivity {
         barChart.setDescription(description);
 
         //setting animation for y-axis, the bar will pop up from 0 to its value within the time we set
-        barChart.animateY(1000);
+        barChart.animateY(500);
         //setting animation for x-axis, the bar will pop up separately within the time we set
-        barChart.animateX(1000);
+        barChart.animateX(500);
 
         XAxis xAxis = barChart.getXAxis();
         //change the position of x-axis to the bottom
@@ -178,14 +216,14 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     // Jahresübersicht:
-    private void showBarChartYears(){
+    private void showBarChartYears() {
         ArrayList<Integer> valueList = new ArrayList<Integer>();
         ArrayList<BarEntry> entries = new ArrayList<>();
         ArrayList<Integer> yearsWithData = dataSource.yearsWithData();
         String title = "Jahre";
 
         //input data
-        for(int i = 0; i < yearsWithData.size(); i++){
+        for (int i = 0; i < yearsWithData.size(); i++) {
             valueList.add(dataSource.sumExpensesYear(yearsWithData.get(i)));
         }
 
@@ -205,14 +243,14 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     // Monatsübersicht:
-    private void showBarChartMonths(){
+    private void showBarChartMonths() {
         ArrayList<Integer> valueList = new ArrayList<Integer>();
         ArrayList<BarEntry> entries = new ArrayList<>();
         String title = "Monate";
 
         //input data
-        for(int i = 0; i < 12; i++){
-            valueList.add(dataSource.sumExpensesMonth(i,2022));
+        for (int i = 0; i < 12; i++) {
+            valueList.add(dataSource.sumExpensesMonth(i, 2022));
         }
 
         //fit the data into a bar
