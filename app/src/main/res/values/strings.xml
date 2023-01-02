@@ -19,6 +19,10 @@
     <string name="h_welcome">Willkommen</string>
     <string name="h_balance">auf deinem Bankkonto</string>
     <string name="h_spendings">Buchungen</string>
+    <string name="h_bookings">Buchungen</string>
+    <string name="h_account">Kontostand</string>
+    <string name="h_income">Einkommen</string>
+    <string name="h_expenses">Ausgaben</string>
 
     <!-->Hints<-->
     <string name="hint_username">Name</string>

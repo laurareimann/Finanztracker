@@ -86,42 +86,42 @@
                 app:layout_constraintTop_toTopOf="@+id/barchart_statistics_years">
 
             </com.github.mikephil.charting.charts.BarChart>
-
             <TextView
                 android:id="@+id/box_statistics_budgetbox"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/box_statistics_blue"
+                app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/barchart_statistics_months" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ConstrainedLayout2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/margins_elements_small"
+            app:layout_constraintBottom_toBottomOf="@+id/box_statistics_budgetbox"
+            app:layout_constraintEnd_toEndOf="@+id/box_statistics_budgetbox"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/box_statistics_budgetbox"
+            app:layout_constraintTop_toTopOf="@+id/box_statistics_budgetbox"
+            app:layout_constraintVertical_bias="0.448">
+
 
             <ImageView
                 android:id="@+id/icon_statistics_dollarsign"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/box_statistics_budgetbox"
-                app:layout_constraintStart_toStartOf="@+id/box_statistics_budgetbox"
-                app:layout_constraintTop_toTopOf="@+id/box_statistics_budgetbox"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.055"
                 app:srcCompat="@drawable/icon_statistics_dollarsign" />
-
-            <TextView
-                android:id="@+id/txt_statistics_budget"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ausgaben"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/box_statistics_budgetbox"
-                app:layout_constraintEnd_toEndOf="@+id/box_statistics_budgetbox"
-                app:layout_constraintHorizontal_bias="0.093"
-                app:layout_constraintStart_toEndOf="@+id/icon_statistics_dollarsign"
-                app:layout_constraintTop_toTopOf="@+id/box_statistics_budgetbox"
-                app:layout_constraintVertical_bias="0.246" />
 
             <TextView
                 android:id="@+id/txt_statistics_month"
@@ -131,12 +131,9 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_h2"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/box_statistics_budgetbox"
-                app:layout_constraintEnd_toEndOf="@+id/box_statistics_budgetbox"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/txt_statistics_budget"
-                app:layout_constraintTop_toBottomOf="@+id/txt_statistics_budget"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintBottom_toBottomOf="@+id/icon_statistics_dollarsign"
+                app:layout_constraintStart_toEndOf="@+id/icon_statistics_dollarsign"
+                app:layout_constraintTop_toBottomOf="@+id/txt_statistics_budget" />
 
             <TextView
                 android:id="@+id/txt_statistics_expenses"
@@ -146,10 +143,131 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_h1"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/box_statistics_budgetbox"
-                app:layout_constraintEnd_toEndOf="@+id/box_statistics_budgetbox"
+                app:layout_constraintBottom_toBottomOf="@+id/icon_statistics_dollarsign"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.92"
                 app:layout_constraintStart_toEndOf="@+id/txt_statistics_month"
-                app:layout_constraintTop_toTopOf="@+id/box_statistics_budgetbox" />
+                app:layout_constraintTop_toTopOf="@+id/icon_statistics_dollarsign"
+                app:layout_constraintVertical_bias="0.538" />
+
+            <TextView
+                android:id="@+id/txt_statistics_budget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ausgaben"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toEndOf="@+id/icon_statistics_dollarsign"
+                app:layout_constraintTop_toTopOf="@+id/icon_statistics_dollarsign" />
+
+            <TextView
+                android:id="@+id/box_statistics_darkblue"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/margins_elements_small"
+                android:background="@drawable/box_statistics_darkblue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/icon_statistics_dollarsign"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/txt_h_kontostand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="@string/h_account"
+                android:textColor="@color/turquoise_secondary"
+                android:textSize="@dimen/font_normalText"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/box_statistics_darkblue"
+                app:layout_constraintHorizontal_bias="0.131"
+                app:layout_constraintStart_toStartOf="@+id/box_statistics_darkblue"
+                app:layout_constraintTop_toTopOf="@+id/box_statistics_darkblue" />
+
+            <TextView
+                android:id="@+id/txt_statistics_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="32.452,98 €"
+                android:textColor="@color/white_primary"
+                android:textSize="@dimen/font_h1"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/box_statistics_darkblue"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/txt_h_kontostand"
+                app:layout_constraintTop_toBottomOf="@+id/txt_h_kontostand" />
+
+            <TextView
+                android:id="@+id/txt_h_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="2022"
+                android:textColor="@color/turquoise_secondary"
+                android:textSize="@dimen/font_normalText"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/box_statistics_darkblue"
+                app:layout_constraintHorizontal_bias="0.099"
+                app:layout_constraintStart_toStartOf="@+id/box_statistics_darkblue"
+                app:layout_constraintTop_toBottomOf="@+id/txt_statistics_balance" />
+
+            <TextView
+                android:id="@+id/txt_statistics_h_incomeyear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/h_income"
+                android:textColor="@color/turquoise_secondary"
+                android:textSize="@dimen/font_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/txt_statistics_balance"
+                app:layout_constraintTop_toBottomOf="@+id/txt_h_year" />
+
+            <TextView
+                android:id="@+id/txt_statistics_h_expensesyear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/h_expenses"
+                android:textColor="@color/turquoise_secondary"
+                android:textSize="@dimen/font_small"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_statistics_h_incomeyear"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.49"
+                app:layout_constraintStart_toEndOf="@+id/txt_statistics_h_incomeyear"
+                app:layout_constraintTop_toTopOf="@+id/txt_statistics_h_incomeyear"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/txt_statistics_incomeyear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2.345,12 €"
+                android:textColor="@color/white_primary"
+                android:textSize="@dimen/font_normalText"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/txt_statistics_h_expensesyear"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/txt_statistics_h_incomeyear"
+                app:layout_constraintTop_toBottomOf="@+id/txt_statistics_h_incomeyear" />
+
+            <TextView
+                android:id="@+id/txt_statistics_expensesyear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.221,25 €"
+                android:textColor="@color/white_primary"
+                android:textSize="@dimen/font_normalText"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/txt_statistics_h_expensesyear"
+                app:layout_constraintTop_toBottomOf="@+id/txt_statistics_h_expensesyear" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

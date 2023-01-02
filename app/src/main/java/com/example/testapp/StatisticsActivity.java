@@ -6,14 +6,10 @@ package com.example.testapp;
  * MenuBar: jangirkaran17: "How to Implement Bottom Navigation With Activities in Android?", MenuBar: URL: https://www.geeksforgeeks.org/how-to-implement-bottom-navigation-with-activities-in-android/, 19.12.2022
  **/
 
-// TODO: Budget Monat anpassen an aktuellen Monat
-// TODO: Budget Menge anpassen an aktuelle Ausgaben in dem Monat
-
 import static com.example.testapp.R.id.barchart_statistics_months;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -22,9 +18,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
-import com.example.testapp.data.Database;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
@@ -33,13 +27,9 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class StatisticsActivity extends AppCompatActivity {
 
@@ -81,25 +71,8 @@ public class StatisticsActivity extends AppCompatActivity {
                 barChart_statistics_monthOverview.setVisibility(View.INVISIBLE);
                 barChart_statistics_yearOverview.setVisibility(View.VISIBLE);
                 showBarChartYears();
-
             }
         });
-
-
-        /** BarChart **/
-        /*
-        barChart_statistics_monthOverview = (BarChart) findViewById(R.id.barchart_statistics_months);
-        barChart_statistics_yearOverview = (BarChart) findViewById(R.id.barchart_statistics_years);
-        initBarChart(barChart_statistics_monthOverview);
-        initBarChart(barChart_statistics_yearOverview);
-
-        showBarChartYears();
-        showBarChartMonths();
-
-        barChart_statistics_monthOverview.invalidate(); // TODO: kann weg?
-
-         */
-
 
         /*** Menubar ***/
         // Initialize and assign variable

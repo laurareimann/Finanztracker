@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margins_sides"
         android:layout_marginTop="20dp"
-        android:text="@string/h_spendings"
+        android:text="@string/h_bookings"
         android:textColor="@color/black"
         android:textSize="@dimen/font_normalText"
         android:textStyle="bold"
