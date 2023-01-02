@@ -145,6 +145,34 @@ public class EntriesDataSource {
         return entriesList;
     }
 
+    // Read all existing records from a User from the table
+    public List<Entries> getAllEntriesFromUser(int userID){
+        List<Entries> entriesList = new ArrayList<>();
+
+        // Search query where all records are returned
+        Cursor cursor = database.query(EntriesDbHelper.ENTRIES_LIST, columns,
+                EntriesDbHelper.COLUMN_USER_ID + "=\"" +userID+ "\"", null, null, null, null);
+
+        //Set the obtained cursor object to the first position
+        cursor.moveToFirst();
+        Entries entries;
+
+        // Read all data of the search query and convert them into Entries objects
+        // Add them to the EntriesList
+        // Output to the console
+        while(!cursor.isAfterLast()){
+            entries = cursorToEntry(cursor);
+            entriesList.add(entries);
+            Log.d(LOG_TAG, "ID: " + entries.getId() + ", Inhalt: "
+                    + entries.toString());
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+
+        return entriesList;
+    }
+
     // get sum of all expenses
     public int sumExpenses() {
         int sumExpenses = 0;

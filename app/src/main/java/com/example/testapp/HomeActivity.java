@@ -34,6 +34,7 @@ public class HomeActivity extends AppCompatActivity {
     private TextView balance;
     BottomNavigationView bNV_home;
     private String currentUser;
+    private int currentUserID;
     boolean checker = false;
     DB_user db;
 
@@ -80,6 +81,7 @@ public class HomeActivity extends AppCompatActivity {
 
         /*** Views ***/
         currentUser = LoginActivity.currentUsername;
+        currentUserID = dbUser.getUserID(currentUser);
         balance = findViewById(R.id.text_home_balance);
         balance.setText(dbUser.getUserBalance(currentUser) + " €");
     }
@@ -107,7 +109,7 @@ public class HomeActivity extends AppCompatActivity {
     /*** Method to put Entries onto Homescreen ***/
     private void showAllListEntries() {
         // Save DB Entries in List
-        List<Entries> entriesList = dataSource.getAllEntries();
+        List<Entries> entriesList = dataSource.getAllEntriesFromUser(currentUserID);
 
         // Create array adapter and pass the instance of the main activity as context
         // Pass a predefined standard layout as layout for the entries
