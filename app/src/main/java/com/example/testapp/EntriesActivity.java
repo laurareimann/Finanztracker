@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.nfc.Tag;
@@ -20,8 +21,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -40,15 +43,22 @@ public class EntriesActivity extends AppCompatActivity {
     BottomNavigationView bNV_entries;
     private String currentUser;
     private int currentUserID;
+    private int currentBalance;
 
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
+    Switch einAusgabeSwitch;
+    private TextView switchText;
+    DB_user db;
+    EditText acc_balance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entries);
         mDisplayDate = (TextView) findViewById(R.id.editxt_entries_date);
+
+
 
         /*** Menubar ***/
         // Initialize and assign variable
@@ -94,6 +104,7 @@ public class EntriesActivity extends AppCompatActivity {
         currentUserID = dbUser.getUserID(currentUser);
 
 
+
         /*** Date ***/
         mDisplayDate.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -126,6 +137,9 @@ public class EntriesActivity extends AppCompatActivity {
         };
     }
 
+
+
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -144,6 +158,8 @@ public class EntriesActivity extends AppCompatActivity {
         dataSource.close();
     }
 
+
+
     private void activateAddButton() {
         // References Widget-Objects
         Button buttonAddProduct = (Button) findViewById(R.id.button_entries_add);
@@ -151,6 +167,27 @@ public class EntriesActivity extends AppCompatActivity {
         final EditText editTextNotice = (EditText) findViewById(R.id.editxt_entries_notice);
         final EditText editTextCategory = (EditText) findViewById(R.id.editxt_entries_kategory);
         final TextView textViewDate = (TextView) findViewById(R.id.editxt_entries_date);
+
+        switchText = (TextView) findViewById(R.id.switchText);
+        einAusgabeSwitch = (Switch) findViewById(R.id.switch1);
+        
+
+        /*** Switch ***/
+        einAusgabeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if(isChecked) {
+                    switchText.setText("Einnahme");
+                    switchText.setTextColor(Color.parseColor("#7fff00"));
+                    editTextAmount.setHint("Neue Einnahme");
+                }else{
+                    switchText.setText("Ausgabe");
+                    switchText.setTextColor(Color.parseColor("#ff0000"));
+                    editTextAmount.setHint("Neue Ausgabe");
+                }
+
+            }
+        });
 
         // OnClickListener
         buttonAddProduct.setOnClickListener(new View.OnClickListener() {
@@ -178,6 +215,9 @@ public class EntriesActivity extends AppCompatActivity {
 
                 // Cast amount to string
                 int amount = Integer.parseInt(amountString);
+
+
+
 
                 // clear EditTextViews
                 editTextAmount.setText("");
