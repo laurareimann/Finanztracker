@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Description;
@@ -38,6 +39,10 @@ public class StatisticsActivity extends AppCompatActivity {
     BottomNavigationView bNV_statistics;
     private BarChart barChart_statistics_monthOverview, barChart_statistics_yearOverview;
     private EntriesDataSource dataSource;
+    private TextView balance;
+
+    private DB_user dbUser;
+    private String currentUser;
 
     private int currentUserID = HomeActivity.getCurrentUserID();
 
@@ -50,6 +55,12 @@ public class StatisticsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
         dataSource = new EntriesDataSource(this);
+        dbUser = new DB_user(this);
+        currentUser = LoginActivity.currentUsername;
+
+
+        balance = findViewById(R.id.txt_statistics_balance);
+        balance.setText(dbUser.getUserBalance(currentUser) + " €");
 
 
         /** Buttons **/
@@ -200,6 +211,7 @@ public class StatisticsActivity extends AppCompatActivity {
         ArrayList<Integer> valueList = new ArrayList<Integer>();
         ArrayList<BarEntry> entries = new ArrayList<>();
         ArrayList<Integer> yearsWithData = dataSource.yearsWithData();
+        System.out.println("yearsWithData in sA: "+yearsWithData);
         String title = "Jahre";
 
         //input data
@@ -226,18 +238,32 @@ public class StatisticsActivity extends AppCompatActivity {
     private void showBarChartMonths() {
         ArrayList<Integer> valueList = new ArrayList<>();
         ArrayList<BarEntry> entries = new ArrayList<>();
+        ArrayList<String> months = new ArrayList<>();
+        months.add("Jan");
+        months.add("Feb");
+        months.add("Mär");
+        months.add("Apr");
+        months.add("Mai");
+        months.add("Jun");
+        months.add("Jul");
+        months.add("Aug");
+        months.add("Sep");
+        months.add("Okt");
+        months.add("Nov");
+        months.add("Dez");
+
         String title = "Monate";
 
         //input data
         for (int i = 0; i < 12; i++) {
             valueList.add(dataSource.sumExpensesMonth(i, currentYear));
-            //System.out.println("valueList " + i + ": " + valueList.get(i));
         }
 
         //fit the data into a bar
         for (int i = 0; i < valueList.size(); i++) {
             BarEntry barEntry = new BarEntry(i, valueList.get(i).floatValue()); // floatValue kann auch gelöscht werden
             entries.add(barEntry);
+            //TODO: add months as String
         }
 
         BarDataSet barDataSet = new BarDataSet(entries, title);

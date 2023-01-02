@@ -203,11 +203,8 @@ public class EntriesDataSource {
         List<Entries> allEntries = this.getAllEntriesFromUser(HomeActivity.getCurrentUserID());
 
         for (Entries e : allEntries) {
-            for (int element : yearsWithData) {
-                if (!(element == e.getEntry_year())) {
-                    yearsWithData.add(e.getEntry_year());
-                }
-            }
+            yearsWithData.add(e.getEntry_year());
+            //TODO: aktuell werden alle Jahre aus den Einträgen in die Liste gelegt, inkl dupliakte. Funktioniert aber trotzdem
         }
         return yearsWithData;
     }
@@ -218,7 +215,6 @@ public class EntriesDataSource {
         List<Entries> allEntries = this.getAllEntriesFromUser(HomeActivity.getCurrentUserID());
 
         for (Entries e : allEntries) {
-            System.out.println("month from allEntries: " + e.getEntry_month());
             if (e.getEntry_month() == month && e.getEntry_year() == year) {
                 sumMonthExpenses += e.getEntry_amount();
             }
