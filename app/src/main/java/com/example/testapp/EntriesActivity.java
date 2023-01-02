@@ -52,9 +52,9 @@ public class EntriesActivity extends AppCompatActivity {
     private TextView switchText;
     DB_user db;
     public static boolean checker = false;
-    int year;
-    int month;
-    int day;
+    int yearDB;
+    int monthDB;
+    int dayDB;
 
 
     @Override
@@ -115,9 +115,9 @@ public class EntriesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Calendar cal = Calendar.getInstance();
-                year = cal.get(Calendar.YEAR);
-                month = cal.get(Calendar.MONTH);
-                day = cal.get(Calendar.DAY_OF_MONTH);
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog = new DatePickerDialog(
                         EntriesActivity.this,
@@ -137,6 +137,11 @@ public class EntriesActivity extends AppCompatActivity {
                 Log.d(TAG,"ondateSet: mm/dd/yyy: " + month + "/" + day + "/" + year );
                 String date = month + "/" + day + "/" + year;
                 mDisplayDate.setText(date);
+
+                // save date as ints
+                dayDB = day;
+                monthDB = month;
+                yearDB = year;
             }
         };
     }
@@ -239,7 +244,7 @@ public class EntriesActivity extends AppCompatActivity {
                 // create new row in DB
                 // Constructor: userID, amount, notice, String date, day, month, year
 
-                dataSource.createEntries(currentUserID, amount, notice, date, day, month, year);
+                dataSource.createEntries(currentUserID, amount, notice, date, dayDB, monthDB, yearDB);
 
                 dbUser.updateBalance(amount,currentUser,checker);
                 // Hide Keyboard
