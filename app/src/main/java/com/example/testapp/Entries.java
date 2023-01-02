@@ -11,6 +11,7 @@ public class Entries {
     private int entry_month;
     private int entry_year;
 
+
     public Entries(long id, long user_id, int entry_amount, String entry_notice,
                    String entry_date, int entry_day, int entry_month, int entry_year) {
         this.id = id;
@@ -87,10 +88,12 @@ public class Entries {
         this.entry_year = entry_year;
     }
 
+    // Todo Ausgabe im Home screen fixen
     @Override
     public String toString() {
-        return "Ausgaben: " + entry_amount +
+        return "Einnahme/Ausgabe: " + entry_amount +
                 "€ , Datum: " + entry_date +
                 ", Notiz: " + entry_notice;
+
     }
 }

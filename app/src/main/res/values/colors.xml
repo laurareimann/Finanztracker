@@ -19,5 +19,7 @@
     <color name="light_blue_secondary">#00D0FD</color>
     <color name="turquoise_secondary">#5CFBD8</color>
     <color name="white_transparent_background">#30ffffff</color>
+
+    <color name="red">#ff0000</color>
     
 </resources>

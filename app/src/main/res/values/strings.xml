@@ -35,4 +35,6 @@
     <string name="menu_entries">neue Ausgabe</string>
     <string name="menu_statistics">Statistiken</string>
 
+    <string name="switchText">Ausgabe</string>
+
 </resources>

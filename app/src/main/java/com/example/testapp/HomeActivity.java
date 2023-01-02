@@ -34,6 +34,8 @@ public class HomeActivity extends AppCompatActivity {
     private TextView balance;
     BottomNavigationView bNV_home;
     private String currentUser;
+    boolean checker = false;
+    DB_user db;
 
 
     @Override
@@ -116,6 +118,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // Put Entries onto Homescreen
         ListView shoppingMemosListView = (ListView) findViewById(R.id.listview_home_entries);
+
         shoppingMemosListView.setAdapter(entriesArrayAdapter);
     }
 }

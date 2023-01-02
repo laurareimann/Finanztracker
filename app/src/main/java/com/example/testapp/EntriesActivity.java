@@ -50,7 +50,8 @@ public class EntriesActivity extends AppCompatActivity {
     Switch einAusgabeSwitch;
     private TextView switchText;
     DB_user db;
-    EditText acc_balance;
+    public static boolean checker = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -170,17 +171,19 @@ public class EntriesActivity extends AppCompatActivity {
 
         switchText = (TextView) findViewById(R.id.switchText);
         einAusgabeSwitch = (Switch) findViewById(R.id.switch1);
-        
+
 
         /*** Switch ***/
         einAusgabeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if(isChecked) {
+                    checker = true;
                     switchText.setText("Einnahme");
                     switchText.setTextColor(Color.parseColor("#7fff00"));
                     editTextAmount.setHint("Neue Einnahme");
                 }else{
+                    checker = false;
                     switchText.setText("Ausgabe");
                     switchText.setTextColor(Color.parseColor("#ff0000"));
                     editTextAmount.setHint("Neue Ausgabe");
@@ -230,7 +233,7 @@ public class EntriesActivity extends AppCompatActivity {
                 // Constructor: userID, amount, notice, String date, day, month, year
                 dataSource.createEntries(currentUserID, amount, notice, date, 11,11,2022);
 
-
+                dbUser.updateBalance(amount,currentUser,checker);
                 // Hide Keyboard
                 InputMethodManager inputMethodManager;
                 inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
@@ -240,4 +243,6 @@ public class EntriesActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

@@ -99,4 +99,27 @@ public class DB_user extends SQLiteOpenHelper {
 
         return idInt;
     }
+    public float getUserBalanceFloat(String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT user_balance FROM users WHERE user_name=\"" + username + "\"", null);
+
+        cursor.moveToFirst();
+        float balanceInt = cursor.getFloat(0);
+        cursor.close();
+
+        return balanceInt;
+    }
+    public void updateBalance(float amount,String username,boolean isChecked) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        float newBalance;
+        if(isChecked) {
+            newBalance =  getUserBalanceFloat(username) + amount;
+        }else{
+            newBalance =  getUserBalanceFloat(username) - amount;
+        }
+        contentValues.put("user_balance",newBalance);
+        db.update("users",contentValues,"user_name=\"" +username+ "\"",null);
+
+    }
 }
