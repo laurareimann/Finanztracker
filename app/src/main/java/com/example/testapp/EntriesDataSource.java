@@ -19,6 +19,7 @@ public class EntriesDataSource {
     private SQLiteDatabase database;
     private EntriesDbHelper dbHelper;
 
+
     // Array needed for search queries
     // It contains the names of thee columns in our entries table.
     private String[] columns = {
