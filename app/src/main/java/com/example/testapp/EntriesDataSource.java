@@ -186,14 +186,13 @@ public class EntriesDataSource {
     // get sum of all expenses for a certain year
     public int sumExpensesYear(int year) {
         int sumYearExpenses = 0;
-        //List<Entries> allEntries = this.getAllEntries();
-        /*
+        List<Entries> allEntries = this.getAllEntriesFromUser(HomeActivity.getCurrentUserID());
         for (Entries e : allEntries) {
             if (e.getEntry_year() == year) {
                 sumYearExpenses += e.getEntry_amount();
             }
         }
-         */
+
         sumYearExpenses = year - 2000;
         return sumYearExpenses;
     }
@@ -201,8 +200,8 @@ public class EntriesDataSource {
     // get set of all years with expenses
     public ArrayList<Integer> yearsWithData() {
         ArrayList<Integer> yearsWithData = new ArrayList<>();
-        //List<Entries> allEntries = this.getAllEntries();
-        /*
+        List<Entries> allEntries = this.getAllEntriesFromUser(HomeActivity.getCurrentUserID());
+
         for (Entries e : allEntries) {
             for (int element : yearsWithData) {
                 if (!(element == e.getEntry_year())) {
@@ -210,28 +209,20 @@ public class EntriesDataSource {
                 }
             }
         }
-         */
-        yearsWithData.add(2020);
-        yearsWithData.add(2021);
-        yearsWithData.add(2022);
-        yearsWithData.add(2023);
-
         return yearsWithData;
     }
 
     // get sum of all expenses for a certain year
     public int sumExpensesMonth(int month, int year) {
-        int sumMonthExpenses;
-        //List<Entries> allEntries = this.getAllEntries();
-        /*
+        int sumMonthExpenses = 0;
+        List<Entries> allEntries = this.getAllEntriesFromUser(HomeActivity.getCurrentUserID());
+
         for (Entries e : allEntries) {
+            System.out.println("month from allEntries: " + e.getEntry_month());
             if (e.getEntry_month() == month && e.getEntry_year() == year) {
                 sumMonthExpenses += e.getEntry_amount();
             }
         }
-         */
-        sumMonthExpenses = month + 1;
         return sumMonthExpenses;
     }
-
 }

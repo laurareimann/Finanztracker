@@ -137,7 +137,6 @@ public class EntriesActivity extends AppCompatActivity {
                 Log.d(TAG,"ondateSet: mm/dd/yyy: " + month + "/" + day + "/" + year );
                 String date = month + "/" + day + "/" + year;
                 mDisplayDate.setText(date);
-
             }
         };
     }

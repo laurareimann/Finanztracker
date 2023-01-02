@@ -30,6 +30,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class StatisticsActivity extends AppCompatActivity {
 
@@ -38,12 +39,18 @@ public class StatisticsActivity extends AppCompatActivity {
     private BarChart barChart_statistics_monthOverview, barChart_statistics_yearOverview;
     private EntriesDataSource dataSource;
 
+    private int currentUserID = HomeActivity.getCurrentUserID();
+
+    Calendar calendar = Calendar.getInstance();
+    int currentYear = calendar.get(Calendar.YEAR);
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
         dataSource = new EntriesDataSource(this);
+
 
         /** Buttons **/
         // Switch between Month and Year Graph
@@ -217,18 +224,19 @@ public class StatisticsActivity extends AppCompatActivity {
 
     // Monatsübersicht:
     private void showBarChartMonths() {
-        ArrayList<Integer> valueList = new ArrayList<Integer>();
+        ArrayList<Integer> valueList = new ArrayList<>();
         ArrayList<BarEntry> entries = new ArrayList<>();
         String title = "Monate";
 
         //input data
         for (int i = 0; i < 12; i++) {
-            valueList.add(dataSource.sumExpensesMonth(i, 2022));
+            valueList.add(dataSource.sumExpensesMonth(i, currentYear));
+            //System.out.println("valueList " + i + ": " + valueList.get(i));
         }
 
         //fit the data into a bar
         for (int i = 0; i < valueList.size(); i++) {
-            BarEntry barEntry = new BarEntry(i, valueList.get(i).floatValue());
+            BarEntry barEntry = new BarEntry(i, valueList.get(i).floatValue()); // floatValue kann auch gelöscht werden
             entries.add(barEntry);
         }
 

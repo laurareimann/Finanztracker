@@ -34,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
     private TextView balance;
     BottomNavigationView bNV_home;
     private String currentUser;
-    private int currentUserID;
+    private static int currentUserID;
     boolean checker = false;
     DB_user db;
 
@@ -122,5 +122,10 @@ public class HomeActivity extends AppCompatActivity {
         ListView shoppingMemosListView = (ListView) findViewById(R.id.listview_home_entries);
 
         shoppingMemosListView.setAdapter(entriesArrayAdapter);
+    }
+
+    // save the name of current User
+    public static Integer getCurrentUserID(){
+        return currentUserID;
     }
 }
