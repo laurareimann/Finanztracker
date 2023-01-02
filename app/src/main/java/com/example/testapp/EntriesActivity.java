@@ -26,6 +26,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -51,6 +52,9 @@ public class EntriesActivity extends AppCompatActivity {
     private TextView switchText;
     DB_user db;
     public static boolean checker = false;
+    int year;
+    int month;
+    int day;
 
 
     @Override
@@ -111,9 +115,9 @@ public class EntriesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
+                year = cal.get(Calendar.YEAR);
+                month = cal.get(Calendar.MONTH);
+                day = cal.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog = new DatePickerDialog(
                         EntriesActivity.this,
@@ -182,6 +186,7 @@ public class EntriesActivity extends AppCompatActivity {
                     switchText.setText("Einnahme");
                     switchText.setTextColor(Color.parseColor("#7fff00"));
                     editTextAmount.setHint("Neue Einnahme");
+
                 }else{
                     checker = false;
                     switchText.setText("Ausgabe");
@@ -202,6 +207,7 @@ public class EntriesActivity extends AppCompatActivity {
                 String notice = editTextNotice.getText().toString();
                 String date = textViewDate.getText().toString();
 
+
                 // In Case fields are empty
                 if (TextUtils.isEmpty(amountString)) {
                     editTextAmount.setError("Ausgabe darf nicht leer sein");
@@ -215,6 +221,8 @@ public class EntriesActivity extends AppCompatActivity {
                     textViewDate.setError("Datum darf nicht leer sein");
                     return;
                 }
+
+                Toast.makeText(EntriesActivity.this, "Eintrag wurde gespeichert",Toast.LENGTH_SHORT).show();
 
                 // Cast amount to string
                 int amount = Integer.parseInt(amountString);
@@ -231,7 +239,8 @@ public class EntriesActivity extends AppCompatActivity {
 
                 // create new row in DB
                 // Constructor: userID, amount, notice, String date, day, month, year
-                dataSource.createEntries(currentUserID, amount, notice, date, 11,11,2022);
+
+                dataSource.createEntries(currentUserID, amount, notice, date, day, month, year);
 
                 dbUser.updateBalance(amount,currentUser,checker);
                 // Hide Keyboard

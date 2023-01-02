@@ -21,7 +21,7 @@ public class Entries {
         this.entry_notice = entry_notice;
         this.entry_day = entry_day;
         this.entry_month = entry_month;
-        this.entry_month = entry_year;
+        this.entry_year = entry_year;
     }
 
     public long getId() {
