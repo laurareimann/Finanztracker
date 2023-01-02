@@ -24,7 +24,6 @@ public class RegisterActivity extends AppCompatActivity {
         // declare variables with input from frontend
         username = (EditText)findViewById(R.id.txt_register_username);
         password = (EditText) findViewById(R.id.txt_register_password);
-        // TODO: edittext View mit Balance verknüpfen
         acc_balance = (EditText) findViewById(R.id.txt_register_balance);
         password_rep = (EditText) findViewById(R.id.txt_register_password_rep);
 

@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
                 setCurrentUser();
 
                 // Check if fields are empty
-                if(user.equals(null)|| pass.equals(null)){
+                if(user.equals("")|| pass.equals("")){
                     Toast.makeText(LoginActivity.this, "Bitte fülle alle Felder aus.",Toast.LENGTH_SHORT).show();
                 } else{
                     //check if user is in Database
