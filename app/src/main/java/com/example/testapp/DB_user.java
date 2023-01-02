@@ -71,7 +71,7 @@ public class DB_user extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("select * from users where user_name = ? and user_password = ?", new String[] {username, password});
 
-        if(cursor.getColumnCount() > 0){
+        if(cursor.getCount() > 0){
             return true;
         } else {
             return false;
