@@ -9,6 +9,9 @@
     <string name="btn_register">Registrieren</string>
     <string name="btn_register_nav">zur Registrierung</string>
     <string name="btn_save">Speichern</string>
+    <string name="btn_months">Monate</string>
+    <string name="btn_years">Jahre</string>
+
 
     <!-->Headlines<-->
     <string name="h_login">Login</string>

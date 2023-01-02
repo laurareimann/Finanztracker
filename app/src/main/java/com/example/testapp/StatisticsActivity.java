@@ -2,14 +2,22 @@ package com.example.testapp;
 /**
  * SOURCES:
  * BarChart: CodingMark: "Android Studio: Create a Bar Chart using SqLite", URL: https://www.youtube.com/watch?v=niLkRACZEMg, 16.12.2022
+ * Wilson Yeung: "Using MPAndroidChart for Android Application — BarChart", URL: https://medium.com/@clyeung0714/using-mpandroidchart-for-android-application-barchart-540a55b4b9ef, 31.12.2022
  * MenuBar: jangirkaran17: "How to Implement Bottom Navigation With Activities in Android?", MenuBar: URL: https://www.geeksforgeeks.org/how-to-implement-bottom-navigation-with-activities-in-android/, 19.12.2022
  **/
 
+// TODO: Budget Monat anpassen an aktuellen Monat
+// TODO: Budget Menge anpassen an aktuelle Ausgaben in dem Monat
+
+import static com.example.testapp.R.id.barchart_statistics_months;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,8 +25,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.testapp.data.Database;
-import com.example.testapp.databinding.ActivityStatisticsBinding;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -30,38 +39,66 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class StatisticsActivity extends AppCompatActivity {
 
+    Button btn_months, btn_years;
     BottomNavigationView bNV_statistics;
+    private BarChart barChart_statistics_monthOverview, barChart_statistics_yearOverview;
+    private EntriesDataSource dataSource;
 
-    private BarChart barChart_statistics_monthOverview;
-    private Button button;
-    private EditText editText;
-    private Database db;
-    long date = System.currentTimeMillis();
-
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
+        dataSource = new EntriesDataSource(this);
 
-        /** BarChart **/
-        barChart_statistics_monthOverview = (BarChart) findViewById(R.id.barchart_statistics);
+        /** Buttons **/
+        // Switch between Month and Year Graph
+        btn_months = findViewById(R.id.btn_statistics_months);
+        btn_years = findViewById(R.id.btn_statistics_years);
+        barChart_statistics_monthOverview = (BarChart) findViewById(R.id.barchart_statistics_months);
+        barChart_statistics_yearOverview = (BarChart) findViewById(R.id.barchart_statistics_years);
 
-        button = (Button) findViewById(R.id.button_statistics);
-        editText = (EditText) findViewById(R.id.editText_statistics);
-
-        addDataToGraph();
-        barChart_statistics_monthOverview.invalidate();
-
-        button.setOnClickListener(new View.OnClickListener() {
+        btn_months.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("click detectet");
-                SaveToDatabase();
+                btn_years.setSelected(false);
+                initBarChart(barChart_statistics_monthOverview);
+                barChart_statistics_yearOverview.setVisibility(View.INVISIBLE);
+                barChart_statistics_monthOverview.setVisibility(View.VISIBLE);
+                showBarChartMonths();
             }
         });
+
+        btn_years.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btn_months.setSelected(false);
+                initBarChart(barChart_statistics_yearOverview);
+                barChart_statistics_monthOverview.setVisibility(View.INVISIBLE);
+                barChart_statistics_yearOverview.setVisibility(View.VISIBLE);
+                showBarChartYears();
+
+            }
+        });
+
+
+        /** BarChart **/
+        /*
+        barChart_statistics_monthOverview = (BarChart) findViewById(R.id.barchart_statistics_months);
+        barChart_statistics_yearOverview = (BarChart) findViewById(R.id.barchart_statistics_years);
+        initBarChart(barChart_statistics_monthOverview);
+        initBarChart(barChart_statistics_yearOverview);
+
+        showBarChartYears();
+        showBarChartMonths();
+
+        barChart_statistics_monthOverview.invalidate(); // TODO: kann weg?
+
+         */
 
 
         /*** Menubar ***/
@@ -93,64 +130,141 @@ public class StatisticsActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        dataSource.open();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        dataSource.close();
+    }
+
 
     /**
      * Methoden für BarChart Database
      **/
 
-    public void SaveToDatabase() {
-        db = new Database(this);
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd mm yyyy");
-        String xValue = sdf.format(date);
-        String yValue = editText.getText().toString();
+    // Formattierung:
+    private void initBarDataSet(BarDataSet barDataSet) { //TODO: muss noch eingestellt werden und aufgerufen wernden
+        //Changing the color of the bar
+        barDataSet.setColor(Color.parseColor("#0099FF"));
+        //barDataSet.setColor(Color.parseColor(String.valueOf(ContextCompat.getColor(this, R.color.blue_primary))));
+        //TODO: Farbe aufrufen mit ContextComat funktioniert noch nicht, ist aber erstmal nicht wichtig
 
-        db.saveData(xValue, yValue);
-        addDataToGraph(); // Graph wird refreshed, wenn neue Daten gespeichert werden
-        barChart_statistics_monthOverview.invalidate();
-        db.close();
+        //Setting the size of the form in the legend
+        barDataSet.setFormSize(15f);
+        //showing the value of the bar, default true if not set
+        barDataSet.setDrawValues(false);
+        //setting the text size of the value of the bar
+        barDataSet.setValueTextSize(12f);
     }
 
-    public void addDataToGraph() {
-        db = new Database(this);
+    // TODO: anpassen an Designvorlage
+    private void initBarChart(BarChart barChart) {
+        //hiding the grey background of the chart, default false if not set
+        barChart.setDrawGridBackground(false);
+        //remove the bar shadow, default false if not set
+        barChart.setDrawBarShadow(false);
+        //remove border of the chart, default false if not set
+        barChart.setDrawBorders(false);
 
-        final ArrayList<BarEntry> yVals = new ArrayList<BarEntry>();
-        final ArrayList<String> yData = db.queryYData();
+        //remove the description label text located at the lower right corner
+        Description description = new Description();
+        description.setEnabled(false);
+        barChart.setDescription(description);
 
-        for (int i = 0; i < db.queryYData().size(); i++) {
-            BarEntry newBarEntry = new BarEntry(i, Float.parseFloat(db.queryYData().get(i)));
-            yVals.add(newBarEntry);
-        }
+        //setting animation for y-axis, the bar will pop up from 0 to its value within the time we set
+        barChart.animateY(500);
+        //setting animation for x-axis, the bar will pop up separately within the time we set
+        barChart.animateX(500);
 
-        final ArrayList<String> xVals = new ArrayList<String>();
-        final ArrayList<String> xData = db.queryXData();
-
-        for (int i = 0; i < db.queryXData().size(); i++) {
-            xVals.add(xData.get(i));
-        }
-
-        BarDataSet dataSet = new BarDataSet(yVals, "Überblick Monat");
-        ArrayList<IBarDataSet> dataSetsList = new ArrayList<>();
-        dataSetsList.add(dataSet);
-        BarData data = new BarData(dataSetsList);
-
-        barChart_statistics_monthOverview.getXAxis().setValueFormatter(new IndexAxisValueFormatter(xVals));
-        barChart_statistics_monthOverview.setData(data);
-
-
-        // Zur Formattierung:
-        XAxis xAxis = barChart_statistics_monthOverview.getXAxis();
+        XAxis xAxis = barChart.getXAxis();
+        //change the position of x-axis to the bottom
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setAvoidFirstLastClipping(true);
-        xAxis.setDrawLabels(true);
-        xAxis.isCenterAxisLabelsEnabled();
-        xAxis.setGranularityEnabled(true);
+        //set the horizontal distance of the grid line
+        xAxis.setGranularity(1f);
+        //hiding the x-axis line, default true if not set
+        xAxis.setDrawAxisLine(false);
+        //hiding the vertical grid lines, default true if not set
+        xAxis.setDrawGridLines(false);
 
-        YAxis yAxis = barChart_statistics_monthOverview.getAxisRight();
-        yAxis.setEnabled(false);
+        YAxis leftAxis = barChart.getAxisLeft();
+        //hiding the left y-axis line, default true if not set
+        leftAxis.setDrawAxisLine(false);
 
-        barChart_statistics_monthOverview.setMaxVisibleValueCount(5);
-        barChart_statistics_monthOverview.setFitBars(true);
+        YAxis rightAxis = barChart.getAxisRight();
+        //hiding the right y-axis line, default true if not set
+        rightAxis.setDrawAxisLine(false);
+
+        Legend legend = barChart.getLegend();
+        //setting the shape of the legend form to line, default square shape
+        legend.setForm(Legend.LegendForm.LINE);
+        //setting the text size of the legend
+        legend.setTextSize(11f);
+        //setting the alignment of legend toward the chart
+        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+        //setting the stacking direction of legend
+        legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        //setting the location of legend outside the chart, default false if not set
+        legend.setDrawInside(false);
     }
 
+    // Jahresübersicht:
+    private void showBarChartYears() {
+        ArrayList<Integer> valueList = new ArrayList<Integer>();
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        ArrayList<Integer> yearsWithData = dataSource.yearsWithData();
+        String title = "Jahre";
 
+        //input data
+        for (int i = 0; i < yearsWithData.size(); i++) {
+            valueList.add(dataSource.sumExpensesYear(yearsWithData.get(i)));
+        }
+
+        //fit the data into a bar
+        for (int i = 0; i < valueList.size(); i++) {
+            BarEntry barEntry = new BarEntry(yearsWithData.get(i), valueList.get(i).floatValue());
+            entries.add(barEntry);
+        }
+
+        BarDataSet barDataSet = new BarDataSet(entries, title);
+        // Formattierung:
+        initBarDataSet(barDataSet);
+        BarData data = new BarData(barDataSet);
+
+        barChart_statistics_yearOverview.setData(data);
+        barChart_statistics_yearOverview.invalidate();
+    }
+
+    // Monatsübersicht:
+    private void showBarChartMonths() {
+        ArrayList<Integer> valueList = new ArrayList<Integer>();
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        String title = "Monate";
+
+        //input data
+        for (int i = 0; i < 12; i++) {
+            valueList.add(dataSource.sumExpensesMonth(i, 2022));
+        }
+
+        //fit the data into a bar
+        for (int i = 0; i < valueList.size(); i++) {
+            BarEntry barEntry = new BarEntry(i, valueList.get(i).floatValue());
+            entries.add(barEntry);
+        }
+
+        BarDataSet barDataSet = new BarDataSet(entries, title);
+        // Formattierung:
+        initBarDataSet(barDataSet);
+
+        BarData data = new BarData(barDataSet);
+        barChart_statistics_monthOverview.setData(data);
+        barChart_statistics_monthOverview.invalidate();
+    }
 }

@@ -8,7 +8,9 @@ import android.util.Log;
 import android.content.ContentValues;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class EntriesDataSource {
 
@@ -35,25 +37,25 @@ public class EntriesDataSource {
     With the help of dbHelper we will establish the connection
     to our SQLite database
      */
-    public EntriesDataSource(Context context){
+    public EntriesDataSource(Context context) {
         Log.d(LOG_TAG, "DataSource now creates the dbHelper.");
         dbHelper = new EntriesDbHelper(context);
     }
 
-    public void open(){
+    public void open() {
         Log.d(LOG_TAG, "A reference to the database is now requested.");
         database = dbHelper.getWritableDatabase();
         Log.d(LOG_TAG, "Received database reference. Path to the database: " + database.getPath());
     }
 
-    public void close(){
+    public void close() {
         dbHelper.close();
         Log.d(LOG_TAG, "Database closed with the help of DbHelper");
     }
 
     // Insert Data into the table of our SQLite database
     public Entries createEntries(int userID, int entryAmount, String entryNotice,
-                                 String entryDate,  int entryDay, int entryMonth, int entryYear){
+                                 String entryDate, int entryDay, int entryMonth, int entryYear) {
         ContentValues values = new ContentValues();
         values.put(EntriesDbHelper.COLUMN_USER_ID, userID);
         values.put(EntriesDbHelper.COLUMN_ENTRY_AMOUNT, entryAmount);
@@ -62,7 +64,6 @@ public class EntriesDataSource {
         values.put(EntriesDbHelper.COLUMN_ENTRY_DAY, entryDay);
         values.put(EntriesDbHelper.COLUMN_ENTRY_MONTH, entryMonth);
         values.put(EntriesDbHelper.COLUMN_ENTRY_YEAR, entryYear);
-
 
 
         // Insert values into database
@@ -83,10 +84,12 @@ public class EntriesDataSource {
         cursor.close();
 
         return entries;
-    };
+    }
+
+    ;
 
     // Convert Data into Entries objects
-    private Entries cursorToEntry(Cursor cursor){
+    private Entries cursorToEntry(Cursor cursor) {
         // Read indexes of the table columns
         int idIndex = cursor.getColumnIndex(EntriesDbHelper.COLUMN_ID);
         int idUserId = cursor.getColumnIndex(EntriesDbHelper.COLUMN_USER_ID);
@@ -109,14 +112,14 @@ public class EntriesDataSource {
         int entry_year = cursor.getInt(idYear);
 
         // Save read data for further use
-        Entries entries = new Entries(id,user_id,entry_amount,entry_notice,
-                                        entry_date, entry_day, entry_month, entry_year);
+        Entries entries = new Entries(id, user_id, entry_amount, entry_notice,
+                entry_date, entry_day, entry_month, entry_year);
 
         return entries;
     }
 
     // Read all existing records from the table
-    public List<Entries> getAllEntries(){
+    public List<Entries> getAllEntries() {
         List<Entries> entriesList = new ArrayList<>();
 
         // Search query where all records are returned
@@ -130,17 +133,76 @@ public class EntriesDataSource {
         // Read all data of the search query and convert them into Entries objects
         // Add them to the EntriesList
         // Output to the console
-        while(!cursor.isAfterLast()){
+        while (!cursor.isAfterLast()) {
             entries = cursorToEntry(cursor);
             entriesList.add(entries);
             Log.d(LOG_TAG, "ID: " + entries.getId() + ", Inhalt: "
                     + entries.toString());
             cursor.moveToNext();
         }
-
         cursor.close();
-
         return entriesList;
+    }
+
+    // get sum of all expenses
+    public int sumExpenses() {
+        int sumExpenses = 0;
+        List<Entries> allEntries = this.getAllEntries();
+        for (Entries e : allEntries) {
+            sumExpenses += e.getEntry_amount();
+        }
+        return sumExpenses;
+    }
+
+    // get sum of all expenses for a certain year
+    public int sumExpensesYear(int year) {
+        int sumYearExpenses = 0;
+        //List<Entries> allEntries = this.getAllEntries();
+        /*
+        for (Entries e : allEntries) {
+            if (e.getEntry_year() == year) {
+                sumYearExpenses += e.getEntry_amount();
+            }
+        }
+         */
+        sumYearExpenses = year - 2000;
+        return sumYearExpenses;
+    }
+
+    // get set of all years with expenses
+    public ArrayList<Integer> yearsWithData() {
+        ArrayList<Integer> yearsWithData = new ArrayList<>();
+        //List<Entries> allEntries = this.getAllEntries();
+        /*
+        for (Entries e : allEntries) {
+            for (int element : yearsWithData) {
+                if (!(element == e.getEntry_year())) {
+                    yearsWithData.add(e.getEntry_year());
+                }
+            }
+        }
+         */
+        yearsWithData.add(2020);
+        yearsWithData.add(2021);
+        yearsWithData.add(2022);
+        yearsWithData.add(2023);
+
+        return yearsWithData;
+    }
+
+    // get sum of all expenses for a certain year
+    public int sumExpensesMonth(int month, int year) {
+        int sumMonthExpenses;
+        //List<Entries> allEntries = this.getAllEntries();
+        /*
+        for (Entries e : allEntries) {
+            if (e.getEntry_month() == month && e.getEntry_year() == year) {
+                sumMonthExpenses += e.getEntry_amount();
+            }
+        }
+         */
+        sumMonthExpenses = month + 1;
+        return sumMonthExpenses;
     }
 
 }
