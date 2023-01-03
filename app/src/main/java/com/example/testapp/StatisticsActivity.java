@@ -39,7 +39,13 @@ public class StatisticsActivity extends AppCompatActivity {
     BottomNavigationView bNV_statistics;
     private BarChart barChart_statistics_monthOverview, barChart_statistics_yearOverview;
     private EntriesDataSource dataSource;
+
     private TextView balance;
+    private TextView month;
+    private TextView expensesMonth;
+    private TextView year;
+    private TextView income;
+    private TextView expenses;
 
     private DB_user dbUser;
     private String currentUser;
@@ -48,19 +54,33 @@ public class StatisticsActivity extends AppCompatActivity {
 
     Calendar calendar = Calendar.getInstance();
     int currentYear = calendar.get(Calendar.YEAR);
+    int currentMonth = calendar.get(Calendar.MONTH);
+
+    private ArrayList<String> months = new ArrayList<>();
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
+
+        months.add("Januar");
+        months.add("Februar");
+        months.add("März");
+        months.add("April");
+        months.add("Mai");
+        months.add("Juni");
+        months.add("Juli");
+        months.add("August");
+        months.add("September");
+        months.add("Oktober");
+        months.add("November");
+        months.add("Dezember");
+
+
         dataSource = new EntriesDataSource(this);
         dbUser = new DB_user(this);
         currentUser = LoginActivity.currentUsername;
-
-
-        balance = findViewById(R.id.txt_statistics_balance);
-        balance.setText(dbUser.getUserBalance(currentUser) + " €");
 
 
         /** Buttons **/
@@ -125,7 +145,29 @@ public class StatisticsActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        // Aktuelle Werte aus der Datenbank abrufen:
         dataSource.open();
+        showBarChartMonths();
+        balance = findViewById(R.id.txt_statistics_balance);
+        balance.setText(dbUser.getUserBalance(currentUser) + " €");
+
+        month = findViewById(R.id.txt_statistics_month);
+        month.setText(months.get(currentMonth));
+
+        expensesMonth = findViewById(R.id.txt_statistics_expenses);
+        expensesMonth.setText(String.valueOf(dataSource.sumExpensesMonth(currentMonth+1,currentYear)) + " €");
+
+        year = findViewById(R.id.txt_h_year);
+        year.setText(String.valueOf(currentYear));
+
+        income = findViewById(R.id.txt_statistics_incomeyear);
+        income.setText(String.valueOf(dataSource.sumIncomeYear(currentYear)) + " €");
+
+        expenses = findViewById(R.id.txt_statistics_expensesyear);
+        expenses.setText(String.valueOf(dataSource.sumExpensesYear(currentYear))  + " €");
+
+
+
     }
 
     @Override
@@ -208,10 +250,9 @@ public class StatisticsActivity extends AppCompatActivity {
 
     // Jahresübersicht:
     private void showBarChartYears() {
-        ArrayList<Integer> valueList = new ArrayList<Integer>();
+        ArrayList<Integer> valueList = new ArrayList<>();
         ArrayList<BarEntry> entries = new ArrayList<>();
         ArrayList<Integer> yearsWithData = dataSource.yearsWithData();
-        System.out.println("yearsWithData in sA: "+yearsWithData);
         String title = "Jahre";
 
         //input data
@@ -238,19 +279,6 @@ public class StatisticsActivity extends AppCompatActivity {
     private void showBarChartMonths() {
         ArrayList<Integer> valueList = new ArrayList<>();
         ArrayList<BarEntry> entries = new ArrayList<>();
-        ArrayList<String> months = new ArrayList<>();
-        months.add("Jan");
-        months.add("Feb");
-        months.add("Mär");
-        months.add("Apr");
-        months.add("Mai");
-        months.add("Jun");
-        months.add("Jul");
-        months.add("Aug");
-        months.add("Sep");
-        months.add("Okt");
-        months.add("Nov");
-        months.add("Dez");
 
         String title = "Monate";
 

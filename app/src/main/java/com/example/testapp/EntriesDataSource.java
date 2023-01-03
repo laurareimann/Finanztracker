@@ -173,29 +173,35 @@ public class EntriesDataSource {
         return entriesList;
     }
 
-    // get sum of all expenses
-    public int sumExpenses() {
-        int sumExpenses = 0;
-        List<Entries> allEntries = this.getAllEntries();
-        for (Entries e : allEntries) {
-            sumExpenses += e.getEntry_amount();
-        }
-        return sumExpenses;
-    }
-
     // get sum of all expenses for a certain year
     public int sumExpensesYear(int year) {
         int sumYearExpenses = 0;
         List<Entries> allEntries = this.getAllEntriesFromUser(HomeActivity.getCurrentUserID());
         for (Entries e : allEntries) {
             if (e.getEntry_year() == year) {
+                 // TODO: Überprüfung, ob Ausgabe oder Einnahme, sobald die Datenbank das unterscheided --> if(e.getEntry_amount() < 0){
                 sumYearExpenses += e.getEntry_amount();
             }
         }
-
-        sumYearExpenses = year - 2000;
         return sumYearExpenses;
     }
+
+    // get sum of all income for a certain year
+    public int sumIncomeYear(int year) {
+        List<Entries> allEntries = this.getAllEntriesFromUser(HomeActivity.getCurrentUserID());
+        int sumYearIncome = 0;
+
+        /*
+        for (Entries e : allEntries) {
+            if (e.getEntry_year() == year) { // TODO: && e.getEntry_amount() > 0
+                sumYearIncome += e.getEntry_amount();
+            }
+        }
+
+         */
+        return sumYearIncome;
+    }
+
 
     // get set of all years with expenses
     public ArrayList<Integer> yearsWithData() {
@@ -213,7 +219,6 @@ public class EntriesDataSource {
     public int sumExpensesMonth(int month, int year) {
         int sumMonthExpenses = 0;
         List<Entries> allEntries = this.getAllEntriesFromUser(HomeActivity.getCurrentUserID());
-
         for (Entries e : allEntries) {
             if (e.getEntry_month() == month && e.getEntry_year() == year) {
                 sumMonthExpenses += e.getEntry_amount();
