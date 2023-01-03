@@ -33,7 +33,6 @@ public class EntriesDataSource {
             EntriesDbHelper.COLUMN_ENTRY_YEAR
     };
 
-
     /*
     With the help of dbHelper we will establish the connection
     to our SQLite database
@@ -86,8 +85,6 @@ public class EntriesDataSource {
 
         return entries;
     }
-
-    ;
 
     // Convert Data into Entries objects
     private Entries cursorToEntry(Cursor cursor) {
@@ -146,12 +143,12 @@ public class EntriesDataSource {
     }
 
     // Read all existing records from a User from the table
-    public List<Entries> getAllEntriesFromUser(int userID){
+    public List<Entries> getAllEntriesFromUser(int userID) {
         List<Entries> entriesList = new ArrayList<>();
 
         // Search query where all records are returned
         Cursor cursor = database.query(EntriesDbHelper.ENTRIES_LIST, columns,
-                EntriesDbHelper.COLUMN_USER_ID + "=\"" +userID+ "\"", null, null, null, null);
+                EntriesDbHelper.COLUMN_USER_ID + "=\"" + userID + "\"", null, null, null, null);
 
         //Set the obtained cursor object to the first position
         cursor.moveToFirst();
@@ -160,16 +157,14 @@ public class EntriesDataSource {
         // Read all data of the search query and convert them into Entries objects
         // Add them to the EntriesList
         // Output to the console
-        while(!cursor.isAfterLast()){
+        while (!cursor.isAfterLast()) {
             entries = cursorToEntry(cursor);
             entriesList.add(entries);
             Log.d(LOG_TAG, "ID: " + entries.getId() + ", Inhalt: "
                     + entries.toString());
             cursor.moveToNext();
         }
-
         cursor.close();
-
         return entriesList;
     }
 
@@ -178,27 +173,22 @@ public class EntriesDataSource {
         int sumYearExpenses = 0;
         List<Entries> allEntries = this.getAllEntriesFromUser(HomeActivity.getCurrentUserID());
         for (Entries e : allEntries) {
-            if (e.getEntry_year() == year) {
-                 // TODO: Überprüfung, ob Ausgabe oder Einnahme, sobald die Datenbank das unterscheided --> if(e.getEntry_amount() < 0){
-                sumYearExpenses += e.getEntry_amount();
+            if (e.getEntry_year() == year && e.getEntry_amount() < 0) {
+                sumYearExpenses -= e.getEntry_amount();
             }
         }
-        return sumYearExpenses;
+        return sumYearExpenses * -1;
     }
 
     // get sum of all income for a certain year
     public int sumIncomeYear(int year) {
         List<Entries> allEntries = this.getAllEntriesFromUser(HomeActivity.getCurrentUserID());
         int sumYearIncome = 0;
-
-        /*
         for (Entries e : allEntries) {
-            if (e.getEntry_year() == year) { // TODO: && e.getEntry_amount() > 0
+            if (e.getEntry_year() == year && e.getEntry_amount() > 0) {
                 sumYearIncome += e.getEntry_amount();
             }
         }
-
-         */
         return sumYearIncome;
     }
 
@@ -221,9 +211,11 @@ public class EntriesDataSource {
         List<Entries> allEntries = this.getAllEntriesFromUser(HomeActivity.getCurrentUserID());
         for (Entries e : allEntries) {
             if (e.getEntry_month() == month && e.getEntry_year() == year) {
-                sumMonthExpenses += e.getEntry_amount();
+                if (e.getEntry_amount() < 0) {
+                    sumMonthExpenses -= e.getEntry_amount();
+                }
             }
         }
-        return sumMonthExpenses;
+        return sumMonthExpenses * -1;
     }
 }

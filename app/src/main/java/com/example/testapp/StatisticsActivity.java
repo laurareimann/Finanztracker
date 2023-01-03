@@ -257,7 +257,7 @@ public class StatisticsActivity extends AppCompatActivity {
 
         //input data
         for (int i = 0; i < yearsWithData.size(); i++) {
-            valueList.add(dataSource.sumExpensesYear(yearsWithData.get(i)));
+            valueList.add((dataSource.sumExpensesYear(yearsWithData.get(i)))*-1);
         }
 
         //fit the data into a bar
@@ -284,14 +284,14 @@ public class StatisticsActivity extends AppCompatActivity {
 
         //input data
         for (int i = 0; i < 12; i++) {
-            valueList.add(dataSource.sumExpensesMonth(i, currentYear));
+            valueList.add((dataSource.sumExpensesMonth(i, currentYear))*-1);
         }
 
         //fit the data into a bar
         for (int i = 0; i < valueList.size(); i++) {
             BarEntry barEntry = new BarEntry(i, valueList.get(i).floatValue()); // floatValue kann auch gelöscht werden
             entries.add(barEntry);
-            //TODO: add months as String
+            //TODO: show months as String
         }
 
         BarDataSet barDataSet = new BarDataSet(entries, title);

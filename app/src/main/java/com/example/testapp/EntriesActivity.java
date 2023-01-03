@@ -243,7 +243,10 @@ public class EntriesActivity extends AppCompatActivity {
 
                 // create new row in DB
                 // Constructor: userID, amount, notice, String date, day, month, year
-
+                // TODO: If-Anfrage ob EInnahme oder Ausgabe
+                if(!einAusgabeSwitch.isChecked()){
+                    amount *= -1;
+                }
                 dataSource.createEntries(currentUserID, amount, notice, date, dayDB, monthDB, yearDB);
 
                 dbUser.updateBalance(amount,currentUser,checker);
