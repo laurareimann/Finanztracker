@@ -1,21 +1,16 @@
 package com.example.testapp;
-/**
- * SOURCES:
- * BarChart: CodingMark: "Android Studio: Create a Bar Chart using SqLite", URL: https://www.youtube.com/watch?v=niLkRACZEMg, 16.12.2022
- * Wilson Yeung: "Using MPAndroidChart for Android Application — BarChart", URL: https://medium.com/@clyeung0714/using-mpandroidchart-for-android-application-barchart-540a55b4b9ef, 31.12.2022
- * MenuBar: jangirkaran17: "How to Implement Bottom Navigation With Activities in Android?", MenuBar: URL: https://www.geeksforgeeks.org/how-to-implement-bottom-navigation-with-activities-in-android/, 19.12.2022
- **/
+/**  SOURCES: **/
+// BarChart: CodingMark: "Android Studio: Create a Bar Chart using SqLite", URL: https://www.youtube.com/watch?v=niLkRACZEMg, 16.12.2022
+// Wilson Yeung: "Using MPAndroidChart for Android Application — BarChart", URL: https://medium.com/@clyeung0714/using-mpandroidchart-for-android-application-barchart-540a55b4b9ef, 31.12.2022
+// MenuBar: jangirkaran17: "How to Implement Bottom Navigation With Activities in Android?", MenuBar: URL: https://www.geeksforgeeks.org/how-to-implement-bottom-navigation-with-activities-in-android/, 19.12.2022
 
-import static com.example.testapp.R.id.barchart_statistics_months;
-
-import androidx.annotation.NonNull;
+/**  IMPORTS: **/
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -31,7 +26,9 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
 public class StatisticsActivity extends AppCompatActivity {
 
@@ -40,43 +37,20 @@ public class StatisticsActivity extends AppCompatActivity {
     private BarChart barChart_statistics_monthOverview, barChart_statistics_yearOverview;
     private EntriesDataSource dataSource;
 
-    private TextView balance;
-    private TextView month;
-    private TextView expensesMonth;
-    private TextView year;
-    private TextView income;
-    private TextView expenses;
-
     private DB_user dbUser;
     private String currentUser;
-
-    private int currentUserID = HomeActivity.getCurrentUserID();
 
     Calendar calendar = Calendar.getInstance();
     int currentYear = calendar.get(Calendar.YEAR);
     int currentMonth = calendar.get(Calendar.MONTH);
 
-    private ArrayList<String> months = new ArrayList<>();
+    private final List<String> months = Arrays.asList("Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember");
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
-
-        months.add("Januar");
-        months.add("Februar");
-        months.add("März");
-        months.add("April");
-        months.add("Mai");
-        months.add("Juni");
-        months.add("Juli");
-        months.add("August");
-        months.add("September");
-        months.add("Oktober");
-        months.add("November");
-        months.add("Dezember");
-
 
         dataSource = new EntriesDataSource(this);
         dbUser = new DB_user(this);
@@ -87,29 +61,23 @@ public class StatisticsActivity extends AppCompatActivity {
         // Switch between Month and Year Graph
         btn_months = findViewById(R.id.btn_statistics_months);
         btn_years = findViewById(R.id.btn_statistics_years);
-        barChart_statistics_monthOverview = (BarChart) findViewById(R.id.barchart_statistics_months);
-        barChart_statistics_yearOverview = (BarChart) findViewById(R.id.barchart_statistics_years);
+        barChart_statistics_monthOverview = findViewById(R.id.barchart_statistics_months);
+        barChart_statistics_yearOverview = findViewById(R.id.barchart_statistics_years);
 
-        btn_months.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                btn_years.setSelected(false);
-                initBarChart(barChart_statistics_monthOverview);
-                barChart_statistics_yearOverview.setVisibility(View.INVISIBLE);
-                barChart_statistics_monthOverview.setVisibility(View.VISIBLE);
-                showBarChartMonths();
-            }
+        btn_months.setOnClickListener(view -> {
+            btn_years.setSelected(false);
+            initBarChart(barChart_statistics_monthOverview);
+            barChart_statistics_yearOverview.setVisibility(View.INVISIBLE);
+            barChart_statistics_monthOverview.setVisibility(View.VISIBLE);
+            showBarChartMonths();
         });
 
-        btn_years.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                btn_months.setSelected(false);
-                initBarChart(barChart_statistics_yearOverview);
-                barChart_statistics_monthOverview.setVisibility(View.INVISIBLE);
-                barChart_statistics_yearOverview.setVisibility(View.VISIBLE);
-                showBarChartYears();
-            }
+        btn_years.setOnClickListener(view -> {
+            btn_months.setSelected(false);
+            initBarChart(barChart_statistics_yearOverview);
+            barChart_statistics_monthOverview.setVisibility(View.INVISIBLE);
+            barChart_statistics_yearOverview.setVisibility(View.VISIBLE);
+            showBarChartYears();
         });
 
         /*** Menubar ***/
@@ -120,24 +88,21 @@ public class StatisticsActivity extends AppCompatActivity {
         bNV_statistics.setSelectedItemId(R.id.statistics);
 
         // Perform item selected listener
-        bNV_statistics.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        bNV_statistics.setOnNavigationItemSelectedListener(item -> {
 
-                switch (item.getItemId()) {
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.addEntry:
-                        startActivity(new Intent(getApplicationContext(), EntriesActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.statistics:
-                        return true;
-                }
-                return false;
+            switch (item.getItemId()) {
+                case R.id.home:
+                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.addEntry:
+                    startActivity(new Intent(getApplicationContext(), EntriesActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.statistics:
+                    return true;
             }
+            return false;
         });
     }
 
@@ -147,40 +112,35 @@ public class StatisticsActivity extends AppCompatActivity {
 
         // Aktuelle Werte aus der Datenbank abrufen:
         dataSource.open();
+        initBarChart(barChart_statistics_monthOverview);
         showBarChartMonths();
-        balance = findViewById(R.id.txt_statistics_balance);
+        TextView balance = findViewById(R.id.txt_statistics_balance);
         balance.setText(dbUser.getUserBalance(currentUser) + " €");
 
-        month = findViewById(R.id.txt_statistics_month);
+        TextView month = findViewById(R.id.txt_statistics_month);
         month.setText(months.get(currentMonth));
 
-        expensesMonth = findViewById(R.id.txt_statistics_expenses);
-        expensesMonth.setText(String.valueOf(dataSource.sumExpensesMonth(currentMonth+1,currentYear)) + " €");
+        TextView expensesMonth = findViewById(R.id.txt_statistics_expenses);
+        expensesMonth.setText(dataSource.sumExpensesMonth(currentMonth+1,currentYear) + " €");
 
-        year = findViewById(R.id.txt_h_year);
+        TextView year = findViewById(R.id.txt_h_year);
         year.setText(String.valueOf(currentYear));
 
-        income = findViewById(R.id.txt_statistics_incomeyear);
-        income.setText(String.valueOf(dataSource.sumIncomeYear(currentYear)) + " €");
+        TextView income = findViewById(R.id.txt_statistics_incomeyear);
+        income.setText(dataSource.sumIncomeYear(currentYear) + " €");
 
-        expenses = findViewById(R.id.txt_statistics_expensesyear);
-        expenses.setText(String.valueOf(dataSource.sumExpensesYear(currentYear))  + " €");
-
-
-
+        TextView expenses = findViewById(R.id.txt_statistics_expensesyear);
+        expenses.setText(dataSource.sumExpensesYear(currentYear)  + " €");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-
         dataSource.close();
     }
 
 
-    /**
-     * Methoden für BarChart Database
-     **/
+    /** Methoden für BarChart Database **/
 
     // Formattierung:
     private void initBarDataSet(BarDataSet barDataSet) { //TODO: muss noch eingestellt werden und aufgerufen wernden
@@ -195,6 +155,7 @@ public class StatisticsActivity extends AppCompatActivity {
         barDataSet.setDrawValues(false);
         //setting the text size of the value of the bar
         barDataSet.setValueTextSize(12f);
+
     }
 
     // TODO: anpassen an Designvorlage
@@ -206,6 +167,9 @@ public class StatisticsActivity extends AppCompatActivity {
         //remove border of the chart, default false if not set
         barChart.setDrawBorders(false);
 
+        // TODO: no data Text krieg ich nicht weg
+        barChart.setNoDataText("whatever");
+
         //remove the description label text located at the lower right corner
         Description description = new Description();
         description.setEnabled(false);
@@ -216,22 +180,25 @@ public class StatisticsActivity extends AppCompatActivity {
         //setting animation for x-axis, the bar will pop up separately within the time we set
         barChart.animateX(500);
 
-        XAxis xAxis = barChart.getXAxis();
         //change the position of x-axis to the bottom
+        XAxis xAxis = barChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+
         //set the horizontal distance of the grid line
-        xAxis.setGranularity(1f);
+        //xAxis.setGranularity(1f);
+
         //hiding the x-axis line, default true if not set
         xAxis.setDrawAxisLine(false);
+
         //hiding the vertical grid lines, default true if not set
         xAxis.setDrawGridLines(false);
 
-        YAxis leftAxis = barChart.getAxisLeft();
         //hiding the left y-axis line, default true if not set
+        YAxis leftAxis = barChart.getAxisLeft();
         leftAxis.setDrawAxisLine(false);
 
-        YAxis rightAxis = barChart.getAxisRight();
         //hiding the right y-axis line, default true if not set
+        YAxis rightAxis = barChart.getAxisRight();
         rightAxis.setDrawAxisLine(false);
 
         Legend legend = barChart.getLegend();
@@ -297,7 +264,7 @@ public class StatisticsActivity extends AppCompatActivity {
         BarDataSet barDataSet = new BarDataSet(entries, title);
         // Formattierung:
         initBarDataSet(barDataSet);
-
+        initBarChart(barChart_statistics_monthOverview);
         BarData data = new BarData(barDataSet);
         barChart_statistics_monthOverview.setData(data);
         barChart_statistics_monthOverview.invalidate();

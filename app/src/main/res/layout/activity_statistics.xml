@@ -14,8 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:itemBackground="@color/blue_primary"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@drawable/selector_menu"
+        app:itemTextColor="@drawable/selector_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.166">
+        app:layout_constraintVertical_bias="0.166"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -44,7 +45,8 @@
                 android:layout_marginTop="32dp"
                 android:text="@string/btn_months"
                 android:textSize="@dimen/font_buttons"
-                app:backgroundTint="@drawable/btn_selector"
+                app:backgroundTint="@null"
+                android:background="@drawable/selector_buttons"
                 app:layout_constraintBottom_toTopOf="@+id/barchart_statistics_years"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -55,10 +57,10 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:backgroundTint="@color/dark_blue_buttons"
+                app:backgroundTint="@null"
                 android:text="@string/btn_years"
                 android:textSize="@dimen/font_buttons"
-                app:backgroundTint="@drawable/btn_selector"
+                android:background="@drawable/selector_buttons"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_statistics_months"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -99,7 +101,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/barchart_statistics_months" />
+                app:layout_constraintTop_toBottomOf="@+id/barchart_statistics_months"
+                android:layout_marginBottom="@dimen/margins_sides"
+                android:paddingBottom="@dimen/margins_sides"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ConstrainedLayout2"
@@ -111,7 +115,8 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/box_statistics_budgetbox"
                 app:layout_constraintTop_toTopOf="@+id/box_statistics_budgetbox"
-                app:layout_constraintVertical_bias="0.448">
+                app:layout_constraintVertical_bias="0.448"
+                android:layout_marginBottom="@dimen/margins_sides">
 
 
                 <ImageView
@@ -122,13 +127,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.055"
-                    app:srcCompat="@drawable/icon_statistics_dollarsign" />
+                    app:srcCompat="@drawable/icon_statistics_dollarsign"
+                    android:contentDescription="@string/img_dollarsign"/>
 
                 <TextView
                     android:id="@+id/txt_statistics_month"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Oktober"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_h2"
                     android:textStyle="bold"
@@ -140,7 +146,7 @@
                     android:id="@+id/txt_statistics_expenses"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0 €"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_h1"
                     android:textStyle="bold"
@@ -155,7 +161,7 @@
                     android:id="@+id/txt_statistics_budget"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ausgaben"
+                    android:text="@string/h_expenses"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toEndOf="@+id/icon_statistics_dollarsign"
                     app:layout_constraintTop_toTopOf="@+id/icon_statistics_dollarsign" />
@@ -191,7 +197,7 @@
                     android:id="@+id/txt_statistics_balance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="32.452,98 €"
+                    android:text=""
                     android:textColor="@color/white_primary"
                     android:textSize="@dimen/font_h1"
                     android:textStyle="bold"
@@ -205,7 +211,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="2022"
+                    android:text=""
                     android:textColor="@color/turquoise_secondary"
                     android:textSize="@dimen/font_normalText"
                     android:textStyle="bold"
@@ -245,7 +251,7 @@
                     android:id="@+id/txt_statistics_incomeyear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0 €"
+                    android:text=""
                     android:textColor="@color/white_primary"
                     android:textSize="@dimen/font_normalText"
                     android:textStyle="bold"
@@ -258,7 +264,7 @@
                     android:id="@+id/txt_statistics_expensesyear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0 €"
+                    android:text=""
                     android:textColor="@color/white_primary"
                     android:textSize="@dimen/font_normalText"
                     android:textStyle="bold"

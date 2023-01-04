@@ -12,7 +12,6 @@
     <string name="btn_months">Monate</string>
     <string name="btn_years">Jahre</string>
 
-
     <!-->Headlines<-->
     <string name="h_login">Login</string>
     <string name="h_register">Account erstellen</string>
@@ -33,11 +32,16 @@
     <string name="hint_note">Notiz</string>
     <string name="hint_date">Datum auswählen</string>
 
-
     <!-->Menu Strings<-->
     <string name="menu_home">Startseite</string>
     <string name="menu_entries">neue Ausgabe</string>
     <string name="menu_statistics">Statistiken</string>
+
+    <!-->Image Descriptions<-->
+    <string name="img_dollarsign">Dollarsign</string>
+
+
+
 
     <string name="switchText">Ausgabe</string>
 
