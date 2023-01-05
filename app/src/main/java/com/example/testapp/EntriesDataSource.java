@@ -9,6 +9,7 @@ import android.content.ContentValues;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -195,13 +196,14 @@ public class EntriesDataSource {
 
     // get set of all years with expenses
     public ArrayList<Integer> yearsWithData() {
-        ArrayList<Integer> yearsWithData = new ArrayList<>();
+        Set<Integer> yearsWithDataSet = new LinkedHashSet<>();
         List<Entries> allEntries = this.getAllEntriesFromUser(HomeActivity.getCurrentUserID());
 
         for (Entries e : allEntries) {
-            yearsWithData.add(e.getEntry_year());
-            //TODO: aktuell werden alle Jahre aus den Einträgen in die Liste gelegt, inkl dupliakte. Funktioniert aber trotzdem
+            yearsWithDataSet.add(e.getEntry_year());
         }
+        ArrayList<Integer> yearsWithData = new ArrayList<>();
+        yearsWithData.addAll(yearsWithDataSet);
         return yearsWithData;
     }
 

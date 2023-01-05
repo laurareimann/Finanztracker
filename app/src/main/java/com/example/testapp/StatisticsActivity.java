@@ -23,14 +23,19 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.Format;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
-public class StatisticsActivity extends AppCompatActivity {
+public class StatisticsActivity extends AppCompatActivity{
 
     Button btn_months, btn_years;
     BottomNavigationView bNV_statistics;
@@ -244,6 +249,27 @@ public class StatisticsActivity extends AppCompatActivity {
 
         BarDataSet barDataSet = new BarDataSet(entries, title);
         // Formattierung:
+        XAxis xAxis = barChart_statistics_yearOverview.getXAxis();
+        xAxis.setLabelCount(yearsWithData.size());
+        //TODO: punkt aus Jahreszahlen entfernen
+
+
+
+        ValueFormatter f = new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+
+                if (value > 0) {
+                    DecimalFormat df = new DecimalFormat("#");
+                    df.setRoundingMode(RoundingMode.CEILING);
+                    return df.format(value);
+                } else {
+                    return "";
+                }
+            }
+        };
+
+        xAxis.setValueFormatter(f);
         initBarDataSet(barDataSet);
         BarData data = new BarData(barDataSet);
 
@@ -267,15 +293,23 @@ public class StatisticsActivity extends AppCompatActivity {
         for (int i = 0; i < valueList.size(); i++) {
             BarEntry barEntry = new BarEntry(i, valueList.get(i).floatValue()); // floatValue kann auch gelöscht werden
             entries.add(barEntry);
-            //TODO: show months as String
         }
 
         BarDataSet barDataSet = new BarDataSet(entries, title);
         // Formattierung:
         initBarDataSet(barDataSet);
+
+        // Format x-Axis for month chart
+        // String setter in x-Axis for Month-Graph
+        XAxis xAxis = barChart_statistics_monthOverview.getXAxis();
+        List<String> xAxisValues = new ArrayList<>(Arrays.asList("Jan", "Feb", "Mär", "Apr", "Mai", "Jun","Jul", "Aug", "Sep", "Olt", "Nov", "Dez"));
+        xAxis.setValueFormatter(new com.github.mikephil.charting.formatter.IndexAxisValueFormatter(xAxisValues));
+        xAxis.setLabelCount(12);
         initBarChart(barChart_statistics_monthOverview);
+
         BarData data = new BarData(barDataSet);
         barChart_statistics_monthOverview.setData(data);
         barChart_statistics_monthOverview.invalidate();
     }
+
 }
