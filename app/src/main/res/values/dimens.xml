@@ -5,7 +5,10 @@
 
     <!-->Spacing<-->
     <dimen name="margins_sides">30dp</dimen>
-    <dimen name="margins_elements_small">15dp</dimen>
+    <dimen name="margins_elements_small">10dp</dimen>
+
+    <dimen name="padding_text_inputs">15dp</dimen>
+    <dimen name="padding_icons">20dp</dimen>
 
     <!-->Font Size<-->
     <dimen name="font_hints">17sp</dimen>

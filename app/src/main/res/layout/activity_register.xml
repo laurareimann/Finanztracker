@@ -46,9 +46,9 @@
         android:layout_marginEnd="@dimen/margins_sides"
         android:background="@color/white_transparent_background"
         android:drawableLeft="@drawable/icon_person_white"
-        android:drawablePadding="20dp"
+        android:drawablePadding="@dimen/padding_icons"
         android:hint="@string/hint_username"
-        android:padding="20dp"
+        android:padding="@dimen/padding_text_inputs"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="@dimen/font_hints"
@@ -66,10 +66,10 @@
         android:layout_marginEnd="@dimen/margins_sides"
         android:background="@color/white_transparent_background"
         android:drawableLeft="@drawable/icon_password_lock_white"
-        android:drawablePadding="20dp"
+        android:drawablePadding="@dimen/padding_icons"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
-        android:padding="20dp"
+        android:padding="@dimen/padding_text_inputs"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="@dimen/font_hints"
@@ -87,10 +87,10 @@
         android:layout_marginEnd="@dimen/margins_sides"
         android:background="@color/white_transparent_background"
         android:drawableLeft="@drawable/icon_password_lock_white"
-        android:drawablePadding="20dp"
+        android:drawablePadding="@dimen/padding_icons"
         android:hint="@string/hint_password_rep"
         android:inputType="textPassword"
-        android:padding="20dp"
+        android:padding="@dimen/padding_text_inputs"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,20 +104,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_register_password_rep"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="@dimen/margins_sides"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="10dp"
-        android:background="#30ffffff"
+        android:layout_marginEnd="@dimen/margins_sides"
+        android:background="@color/white_transparent_background"
         android:drawableLeft="@android:drawable/btn_star"
-        android:drawablePadding="20dp"
+        android:drawablePadding="@dimen/padding_icons"
         android:ems="10"
         android:hint="Enter Balance"
         android:inputType="numberDecimal"
-        android:padding="20dp"
+        android:padding="@dimen/padding_text_inputs"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/btn_register_register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_register_password_rep" />
@@ -125,32 +123,35 @@
     <!-- Register Button -->
 
 
+    <!-- Back to login Button -->
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_register_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
         android:backgroundTint="@color/dark_blue_buttons"
         android:text="@string/btn_register"
         android:textSize="@dimen/font_buttons"
+        android:layout_marginTop="@dimen/margins_elements_small"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_register_password_rep" />
-
-    <!-- Back to login Button -->
+        app:layout_constraintTop_toBottomOf="@+id/txt_register_balance" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_register_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/margins_elements_small"
+        android:layout_marginBottom="@dimen/margins_elements_small"
         android:backgroundTint="@color/dark_blue_buttons"
         android:text="@string/btn_login_nav"
         android:textSize="@dimen/font_buttons"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_register_register"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btn_register_register"
         app:layout_constraintTop_toBottomOf="@id/btn_register_register" />
 
 
