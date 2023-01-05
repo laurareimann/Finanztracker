@@ -212,7 +212,7 @@ public class EntriesDataSource {
         int sumMonthExpenses = 0;
         List<Entries> allEntries = this.getAllEntriesFromUser(HomeActivity.getCurrentUserID());
         for (Entries e : allEntries) {
-            if (e.getEntry_month() == month && e.getEntry_year() == year) {
+            if (e.getEntry_month()-1 == month && e.getEntry_year() == year) {
                 if (e.getEntry_amount() < 0) {
                     sumMonthExpenses -= e.getEntry_amount();
                 }

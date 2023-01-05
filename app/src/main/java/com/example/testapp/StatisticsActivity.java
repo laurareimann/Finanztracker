@@ -23,13 +23,11 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import java.text.Format;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -151,7 +149,7 @@ public class StatisticsActivity extends AppCompatActivity{
     /** Methoden für BarChart Database **/
 
     // Formattierung:
-    private void initBarDataSet(BarDataSet barDataSet) { //TODO: muss noch eingestellt werden und aufgerufen wernden
+    private void initBarDataSet(BarDataSet barDataSet) {
         //Changing the color of the bar
         barDataSet.setColor(Color.parseColor("#0099FF"));
         //barDataSet.setColor(Color.parseColor(String.valueOf(ContextCompat.getColor(this, R.color.blue_primary))));
@@ -166,7 +164,6 @@ public class StatisticsActivity extends AppCompatActivity{
 
     }
 
-    // TODO: anpassen an Designvorlage
     private void initBarChart(BarChart barChart) {
         //hiding the grey background of the chart, default false if not set
         barChart.setDrawGridBackground(false);
@@ -251,10 +248,8 @@ public class StatisticsActivity extends AppCompatActivity{
         // Formattierung:
         XAxis xAxis = barChart_statistics_yearOverview.getXAxis();
         xAxis.setLabelCount(yearsWithData.size());
-        //TODO: punkt aus Jahreszahlen entfernen
 
-
-
+        // Jahreszahlen ohne Dezimal Punkt und als int darstellen:
         ValueFormatter f = new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
@@ -268,11 +263,10 @@ public class StatisticsActivity extends AppCompatActivity{
                 }
             }
         };
-
         xAxis.setValueFormatter(f);
+
         initBarDataSet(barDataSet);
         BarData data = new BarData(barDataSet);
-
         barChart_statistics_yearOverview.setData(data);
         barChart_statistics_yearOverview.invalidate();
     }
