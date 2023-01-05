@@ -45,22 +45,21 @@
                 android:layout_marginTop="32dp"
                 android:text="@string/btn_months"
                 android:textSize="@dimen/font_buttons"
-                app:backgroundTint="@null"
-                android:background="@drawable/selector_buttons"
+                app:backgroundTint="@color/dark_blue_buttons"
                 app:layout_constraintBottom_toTopOf="@+id/barchart_statistics_years"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
+
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_statistics_years"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                app:backgroundTint="@null"
                 android:text="@string/btn_years"
                 android:textSize="@dimen/font_buttons"
-                android:background="@drawable/selector_buttons"
+                android:backgroundTint="@color/dark_blue_buttons"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_statistics_months"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

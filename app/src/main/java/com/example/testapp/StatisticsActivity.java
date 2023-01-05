@@ -61,11 +61,14 @@ public class StatisticsActivity extends AppCompatActivity {
         // Switch between Month and Year Graph
         btn_months = findViewById(R.id.btn_statistics_months);
         btn_years = findViewById(R.id.btn_statistics_years);
+        btn_years.setBackgroundColor(getResources().getColor(R.color.dark_blue_buttons));
+        btn_months.setBackgroundColor(getResources().getColor(R.color.blue_primary));
         barChart_statistics_monthOverview = findViewById(R.id.barchart_statistics_months);
         barChart_statistics_yearOverview = findViewById(R.id.barchart_statistics_years);
 
         btn_months.setOnClickListener(view -> {
-            btn_years.setSelected(false);
+            btn_years.setBackgroundColor(getResources().getColor(R.color.dark_blue_buttons));
+            btn_months.setBackgroundColor(getResources().getColor(R.color.blue_primary));
             initBarChart(barChart_statistics_monthOverview);
             barChart_statistics_yearOverview.setVisibility(View.INVISIBLE);
             barChart_statistics_monthOverview.setVisibility(View.VISIBLE);
@@ -73,8 +76,8 @@ public class StatisticsActivity extends AppCompatActivity {
         });
 
         btn_years.setOnClickListener(view -> {
-            btn_months.setSelected(false);
-            initBarChart(barChart_statistics_yearOverview);
+            btn_months.setBackgroundColor(getResources().getColor(R.color.dark_blue_buttons));
+            btn_years.setBackgroundColor(getResources().getColor(R.color.blue_primary));            initBarChart(barChart_statistics_yearOverview);
             barChart_statistics_monthOverview.setVisibility(View.INVISIBLE);
             barChart_statistics_yearOverview.setVisibility(View.VISIBLE);
             showBarChartYears();
@@ -201,11 +204,14 @@ public class StatisticsActivity extends AppCompatActivity {
         YAxis rightAxis = barChart.getAxisRight();
         rightAxis.setDrawAxisLine(false);
 
+
         Legend legend = barChart.getLegend();
         //setting the shape of the legend form to line, default square shape
-        legend.setForm(Legend.LegendForm.LINE);
+        legend.setForm(Legend.LegendForm.NONE);
+
+        /*
         //setting the text size of the legend
-        legend.setTextSize(11f);
+        legend.setTextSize(0f);
         //setting the alignment of legend toward the chart
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
@@ -213,6 +219,9 @@ public class StatisticsActivity extends AppCompatActivity {
         legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         //setting the location of legend outside the chart, default false if not set
         legend.setDrawInside(false);
+
+         */
+
     }
 
     // Jahresübersicht:
@@ -220,7 +229,7 @@ public class StatisticsActivity extends AppCompatActivity {
         ArrayList<Integer> valueList = new ArrayList<>();
         ArrayList<BarEntry> entries = new ArrayList<>();
         ArrayList<Integer> yearsWithData = dataSource.yearsWithData();
-        String title = "Jahre";
+        String title = "";
 
         //input data
         for (int i = 0; i < yearsWithData.size(); i++) {
@@ -247,7 +256,7 @@ public class StatisticsActivity extends AppCompatActivity {
         ArrayList<Integer> valueList = new ArrayList<>();
         ArrayList<BarEntry> entries = new ArrayList<>();
 
-        String title = "Monate";
+        String title = "";
 
         //input data
         for (int i = 0; i < 12; i++) {
