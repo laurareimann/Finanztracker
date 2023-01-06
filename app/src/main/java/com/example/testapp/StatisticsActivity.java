@@ -28,10 +28,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class StatisticsActivity extends AppCompatActivity{
 
@@ -120,23 +122,31 @@ public class StatisticsActivity extends AppCompatActivity{
         dataSource.open();
         initBarChart(barChart_statistics_monthOverview);
         showBarChartMonths();
+
+        // Kontostand mit Dezimal Punkt:
         TextView balance = findViewById(R.id.txt_statistics_balance);
-        balance.setText(dbUser.getUserBalance(currentUser) + " €");
+        NumberFormat nf = NumberFormat.getNumberInstance(Locale.GERMAN);
+        DecimalFormat dform = (DecimalFormat)nf;
+        double balanceAsDouble = Double.parseDouble(dbUser.getUserBalance(currentUser));
+        balance.setText(dform.format(balanceAsDouble) + " €");
 
         TextView month = findViewById(R.id.txt_statistics_month);
         month.setText(months.get(currentMonth));
 
         TextView expensesMonth = findViewById(R.id.txt_statistics_expenses);
-        expensesMonth.setText(dataSource.sumExpensesMonth(currentMonth+1,currentYear) + " €");
+        double expensesMonthAsDouble = Double.parseDouble(String.valueOf(dataSource.sumExpensesMonth(currentMonth+1,currentYear)));
+        expensesMonth.setText(dform.format(expensesMonthAsDouble) + " €");
 
         TextView year = findViewById(R.id.txt_h_year);
         year.setText(String.valueOf(currentYear));
 
         TextView income = findViewById(R.id.txt_statistics_incomeyear);
-        income.setText(dataSource.sumIncomeYear(currentYear) + " €");
+        double sumIncomeYearAsDouble = Double.parseDouble(String.valueOf(dataSource.sumIncomeYear(currentYear)));
+        income.setText(dform.format(sumIncomeYearAsDouble) + " €");
 
         TextView expenses = findViewById(R.id.txt_statistics_expensesyear);
-        expenses.setText(dataSource.sumExpensesYear(currentYear)  + " €");
+        double sumExpensesYearAsDouble = Double.parseDouble(String.valueOf(dataSource.sumExpensesYear(currentYear)));
+        expenses.setText(dform.format(sumExpensesYearAsDouble)  + " €");
     }
 
     @Override

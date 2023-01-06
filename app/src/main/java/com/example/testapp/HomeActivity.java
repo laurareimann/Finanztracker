@@ -21,7 +21,10 @@ import android.widget.TextView;
 import com.example.testapp.databinding.ActivityHomeBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -83,7 +86,11 @@ public class HomeActivity extends AppCompatActivity {
         currentUser = LoginActivity.currentUsername;
         currentUserID = dbUser.getUserID(currentUser);
         balance = findViewById(R.id.text_home_balance);
-        balance.setText(dbUser.getUserBalance(currentUser) + " €");
+        // Kontostand mit Dezimal Punkt:
+        NumberFormat nf = NumberFormat.getNumberInstance(Locale.GERMAN);
+        DecimalFormat dform = (DecimalFormat)nf;
+        double balanceAsDouble = Double.parseDouble(dbUser.getUserBalance(currentUser));
+        balance.setText(dform.format(balanceAsDouble) + " €");
     }
 
     @Override
