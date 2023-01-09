@@ -174,7 +174,6 @@ public class EntriesActivity extends AppCompatActivity {
         Button buttonAddProduct = (Button) findViewById(R.id.button_entries_add);
         final EditText editTextAmount = (EditText) findViewById(R.id.editxt_entries_amount);
         final EditText editTextNotice = (EditText) findViewById(R.id.editxt_entries_notice);
-        final EditText editTextCategory = (EditText) findViewById(R.id.editxt_entries_kategory);
         final TextView textViewDate = (TextView) findViewById(R.id.editxt_entries_date);
 
         switchText = (TextView) findViewById(R.id.switchText);
@@ -237,7 +236,6 @@ public class EntriesActivity extends AppCompatActivity {
                 // clear EditTextViews
                 editTextAmount.setText("");
                 editTextNotice.setText("");
-                editTextCategory.setText("");
                 textViewDate.setText("");
 
 
