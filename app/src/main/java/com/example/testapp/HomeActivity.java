@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -29,6 +30,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity {
+
+    Button btn_logout;
 
     // store the name of our class into a String
     public static final String LOG_TAG = HomeActivity.class.getSimpleName();
@@ -48,6 +51,16 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        btn_logout = (Button) findViewById(R.id.btn_home_logout);
+
+        btn_logout.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class); // TODO: später neu verlinken zur Register Activity
+                startActivity(intent);
+            }
+        });
 
         /*** Nagivation Bar ***/
         // Initialize and assign variable
@@ -139,4 +152,5 @@ public class HomeActivity extends AppCompatActivity {
     public static Integer getCurrentUserID(){
         return currentUserID;
     }
+
 }

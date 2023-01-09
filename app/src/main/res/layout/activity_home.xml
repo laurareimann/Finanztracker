@@ -17,6 +17,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_home_logout"
+        android:layout_width="49dp"
+        android:layout_height="49dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="7dp"
+        android:backgroundTint="@color/dark_blue_buttons"
+        android:text="@string/btn_logout"
+        android:textSize="@dimen/font_buttons"
+        app:icon="?attr/homeAsUpIndicator"
+        app:layout_constraintBottom_toTopOf="@+id/text_home_balance"
+        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.266" />
+
     <TextView
         android:id="@+id/text_home_balance"
         android:layout_width="wrap_content"
