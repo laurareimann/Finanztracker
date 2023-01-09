@@ -1,5 +1,10 @@
 package com.example.testapp;
 
+/**
+ * SOURCES
+ * Database: CodeYourApp: "Spezialkurs: SQLite Datenbank App Programmieren (ab API Version 29)", URL: https://www.codeyourapp.de/sqlite-app-programmieren-kurs/, 09.01.2023
+ **/
+
 public class Entries {
 
     private long id;

@@ -2,7 +2,8 @@ package com.example.testapp;
 
 /**
  * SOURCES:
- * MenuBar: jangirkaran17: "How to Implement Bottom Navigation With Activities in Android?", MenuBar: URL: https://www.geeksforgeeks.org/how-to-implement-bottom-navigation-with-activities-in-android/, 19.12.2022
+ * Database: CodeYourApp: "Spezialkurs: SQLite Datenbank App Programmieren (ab API Version 29)", URL: https://www.codeyourapp.de/sqlite-app-programmieren-kurs/, 09.01.2023
+ * MenuBar: jangirkaran17: "How to Implement Bottom Navigation With Activities in Android?", URL: https://www.geeksforgeeks.org/how-to-implement-bottom-navigation-with-activities-in-android/, 19.12.2022
  **/
 
 import androidx.annotation.NonNull;

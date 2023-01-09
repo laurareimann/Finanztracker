@@ -1,5 +1,10 @@
 package com.example.testapp;
 
+/**
+ * SOURCES
+ * Database: BTech Days: "Login and Register Form using SQLite Database in Android Studio | Login Registration Android Studio", URL: https://www.youtube.com/watch?v=o9CVZ1gQgQo, 09.01.2023
+ **/
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
