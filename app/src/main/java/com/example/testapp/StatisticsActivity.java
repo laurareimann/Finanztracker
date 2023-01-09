@@ -182,9 +182,6 @@ public class StatisticsActivity extends AppCompatActivity{
         //remove border of the chart, default false if not set
         barChart.setDrawBorders(false);
 
-        // TODO: no data Text krieg ich nicht weg
-        barChart.setNoDataText("whatever");
-
         //remove the description label text located at the lower right corner
         Description description = new Description();
         description.setEnabled(false);
@@ -314,6 +311,7 @@ public class StatisticsActivity extends AppCompatActivity{
         BarData data = new BarData(barDataSet);
         barChart_statistics_monthOverview.setData(data);
         barChart_statistics_monthOverview.invalidate();
+        barChart_statistics_yearOverview.setNoDataText("");
+        barChart_statistics_monthOverview.setNoDataText("");
     }
-
 }
