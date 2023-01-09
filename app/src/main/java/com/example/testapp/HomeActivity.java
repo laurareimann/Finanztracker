@@ -23,6 +23,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -117,18 +118,20 @@ public class HomeActivity extends AppCompatActivity {
     private void showAllListEntries() {
         // Save DB Entries in List
         List<Entries> entriesList = dataSource.getAllEntriesFromUser(currentUserID);
+        List<Entries> shallowCopy = entriesList.subList(0, entriesList.size());
+        Collections.reverse(shallowCopy);
 
         // Create array adapter and pass the instance of the main activity as context
         // Pass a predefined standard layout as layout for the entries
         ArrayAdapter<Entries> entriesArrayAdapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_1,
-                entriesList);
+                shallowCopy);
 
         // Put Entries onto Homescreen
-        ListView shoppingMemosListView = (ListView) findViewById(R.id.listview_home_entries);
+        ListView entriesListView = (ListView) findViewById(R.id.listview_home_entries);
 
-        shoppingMemosListView.setAdapter(entriesArrayAdapter);
+        entriesListView.setAdapter(entriesArrayAdapter);
     }
 
     // save the name of current User
