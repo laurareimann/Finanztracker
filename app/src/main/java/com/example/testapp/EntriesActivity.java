@@ -228,7 +228,8 @@ public class EntriesActivity extends AppCompatActivity {
                 Toast.makeText(EntriesActivity.this, "Eintrag wurde gespeichert",Toast.LENGTH_SHORT).show();
 
                 // Cast amount to string
-                int amount = Integer.parseInt(amountString);
+                //int amount = Integer.parseInt(amountString);
+                float amount = Float.parseFloat(amountString);
 
 
 

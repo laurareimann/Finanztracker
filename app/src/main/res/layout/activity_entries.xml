@@ -15,7 +15,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginEnd="@dimen/margins_sides"
         android:hint="@string/hint_newEntry"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:textSize="@dimen/font_hints"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.241"

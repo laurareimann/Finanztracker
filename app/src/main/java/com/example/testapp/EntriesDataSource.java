@@ -55,7 +55,7 @@ public class EntriesDataSource {
     }
 
     // Insert Data into the table of our SQLite database
-    public Entries createEntries(int userID, int entryAmount, String entryNotice,
+    public Entries createEntries(int userID, float entryAmount, String entryNotice,
                                  String entryDate, int entryDay, int entryMonth, int entryYear) {
         ContentValues values = new ContentValues();
         values.put(EntriesDbHelper.COLUMN_USER_ID, userID);
