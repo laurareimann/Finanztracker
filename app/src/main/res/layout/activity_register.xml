@@ -111,7 +111,7 @@
         android:drawableLeft="@android:drawable/btn_star"
         android:drawablePadding="@dimen/padding_icons"
         android:ems="10"
-        android:hint="Enter Balance"
+        android:hint="@string/h_account"
         android:inputType="numberDecimal"
         android:padding="@dimen/padding_text_inputs"
         android:textColor="@color/white"
