@@ -235,7 +235,7 @@ public class StatisticsActivity extends AppCompatActivity{
 
     // Jahresübersicht:
     private void showBarChartYears() {
-        ArrayList<Integer> valueList = new ArrayList<>();
+        ArrayList<Float> valueList = new ArrayList<>();
         ArrayList<BarEntry> entries = new ArrayList<>();
         ArrayList<Integer> yearsWithData = dataSource.yearsWithData();
         String title = "";
@@ -280,7 +280,7 @@ public class StatisticsActivity extends AppCompatActivity{
 
     // Monatsübersicht:
     private void showBarChartMonths() {
-        ArrayList<Integer> valueList = new ArrayList<>();
+        ArrayList<Float> valueList = new ArrayList<>();
         ArrayList<BarEntry> entries = new ArrayList<>();
 
         String title = "";

@@ -9,7 +9,7 @@ public class Entries {
 
     private long id;
     private long user_id;
-    private int entry_amount;
+    private float entry_amount;
     private String entry_date;
     private String entry_notice;
     private int entry_day;
@@ -17,7 +17,7 @@ public class Entries {
     private int entry_year;
 
 
-    public Entries(long id, long user_id, int entry_amount, String entry_notice,
+    public Entries(long id, long user_id, float entry_amount, String entry_notice,
                    String entry_date, int entry_day, int entry_month, int entry_year) {
         this.id = id;
         this.user_id = user_id;
@@ -45,11 +45,11 @@ public class Entries {
         this.user_id = user_id;
     }
 
-    public int getEntry_amount() {
+    public float getEntry_amount() {
         return entry_amount;
     }
 
-    public void setEntry_amount(int entry_amount) {
+    public void setEntry_amount(float entry_amount) {
         this.entry_amount = entry_amount;
     }
 

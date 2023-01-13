@@ -30,6 +30,8 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 public class EntriesActivity extends AppCompatActivity {
@@ -229,7 +231,7 @@ public class EntriesActivity extends AppCompatActivity {
 
                 // Cast amount to string
                 //int amount = Integer.parseInt(amountString);
-                float amount = Float.parseFloat(amountString);
+                double amount = Double.parseDouble((amountString));
 
 
 
@@ -242,10 +244,17 @@ public class EntriesActivity extends AppCompatActivity {
 
                 // create new row in DB
                 // Constructor: userID, amount, notice, String date, day, month, year
-                // TODO: If-Anfrage ob EInnahme oder Ausgabe
                 if(!einAusgabeSwitch.isChecked()){
                     amount *= -1;
                 }
+
+                // Format Entry to have only 2 Decimals (#.##)
+                // Create the DecimalFormat Instance
+                DecimalFormat deciFormat = new DecimalFormat("#.##");
+                // Set the rounding mode as CEILING
+                deciFormat.setRoundingMode(RoundingMode.CEILING);
+                amount = Double.parseDouble(deciFormat.format(amount));
+
                 dataSource.createEntries(currentUserID, amount, notice, date, dayDB, monthDB, yearDB);
 
                 dbUser.updateBalance(amount,currentUser,checker);

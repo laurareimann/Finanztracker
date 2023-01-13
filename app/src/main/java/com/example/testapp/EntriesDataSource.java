@@ -13,7 +13,6 @@ import android.util.Log;
 import android.content.ContentValues;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -60,7 +59,7 @@ public class EntriesDataSource {
     }
 
     // Insert Data into the table of our SQLite database
-    public Entries createEntries(int userID, float entryAmount, String entryNotice,
+    public Entries createEntries(int userID, double entryAmount, String entryNotice,
                                  String entryDate, int entryDay, int entryMonth, int entryYear) {
         ContentValues values = new ContentValues();
         values.put(EntriesDbHelper.COLUMN_USER_ID, userID);
@@ -108,7 +107,7 @@ public class EntriesDataSource {
         // get contents with indexes from above
         long id = cursor.getLong(idIndex);
         int user_id = cursor.getInt(idUserId);
-        int entry_amount = cursor.getInt(idAmount);
+        float entry_amount = cursor.getInt(idAmount);
         String entry_notice = cursor.getString(idNotice);
         String entry_date = cursor.getString(idDate);
         int entry_day = cursor.getInt(idDay);
@@ -175,8 +174,8 @@ public class EntriesDataSource {
     }
 
     // get sum of all expenses for a certain year
-    public int sumExpensesYear(int year) {
-        int sumYearExpenses = 0;
+    public float sumExpensesYear(int year) {
+        float sumYearExpenses = 0;
         List<Entries> allEntries = this.getAllEntriesFromUser(HomeActivity.getCurrentUserID());
         for (Entries e : allEntries) {
             if (e.getEntry_year() == year && e.getEntry_amount() < 0) {
@@ -187,9 +186,9 @@ public class EntriesDataSource {
     }
 
     // get sum of all income for a certain year
-    public int sumIncomeYear(int year) {
+    public float sumIncomeYear(int year) {
         List<Entries> allEntries = this.getAllEntriesFromUser(HomeActivity.getCurrentUserID());
-        int sumYearIncome = 0;
+        float sumYearIncome = 0;
         for (Entries e : allEntries) {
             if (e.getEntry_year() == year && e.getEntry_amount() > 0) {
                 sumYearIncome += e.getEntry_amount();
@@ -213,8 +212,8 @@ public class EntriesDataSource {
     }
 
     // get sum of all expenses for a certain year
-    public int sumExpensesMonth(int month, int year) {
-        int sumMonthExpenses = 0;
+    public float sumExpensesMonth(int month, int year) {
+        float sumMonthExpenses = 0;
         List<Entries> allEntries = this.getAllEntriesFromUser(HomeActivity.getCurrentUserID());
         for (Entries e : allEntries) {
             if (e.getEntry_month()-1 == month && e.getEntry_year() == year) {

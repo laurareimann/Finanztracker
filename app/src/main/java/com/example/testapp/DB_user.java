@@ -115,10 +115,10 @@ public class DB_user extends SQLiteOpenHelper {
 
         return balanceInt;
     }
-    public void updateBalance(float amount,String username,boolean isChecked) {
+    public void updateBalance(double amount, String username, boolean isChecked) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        float newBalance;
+        double newBalance;
         newBalance =  getUserBalanceFloat(username) + amount;
         contentValues.put("user_balance",newBalance);
         db.update("users",contentValues,"user_name=\"" +username+ "\"",null);

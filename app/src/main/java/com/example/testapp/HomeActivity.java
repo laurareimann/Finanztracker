@@ -20,7 +20,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.testapp.databinding.ActivityHomeBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.DecimalFormat;
@@ -31,7 +30,8 @@ import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity {
 
-    Button btn_logout;
+    private Button btn_logout;
+    private BottomNavigationView bNV_home;
 
     // store the name of our class into a String
     public static final String LOG_TAG = HomeActivity.class.getSimpleName();
@@ -40,12 +40,8 @@ public class HomeActivity extends AppCompatActivity {
     private EntriesDataSource dataSource;
     private DB_user dbUser;
     private TextView balance;
-    BottomNavigationView bNV_home;
     private String currentUser;
     private static int currentUserID;
-    boolean checker = false;
-    DB_user db;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,6 +130,8 @@ public class HomeActivity extends AppCompatActivity {
         List<Entries> entriesList = dataSource.getAllEntriesFromUser(currentUserID);
         List<Entries> shallowCopy = entriesList.subList(0, entriesList.size());
         Collections.reverse(shallowCopy);
+
+
 
         // Create array adapter and pass the instance of the main activity as context
         // Pass a predefined standard layout as layout for the entries
