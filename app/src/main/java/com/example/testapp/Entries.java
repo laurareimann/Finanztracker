@@ -1,5 +1,7 @@
 package com.example.testapp;
 
+import android.util.Log;
+
 /**
  * SOURCES
  * Database: CodeYourApp: "Spezialkurs: SQLite Datenbank App Programmieren (ab API Version 29)", URL: https://www.codeyourapp.de/sqlite-app-programmieren-kurs/, 09.01.2023
@@ -9,7 +11,7 @@ public class Entries {
 
     private long id;
     private long user_id;
-    private float entry_amount;
+    private double entry_amount;
     private String entry_date;
     private String entry_notice;
     private int entry_day;
@@ -17,7 +19,7 @@ public class Entries {
     private int entry_year;
 
 
-    public Entries(long id, long user_id, float entry_amount, String entry_notice,
+    public Entries(long id, long user_id, double entry_amount, String entry_notice,
                    String entry_date, int entry_day, int entry_month, int entry_year) {
         this.id = id;
         this.user_id = user_id;
@@ -45,11 +47,11 @@ public class Entries {
         this.user_id = user_id;
     }
 
-    public float getEntry_amount() {
+    public double getEntry_amount() {
         return entry_amount;
     }
 
-    public void setEntry_amount(float entry_amount) {
+    public void setEntry_amount(double entry_amount) {
         this.entry_amount = entry_amount;
     }
 
@@ -93,11 +95,12 @@ public class Entries {
         this.entry_year = entry_year;
     }
 
-    // Todo Ausgabe im Home screen fixen
+    // Todo Ausgabe im Home screen fixen: Hier wird nicht der richtige Wert aus der Datenbank gelesen
     @Override
     public String toString() {
+        Log.d( "Entries","Method: toString: " + String.valueOf(entry_amount));
         return "Einnahme/Ausgabe: " + entry_amount +
-                "€ , Datum: " + entry_date +
+                " € , Datum: " + entry_date +
                 ", Notiz: " + entry_notice;
 
     }
