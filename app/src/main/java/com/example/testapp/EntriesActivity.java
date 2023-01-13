@@ -135,8 +135,8 @@ public class EntriesActivity extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 // January would be month 0 und December would be month 11 so:
                 month = month + 1;
-                Log.d(TAG,"ondateSet: mm/dd/yyy: " + month + "/" + day + "/" + year );
-                String date = month + "/" + day + "/" + year;
+                Log.d(TAG,"ondateSet: dd.mm.yyy: " + day + "." + month + "." + year );
+                String date = day + "." + month + "." + year;
                 mDisplayDate.setText(date);
                 mDisplayDate.setTextColor(getResources().getColor(R.color.black));
 

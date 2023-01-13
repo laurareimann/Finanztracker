@@ -19,22 +19,16 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_home_logout"
-        android:layout_width="49dp"
-        android:layout_height="49dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="7dp"
+        android:layout_width="0dp"
+        app:layout_constraintDimensionRatio="H,1:1"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margins_elements_small"
         android:backgroundTint="@color/dark_blue_buttons"
-        android:text="@string/btn_logout"
-        android:textSize="@dimen/font_buttons"
-        app:icon="?attr/homeAsUpIndicator"
+        app:icon="@drawable/icon_home_logout_white"
         app:layout_constraintBottom_toTopOf="@+id/text_home_balance"
-        app:layout_constraintHorizontal_bias="0.948"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.266" />
+         />
 
     <TextView
         android:id="@+id/text_home_balance"
@@ -91,9 +85,10 @@
         <ListView
             android:id="@+id/listview_home_entries"
             style="@style/Widget.AppCompat.ListView"
+            android:layout_margin="@dimen/margins_sides"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="start"
             android:layout_marginTop="@dimen/margins_elements_small"
             android:layout_marginBottom="@dimen/margins_elements_small" />
     </LinearLayout>

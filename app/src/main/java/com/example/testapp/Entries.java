@@ -102,14 +102,14 @@ public class Entries {
         Log.d( "Entries","Method: toString: " + String.valueOf(entry_amount));
 
         if(entry_amount>0){
-            return "Einnahme: " + entry_amount +
-                    " € , Datum: " + entry_date +
-                    ", Notiz: " + entry_notice;
+            return "Einnahme:\t" + entry_amount +
+                    " € \nDatum: " + entry_date +
+                    "\t\t\tNotiz: " + entry_notice;
 
         }else {
-            return "Ausgabe: " + entry_amount +
-                    " € , Datum: " + entry_date +
-                    ", Notiz: " + entry_notice;
+            return "Ausgabe:\t" + entry_amount +
+                    " € \nDatum: " + entry_date +
+                    "\t\t\tNotiz: " + entry_notice;
         }
 
     }
