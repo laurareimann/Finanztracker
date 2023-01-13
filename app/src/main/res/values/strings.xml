@@ -23,6 +23,8 @@
     <string name="h_account">Kontostand</string>
     <string name="h_income">Einkommen</string>
     <string name="h_expenses">Ausgaben</string>
+    <string name="h_emptyAccount">0 €</string>
+
 
     <!-->Hints<-->
     <string name="hint_username">Name</string>
@@ -40,6 +42,8 @@
 
     <!-->Image Descriptions<-->
     <string name="img_dollarsign">Dollarsign</string>
+    <string name="img_earnyLogo">Earny Logo</string>
+
 
 
 

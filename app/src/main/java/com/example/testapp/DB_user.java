@@ -24,12 +24,11 @@ public class DB_user extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // TODO: add account balance and mail here later
         db.execSQL("create Table users(" +
                 "user_id integer primary key autoincrement, " +
                 "user_name text, " +
                 "user_password text, " +
-                "user_balance integer NOT NULL)");
+                "user_balance double NOT NULL)");
     }
 
     @Override
@@ -37,10 +36,8 @@ public class DB_user extends SQLiteOpenHelper {
         db.execSQL("drop Table if exists users");
     }
 
-    // TODO: Do we need user_id?
     // insert Data into Database, return true if successful
-    // TODO: balance dem konstruktor zufügen
-    public Boolean insertData (String username, String password, float balance){
+    public Boolean insertData (String username, String password, double balance){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("user_name", username);
@@ -105,12 +102,12 @@ public class DB_user extends SQLiteOpenHelper {
         return idInt;
     }
 
-    public float getUserBalanceFloat(String username){
+    public double getUserBalanceDouble(String username){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT user_balance FROM users WHERE user_name=\"" + username + "\"", null);
 
         cursor.moveToFirst();
-        float balanceInt = cursor.getFloat(0);
+        double balanceInt = cursor.getDouble(0);
         cursor.close();
 
         return balanceInt;
@@ -119,7 +116,7 @@ public class DB_user extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         double newBalance;
-        newBalance =  getUserBalanceFloat(username) + amount;
+        newBalance =  getUserBalanceDouble(username) + amount;
         contentValues.put("user_balance",newBalance);
         db.update("users",contentValues,"user_name=\"" +username+ "\"",null);
 

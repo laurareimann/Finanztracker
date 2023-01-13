@@ -61,7 +61,7 @@ public class EntriesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entries);
-        mDisplayDate = (TextView) findViewById(R.id.editxt_entries_date);
+        mDisplayDate = (TextView) findViewById(R.id.txt_entries_date);
 
 
 
@@ -180,13 +180,13 @@ public class EntriesActivity extends AppCompatActivity {
 
     private void activateAddButton() {
         // References Widget-Objects
-        Button buttonAddProduct = (Button) findViewById(R.id.button_entries_add);
-        final EditText editTextAmount = (EditText) findViewById(R.id.editxt_entries_amount);
-        final EditText editTextNotice = (EditText) findViewById(R.id.editxt_entries_notice);
-        final TextView textViewDate = (TextView) findViewById(R.id.editxt_entries_date);
+        Button buttonAddProduct = (Button) findViewById(R.id.btn_entries_addentry);
+        final EditText editTextAmount = (EditText) findViewById(R.id.txt_entries_amount);
+        final EditText editTextNotice = (EditText) findViewById(R.id.txt_entries_notice);
+        final TextView textViewDate = (TextView) findViewById(R.id.txt_entries_date);
 
-        switchText = (TextView) findViewById(R.id.switchText);
-        einAusgabeSwitch = (Switch) findViewById(R.id.switch1);
+        switchText = (TextView) findViewById(R.id.txt_entries_switchText);
+        einAusgabeSwitch = (Switch) findViewById(R.id.switch_entries_incomeOrExpense);
 
 
         /*** Switch ***/

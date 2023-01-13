@@ -6,15 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <EditText
-        android:id="@+id/editxt_entries_amount"
+        android:id="@+id/txt_entries_amount"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_small"
         android:layout_marginStart="@dimen/margins_sides"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="@dimen/margins_sides"
-        android:drawableLeft="@drawable/icon_entries_eurosign_blue"
+        android:drawableStart="@drawable/icon_entries_eurosign_blue"
         android:drawablePadding="20dp"
         android:hint="@string/hint_newEntry"
         android:inputType="numberDecimal"
@@ -22,42 +21,41 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch1" />
+        app:layout_constraintTop_toBottomOf="@+id/switch_entries_incomeOrExpense"
+        tools:ignore="Autofill" />
 
     <EditText
-        android:id="@+id/editxt_empty"
-
+        android:id="@+id/txt_entries_emptyline"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_small"
-        android:layout_marginEnd="@dimen/margins_sides"
-        app:layout_constraintEnd_toEndOf="@+id/editxt_entries_notice"
-        android:layout_marginTop="36dp"
         android:layout_marginStart="@dimen/margins_sides"
-
-        app:layout_constraintStart_toStartOf="@+id/editxt_entries_notice"
-        app:layout_constraintTop_toBottomOf="@+id/editxt_entries_notice"
-        tools:ignore="SpeakableTextPresentCheck"
-        />
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="@dimen/margins_sides"
+        android:inputType="none"
+        app:layout_constraintEnd_toEndOf="@+id/txt_entries_notice"
+        app:layout_constraintStart_toStartOf="@+id/txt_entries_notice"
+        app:layout_constraintTop_toBottomOf="@+id/txt_entries_notice"
+        tools:ignore="Autofill,SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/editxt_entries_date"
+        android:id="@+id/txt_entries_date"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_small"
         android:layout_marginStart="@dimen/margins_sides"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="@dimen/margins_sides"
-        android:drawableLeft="@drawable/icon_entries_calendar"
         android:drawablePadding="20dp"
         android:gravity="center_vertical"
         android:hint="@string/hint_date"
         android:textSize="@dimen/font_hints"
+        app:drawableStartCompat="@drawable/icon_entries_calendar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/editxt_entries_notice"
-        app:layout_constraintTop_toBottomOf="@+id/editxt_entries_notice" />
+        app:layout_constraintStart_toStartOf="@+id/txt_entries_notice"
+        app:layout_constraintTop_toBottomOf="@+id/txt_entries_notice" />
 
     <Button
-        android:id="@+id/button_entries_add"
+        android:id="@+id/btn_entries_addentry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
@@ -66,50 +64,53 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editxt_entries_date" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_entries_date" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/switch_entries_incomeOrExpense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margins_sides"
         android:layout_marginTop="100dp"
         android:checked="false"
         android:minHeight="48dp"
-        android:paddingRight="@dimen/padding_icons"
+        android:paddingEnd="@dimen/padding_icons"
         android:text=""
-        app:layout_constraintEnd_toStartOf="@+id/switchText"
+        app:layout_constraintEnd_toStartOf="@+id/txt_entries_switchText"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlSymmetry,UseSwitchCompatOrMaterialXml" />
 
     <TextView
-        android:id="@+id/switchText"
+        android:id="@+id/txt_entries_switchText"
         android:layout_width="312dp"
         android:layout_height="wrap_content"
         android:text="@string/switchText"
         android:textColor="@color/red"
         android:textSize="@dimen/font_hints"
-        app:layout_constraintBottom_toBottomOf="@+id/switch1"
+        app:layout_constraintBottom_toBottomOf="@+id/switch_entries_incomeOrExpense"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/switch1"
+        app:layout_constraintTop_toTopOf="@+id/switch_entries_incomeOrExpense"
         app:layout_constraintVertical_bias="0.5" />
 
     <EditText
-        android:id="@+id/editxt_entries_notice"
+        android:id="@+id/txt_entries_notice"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_small"
         android:layout_marginStart="@dimen/margins_sides"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="@dimen/margins_sides"
-        android:drawableLeft="@drawable/icon_entries_pen_blue"
+        android:drawableStart="@drawable/icon_entries_pen_blue"
         android:drawablePadding="20dp"
         android:hint="@string/hint_note"
+        android:inputType="text"
         android:textSize="@dimen/font_hints"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/editxt_entries_amount"
-        app:layout_constraintTop_toBottomOf="@+id/editxt_entries_amount" />
+        app:layout_constraintStart_toStartOf="@+id/txt_entries_amount"
+        app:layout_constraintTop_toBottomOf="@+id/txt_entries_amount"
+        tools:ignore="Autofill" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav_entries"
@@ -123,6 +124,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_navigation" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,20 +8,18 @@
     android:background="@drawable/bg_login_farbverlauf"
     tools:context=".MainActivity">
 
-    <!-- Logo -->
     <ImageView
         android:id="@+id/img_login_earny_logo"
         android:layout_width="300dp"
         android:layout_height="210dp"
         android:layout_centerHorizontal="true"
-        android:foreground="@drawable/logo_earny_bunt"
+        android:contentDescription="@string/img_earnyLogo"
         android:scaleType="centerCrop"
         android:src="@drawable/logo_earny_bunt"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--  Login Headertext -->
     <TextView
         android:id="@+id/txt_login_login"
         android:layout_width="match_parent"
@@ -37,7 +35,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/img_login_earny_logo" />
 
-    <!--  Username Textfield -->
     <EditText
         android:id="@+id/txt_login_username"
         android:layout_width="match_parent"
@@ -46,10 +43,12 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="@dimen/margins_sides"
         android:layout_marginBottom="10dp"
+        android:autofillHints="username"
         android:background="@color/white_transparent_background"
-        android:drawableLeft="@drawable/icon_person_white"
+        android:drawableStart="@drawable/icon_person_white"
         android:drawablePadding="20dp"
         android:hint="@string/hint_username"
+        android:inputType="text"
         android:padding="20dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
@@ -57,7 +56,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_login_login" />
 
-    <!--  Password Textfield -->
     <EditText
         android:id="@+id/txt_login_password"
         android:layout_width="match_parent"
@@ -66,8 +64,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="@dimen/margins_sides"
         android:layout_marginBottom="5dp"
+        android:autofillHints="password"
         android:background="@color/white_transparent_background"
-        android:drawableLeft="@drawable/icon_password_lock_white"
+        android:drawableStart="@drawable/icon_password_lock_white"
         android:drawablePadding="20dp"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
@@ -82,18 +81,15 @@
         android:id="@+id/btn_login_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margins_sides"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="@dimen/margins_sides"
-        android:layout_marginBottom="20dp"
         android:backgroundTint="@color/dark_blue_buttons"
         android:text="@string/btn_login"
         android:textSize="@dimen/font_buttons"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_login_password" />
+        app:layout_constraintTop_toBottomOf="@id/txt_login_password"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
-    <!-- Back to registration Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_login_register"
         android:layout_width="wrap_content"
@@ -105,6 +101,5 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_login_login" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

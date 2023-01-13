@@ -31,7 +31,6 @@ public class EntriesDbHelper extends SQLiteOpenHelper{
 
 
     // Command to create Table as String
-    // TODO: Category raus, value erstmal raus, date als 3 seperate ints speichern und einmal datum als string
     public static final String SQL_CREATE =
             "CREATE TABLE " + ENTRIES_LIST +
                     "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +

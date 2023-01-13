@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -137,7 +136,7 @@ public class StatisticsActivity extends AppCompatActivity{
         double expensesMonthAsDouble = Double.parseDouble(String.valueOf(dataSource.sumExpensesMonth(currentMonth+1,currentYear)));
         expensesMonth.setText(dform.format(expensesMonthAsDouble) + " €");
 
-        TextView year = findViewById(R.id.txt_h_year);
+        TextView year = findViewById(R.id.txt_statistics_h_year);
         year.setText(String.valueOf(currentYear));
 
         TextView income = findViewById(R.id.txt_statistics_incomeyear);

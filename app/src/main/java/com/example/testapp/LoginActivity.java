@@ -46,15 +46,15 @@ public class LoginActivity extends AppCompatActivity {
                 setCurrentUser();
 
                 // Check if fields are empty
-                if(user.equals("")|| pass.equals("")){
-                    Toast.makeText(LoginActivity.this, "Bitte fülle alle Felder aus.",Toast.LENGTH_SHORT).show();
-                } else{
+                if (user.equals("") || pass.equals("")) {
+                    Toast.makeText(LoginActivity.this, "Bitte fülle alle Felder aus.", Toast.LENGTH_SHORT).show();
+                } else {
                     //check if user is in Database
-                    if(db.checkUsernamePassword(user,pass)){
-                        Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+                    if (db.checkUsernamePassword(user, pass)) {
+                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                         startActivity(intent);
-                    } else{
-                        Toast.makeText(LoginActivity.this, "Passwort oder Nutzername falsch.",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Passwort oder Nutzername falsch.", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -62,18 +62,17 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         // Button zur Registrierung
-        btn_register.setOnClickListener(new View.OnClickListener(){
+        btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                Intent intent = new Intent(getApplicationContext(),RegisterActivity.class); // TODO: später neu verlinken zur Register Activity
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class); // TODO: später neu verlinken zur Register Activity
                 startActivity(intent);
             }
         });
-
     }
 
     // save the name of current User
-    public void setCurrentUser(){
+    public void setCurrentUser() {
         currentUsername = username.getText().toString();
     }
 

@@ -96,7 +96,7 @@ public class HomeActivity extends AppCompatActivity {
         /*** Views ***/
         currentUser = LoginActivity.currentUsername;
         currentUserID = dbUser.getUserID(currentUser);
-        balance = findViewById(R.id.text_home_balance);
+        balance = findViewById(R.id.txt_home_balance);
         // Kontostand mit Dezimal Punkt:
         NumberFormat nf = NumberFormat.getNumberInstance(Locale.GERMAN);
         DecimalFormat dform = (DecimalFormat)nf;

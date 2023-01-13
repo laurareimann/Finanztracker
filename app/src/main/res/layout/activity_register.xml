@@ -8,26 +8,26 @@
     android:background="@drawable/bg_login_farbverlauf"
     tools:context=".MainActivity">
 
-    <!--  Logo -->
     <ImageView
         android:id="@+id/img_register_earny_logo"
         android:layout_width="300dp"
         android:layout_height="210dp"
-        android:foreground="@drawable/logo_earny_bunt"
+        android:layout_marginStart="@dimen/margins_sides"
+        android:layout_marginEnd="@dimen/margins_sides"
+        android:contentDescription="@string/img_earnyLogo"
         android:scaleType="centerCrop"
         android:src="@drawable/logo_earny_bunt"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Register Headertext -->
     <TextView
         android:id="@+id/txt_register_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margins_sides"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="@dimen/margins_sides"
+        android:layout_marginBottom="@dimen/margins_elements_small"
         android:text="@string/h_register"
         android:textColor="@color/white"
         android:textSize="@dimen/font_h1"
@@ -36,18 +36,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/img_register_earny_logo" />
 
-    <!--  Username Textfield -->
     <EditText
         android:id="@+id/txt_register_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margins_sides"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/margins_elements_small"
         android:layout_marginEnd="@dimen/margins_sides"
+        android:autofillHints="username"
         android:background="@color/white_transparent_background"
-        android:drawableLeft="@drawable/icon_person_white"
+        android:drawableStart="@drawable/icon_person_white"
         android:drawablePadding="@dimen/padding_icons"
         android:hint="@string/hint_username"
+        android:inputType="text"
         android:padding="@dimen/padding_text_inputs"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
@@ -56,16 +57,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_register_register" />
 
-    <!--  Password Textfield -->
     <EditText
         android:id="@+id/txt_register_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margins_sides"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/margins_elements_small"
         android:layout_marginEnd="@dimen/margins_sides"
+        android:autofillHints="password"
         android:background="@color/white_transparent_background"
-        android:drawableLeft="@drawable/icon_password_lock_white"
+        android:drawableStart="@drawable/icon_password_lock_white"
         android:drawablePadding="@dimen/padding_icons"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
@@ -77,16 +78,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_register_username" />
 
-    <!--  Password WDH Textfield -->
     <EditText
         android:id="@+id/txt_register_password_rep"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margins_sides"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/margins_elements_small"
         android:layout_marginEnd="@dimen/margins_sides"
+        android:autofillHints="password"
         android:background="@color/white_transparent_background"
-        android:drawableLeft="@drawable/icon_password_lock_white"
+        android:drawableStart="@drawable/icon_password_lock_white"
         android:drawablePadding="@dimen/padding_icons"
         android:hint="@string/hint_password_rep"
         android:inputType="textPassword"
@@ -97,18 +98,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_register_password" />
 
-
-    <!--  Balance Textfield -->
     <EditText
         android:id="@+id/txt_register_balance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_register_password_rep"
         android:layout_marginStart="@dimen/margins_sides"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/margins_elements_small"
         android:layout_marginEnd="@dimen/margins_sides"
         android:background="@color/white_transparent_background"
-        android:drawableLeft="@android:drawable/btn_star"
+        android:drawableStart="@drawable/icon_register_euro_white"
         android:drawablePadding="@dimen/padding_icons"
         android:ems="10"
         android:hint="@string/h_account"
@@ -118,22 +117,18 @@
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_register_password_rep" />
-
-    <!-- Register Button -->
-
-
-    <!-- Back to login Button -->
+        app:layout_constraintTop_toBottomOf="@+id/txt_register_password_rep"
+        tools:ignore="Autofill" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_register_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margins_elements_small"
         android:backgroundTint="@color/dark_blue_buttons"
         android:text="@string/btn_register"
         android:textSize="@dimen/font_buttons"
-        android:layout_marginTop="@dimen/margins_elements_small"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_register_balance" />
@@ -143,16 +138,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margins_elements_small"
-        android:layout_marginBottom="@dimen/margins_elements_small"
         android:backgroundTint="@color/dark_blue_buttons"
         android:text="@string/btn_login_nav"
         android:textSize="@dimen/font_buttons"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btn_register_register"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="@+id/btn_register_register"
         app:layout_constraintTop_toBottomOf="@id/btn_register_register" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

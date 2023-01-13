@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".StatisticsActivity">
 
-    <!--> Menü <-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav_statistics"
         android:layout_width="match_parent"
@@ -30,8 +29,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.166"
-        >
+        app:layout_constraintVertical_bias="0.166">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -41,25 +39,24 @@
                 android:id="@+id/btn_statistics_months"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margins_elements_small"
                 android:layout_marginStart="@dimen/margins_sides"
+                android:layout_marginTop="@dimen/margins_elements_small"
                 android:text="@string/btn_months"
                 android:textSize="@dimen/font_buttons"
                 app:backgroundTint="@color/dark_blue_buttons"
                 app:layout_constraintBottom_toTopOf="@+id/barchart_statistics_years"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/colored_bar"
+                app:layout_constraintTop_toBottomOf="@+id/box_home_coloredBar"
                 app:layout_constraintVertical_bias="1.0" />
-
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_statistics_years"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margins_sides"
+                android:backgroundTint="@color/dark_blue_buttons"
                 android:text="@string/btn_years"
                 android:textSize="@dimen/font_buttons"
-                android:backgroundTint="@color/dark_blue_buttons"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_statistics_months"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -74,9 +71,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.203">
-
-            </com.github.mikephil.charting.charts.BarChart>
+                app:layout_constraintVertical_bias="0.203"></com.github.mikephil.charting.charts.BarChart>
 
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/barchart_statistics_months"
@@ -84,9 +79,7 @@
                 android:layout_height="200dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/barchart_statistics_years">
-
-            </com.github.mikephil.charting.charts.BarChart>
+                app:layout_constraintTop_toTopOf="@+id/barchart_statistics_years"></com.github.mikephil.charting.charts.BarChart>
 
             <TextView
                 android:id="@+id/box_statistics_budgetbox"
@@ -95,39 +88,38 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="@dimen/margins_sides"
                 android:background="@drawable/box_statistics_blue"
+                android:paddingBottom="@dimen/margins_sides"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/barchart_statistics_months"
-                android:layout_marginBottom="@dimen/margins_sides"
-                android:paddingBottom="@dimen/margins_sides"/>
+                app:layout_constraintTop_toBottomOf="@+id/barchart_statistics_months" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/ConstrainedLayout2"
+                android:id="@+id/ConstrainedLayout_statistics_overview"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_margin="@dimen/margins_elements_small"
+                android:layout_marginBottom="@dimen/margins_sides"
                 app:layout_constraintBottom_toBottomOf="@+id/box_statistics_budgetbox"
                 app:layout_constraintEnd_toEndOf="@+id/box_statistics_budgetbox"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/box_statistics_budgetbox"
                 app:layout_constraintTop_toTopOf="@+id/box_statistics_budgetbox"
-                app:layout_constraintVertical_bias="0.448"
-                android:layout_marginBottom="@dimen/margins_sides">
-
+                app:layout_constraintVertical_bias="0.448">
 
                 <ImageView
                     android:id="@+id/icon_statistics_dollarsign"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
+                    android:contentDescription="@string/img_dollarsign"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.055"
-                    app:srcCompat="@drawable/icon_statistics_dollarsign"
-                    android:contentDescription="@string/img_dollarsign"/>
+                    app:srcCompat="@drawable/icon_statistics_dollarsign" />
 
                 <TextView
                     android:id="@+id/txt_statistics_month"
@@ -179,7 +171,7 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
-                    android:id="@+id/txt_h_kontostand"
+                    android:id="@+id/txt_statistics_h_balance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="36dp"
@@ -202,11 +194,11 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/box_statistics_darkblue"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/txt_h_kontostand"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_h_kontostand" />
+                    app:layout_constraintStart_toStartOf="@+id/txt_statistics_h_balance"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_statistics_h_balance" />
 
                 <TextView
-                    android:id="@+id/txt_h_year"
+                    android:id="@+id/txt_statistics_h_year"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -229,7 +221,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/txt_statistics_balance"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_h_year" />
+                    app:layout_constraintTop_toBottomOf="@+id/txt_statistics_h_year" />
 
                 <TextView
                     android:id="@+id/txt_statistics_h_expensesyear"
@@ -271,30 +263,28 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/txt_statistics_h_expensesyear"
                     app:layout_constraintTop_toBottomOf="@+id/txt_statistics_h_expensesyear" />
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
-                android:id="@+id/colored_bar"
+                android:id="@+id/box_home_coloredBar"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:background="@color/dark_blue_buttons"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
-                android:id="@+id/txt_statistics_budget2"
+                android:id="@+id/txt_statistics_h_graph"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margins_elements_small"
                 android:text="@string/h_expenses"
                 android:textColor="@color/white_primary"
                 android:textSize="@dimen/font_normalText"
                 android:textStyle="bold"
-                android:layout_marginTop="@dimen/margins_elements_small"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

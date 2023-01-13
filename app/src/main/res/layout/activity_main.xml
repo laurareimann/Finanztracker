@@ -8,27 +8,25 @@
     android:background="@drawable/bg_login_farbverlauf"
     tools:context=".MainActivity">
 
-    <!--  Logo -->
     <ImageView
         android:id="@+id/img_main_earny_logo"
         android:layout_width="300dp"
         android:layout_height="210dp"
-        android:foreground="@drawable/logo_earny_bunt"
+        android:layout_margin="@dimen/margins_sides"
+        android:contentDescription="@string/img_earnyLogo"
         android:scaleType="centerCrop"
         android:src="@drawable/logo_earny_bunt"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Main Headertext -->
     <TextView
         android:id="@+id/txt_main_welcome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="@dimen/margins_sides"
-        android:layout_marginEnd="@dimen/margins_sides"
+        android:layout_margin="@dimen/margins_sides"
         android:text="@string/h_welcome"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="@dimen/font_h1"
         android:textStyle="bold"
@@ -36,16 +34,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/img_main_earny_logo" />
 
-
-    <!-- Register Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_main_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margins_sides"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="@dimen/margins_sides"
-        android:layout_marginBottom="20dp"
+        android:layout_margin="@dimen/margins_sides"
         android:backgroundTint="@color/dark_blue_buttons"
         android:text="@string/btn_register_nav"
         android:textSize="@dimen/font_buttons"
@@ -53,12 +46,11 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_main_welcome" />
 
-    <!-- Login Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_main_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_margin="@dimen/margins_sides"
         android:backgroundTint="@color/dark_blue_buttons"
         android:text="@string/btn_login_nav"
         android:textSize="@dimen/font_buttons"
