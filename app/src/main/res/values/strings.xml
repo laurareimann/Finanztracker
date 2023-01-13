@@ -1,8 +1,6 @@
 <resources>
     <!-->XML to define Srtings so no hardcoded Text is used in the App<-->
 
-    <string name="app_name">earny</string>
-
     <!-->Buttons<-->
     <string name="btn_login">Login</string>
     <string name="btn_logout">Logout</string>
@@ -12,8 +10,10 @@
     <string name="btn_save">Speichern</string>
     <string name="btn_months">Monate</string>
     <string name="btn_years">Jahre</string>
+    <string name="switch_spendings">Ausgabe</string>
 
     <!-->Headlines<-->
+    <string name="app_name">earny</string>
     <string name="h_login">Login</string>
     <string name="h_register">Account erstellen</string>
     <string name="h_welcome">Willkommen</string>
@@ -24,7 +24,6 @@
     <string name="h_income">Einkommen</string>
     <string name="h_expenses">Ausgaben</string>
     <string name="h_emptyAccount">0 €</string>
-
 
     <!-->Hints<-->
     <string name="hint_username">Name</string>
@@ -43,11 +42,5 @@
     <!-->Image Descriptions<-->
     <string name="img_dollarsign">Dollarsign</string>
     <string name="img_earnyLogo">Earny Logo</string>
-
-
-
-
-
-    <string name="switchText">Ausgabe</string>
 
 </resources>

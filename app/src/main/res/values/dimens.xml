@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-->XML to define Font Sizes and spacings<-->
-    <!-->TODO: Define proper margins, paddings, fonts & button sizes<-->
+    <!-->XML to define Font Sizes and Spacings<-->
 
     <!-->Spacing<-->
     <dimen name="margins_sides">30dp</dimen>
     <dimen name="margins_elements_small">10dp</dimen>
-
     <dimen name="padding_text_inputs">15dp</dimen>
     <dimen name="padding_icons">20dp</dimen>
+    <dimen name="height_small">48dp</dimen>
 
     <!-->Font Size<-->
     <dimen name="font_hints">17sp</dimen>
@@ -16,49 +15,10 @@
     <dimen name="font_h1">35sp</dimen>
     <dimen name="font_h2">30sp</dimen>
     <dimen name="font_normalText">25sp</dimen>
+    <dimen name="font_small">16sp</dimen>
 
-    <!-->box-shapes<-->
+    <!-->Box-Shapes<-->
     <dimen name="box_corners_small">15dp</dimen>
     <dimen name="box_corners_round">30dp</dimen>
-
-
-
-
-
-
-
-
-
-
-    <!-->Ein paar Standards, die ich von einem anderen git kopiert habe:<-->
-    <dimen name="spacing_xxs">2dp</dimen>
-    <dimen name="spacing_xs">4dp</dimen>
-    <dimen name="spacing_small">8dp</dimen>
-    <dimen name="spacing_medium">16dp</dimen>
-    <dimen name="spacing_large">24dp</dimen>
-    <dimen name="spacing_xl">32dp</dimen>
-    <dimen name="spacing_xxl">48dp</dimen>
-    <dimen name="spacing_xxxl">72dp</dimen>
-
-    <!-->Height<-->
-    <dimen name="height_small">48dp</dimen>
-    <dimen name="height_medium">56dp</dimen>
-    <dimen name="height_large">72dp</dimen>
-    <dimen name="height_xl">120dp</dimen>
-
-    <!-->Font Size<-->
-    <dimen name="font_xs">14sp</dimen>
-    <dimen name="font_small">16sp</dimen>
-    <dimen name="font_medium">18sp</dimen>
-    <dimen name="font_large">20sp</dimen>
-    <dimen name="font_xl">35sp</dimen>
-
-    <!-->Icon Size<-->
-    <dimen name="icon_small">18dp</dimen>
-    <dimen name="icon_medium">24dp</dimen>
-    <dimen name="icon_large">32dp</dimen>
-    <dimen name="icon_xl">48dp</dimen>
-    <dimen name="icon_xxl">64dp</dimen>
-
 
 </resources>

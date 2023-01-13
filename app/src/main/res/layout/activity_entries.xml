@@ -86,7 +86,7 @@
         android:id="@+id/txt_entries_switchText"
         android:layout_width="312dp"
         android:layout_height="wrap_content"
-        android:text="@string/switchText"
+        android:text="@string/switch_spendings"
         android:textColor="@color/red"
         android:textSize="@dimen/font_hints"
         app:layout_constraintBottom_toBottomOf="@+id/switch_entries_incomeOrExpense"
