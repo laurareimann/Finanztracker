@@ -34,7 +34,7 @@
         android:id="@+id/text_home_balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="61dp"
+        android:layout_marginTop="60dp"
         android:text="0 €"
         android:textColor="@color/white"
         android:textSize="@dimen/font_h1"
@@ -47,7 +47,7 @@
         android:id="@+id/text_home_balance_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/margins_elements_small"
         android:text="@string/h_balance"
         android:textColor="@color/white"
         android:textSize="@dimen/font_normalText"
@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margins_sides"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/margins_elements_small"
         android:text="@string/h_bookings"
         android:textColor="@color/black"
         android:textSize="@dimen/font_normalText"
@@ -72,11 +72,13 @@
     <!--> Menü <-->
 
     <LinearLayout
-        android:layout_width="418dp"
-        android:layout_height="359dp"
-        android:layout_marginTop="@dimen/margins_elements_small"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="@dimen/margins_elements_small"
         android:orientation="vertical"
+        android:layout_marginTop="@dimen/margins_elements_small"
+        android:layout_marginStart="@dimen/margins_sides"
+        android:layout_marginEnd="@dimen/margins_sides"
         app:layout_constraintBottom_toTopOf="@+id/bottomNav_home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,12 +87,10 @@
         <ListView
             android:id="@+id/listview_home_entries"
             style="@style/Widget.AppCompat.ListView"
-            android:layout_margin="@dimen/margins_sides"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:layout_marginTop="@dimen/margins_elements_small"
-            android:layout_marginBottom="@dimen/margins_elements_small" />
+             />
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
