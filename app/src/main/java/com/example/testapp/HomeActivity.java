@@ -6,15 +6,15 @@ package com.example.testapp;
  * MenuBar: jangirkaran17: "How to Implement Bottom Navigation With Activities in Android?", URL: https://www.geeksforgeeks.org/how-to-implement-bottom-navigation-with-activities-in-android/, 19.12.2022
  **/
 
-import androidx.annotation.NonNull;
+import static com.example.testapp.R.id.addEntry;
+import static com.example.testapp.R.id.statistics;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -30,17 +30,11 @@ import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private Button btn_logout;
-    private BottomNavigationView bNV_home;
-
     // store the name of our class into a String
     public static final String LOG_TAG = HomeActivity.class.getSimpleName();
 
     // Reference to the EntriesDataSource-Object
     private EntriesDataSource dataSource;
-    private DB_user dbUser;
-    private TextView balance;
-    private String currentUser;
     private static int currentUserID;
 
     @Override
@@ -48,42 +42,32 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        btn_logout = (Button) findViewById(R.id.btn_home_logout);
+        Button btn_logout = (Button) findViewById(R.id.btn_home_logout);
 
-        btn_logout.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class); // TODO: später neu verlinken zur Register Activity
-                startActivity(intent);
-            }
+        btn_logout.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class); // TODO: später neu verlinken zur Register Activity
+            startActivity(intent);
         });
 
         /*** Nagivation Bar ***/
         // Initialize and assign variable
-        bNV_home = findViewById(R.id.bottomNav_home);
+        BottomNavigationView bNV_home = findViewById(R.id.bottomNav_home);
 
         // Set Home selected
         bNV_home.setSelectedItemId(R.id.home);
 
         // Perform item selected listener
-        bNV_home.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                switch (item.getItemId()) {
-                    case R.id.home:
-                        return true;
-                    case R.id.addEntry:
-                        startActivity(new Intent(getApplicationContext(), EntriesActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.statistics:
-                        startActivity(new Intent(getApplicationContext(), StatisticsActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                }
-                return false;
+        bNV_home.setOnNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == addEntry) {
+                startActivity(new Intent(getApplicationContext(), EntriesActivity.class));
+                overridePendingTransition(0, 0);
             }
+
+            if (item.getItemId() == statistics) {
+                startActivity(new Intent(getApplicationContext(), StatisticsActivity.class));
+                overridePendingTransition(0, 0);
+            }
+            return false;
         });
 
         /*** Databases ***/
@@ -91,17 +75,17 @@ public class HomeActivity extends AppCompatActivity {
         // EntriesDbHelper classes.
         Log.d(LOG_TAG, "The data source is opened.");
         dataSource = new EntriesDataSource(this);
-        dbUser = new DB_user(this);
+        DB_user dbUser = new DB_user(this);
 
         /*** Views ***/
-        currentUser = LoginActivity.currentUsername;
+        String currentUser = LoginActivity.currentUsername;
         currentUserID = dbUser.getUserID(currentUser);
-        balance = findViewById(R.id.txt_home_balance);
+        TextView balance = findViewById(R.id.txt_home_balance);
         // Kontostand mit Dezimal Punkt:
         NumberFormat nf = NumberFormat.getNumberInstance(Locale.GERMAN);
-        DecimalFormat dform = (DecimalFormat)nf;
+        DecimalFormat dform = (DecimalFormat) nf;
         double balanceAsDouble = Double.parseDouble(dbUser.getUserBalance(currentUser));
-        balance.setText(dform.format(balanceAsDouble) + " €");
+        balance.setText(getString(R.string.eurosign, dform.format(balanceAsDouble)));
     }
 
     @Override
@@ -132,7 +116,6 @@ public class HomeActivity extends AppCompatActivity {
         Collections.reverse(shallowCopy);
 
 
-
         // Create array adapter and pass the instance of the main activity as context
         // Pass a predefined standard layout as layout for the entries
         ArrayAdapter<Entries> entriesArrayAdapter = new ArrayAdapter<>(
@@ -147,7 +130,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     // save the name of current User
-    public static Integer getCurrentUserID(){
+    public static Integer getCurrentUserID() {
         return currentUserID;
     }
 

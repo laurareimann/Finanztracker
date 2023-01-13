@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         // declare variables with input from frontend
-        username = (EditText)findViewById(R.id.txt_register_username);
+        username = (EditText) findViewById(R.id.txt_register_username);
         password = (EditText) findViewById(R.id.txt_register_password);
         acc_balance = (EditText) findViewById(R.id.txt_register_balance);
         password_rep = (EditText) findViewById(R.id.txt_register_password_rep);
@@ -38,46 +37,40 @@ public class RegisterActivity extends AppCompatActivity {
         db = new DB_user(this);
 
         // Functionality of Register Button
-        btn_register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String user = username.getText().toString();
-                String pass = password.getText().toString();
-                String pass_rep = password_rep.getText().toString();
+        btn_register.setOnClickListener(v -> {
+            String user = username.getText().toString();
+            String pass = password.getText().toString();
+            String pass_rep = password_rep.getText().toString();
 
-                String str_balance = acc_balance.getText().toString();
+            String str_balance = acc_balance.getText().toString();
 
-                if (user.equals("")|| pass.equals("")|| pass_rep.equals("") || str_balance.equals("")){
-                    Toast.makeText(RegisterActivity.this, "Bitte fülle alle Felder aus", Toast.LENGTH_SHORT).show();
-                } else {
-                    if(pass.equals(pass_rep)){
-                        Boolean userCheckResult = db.checkUsername(user);
-                        if(userCheckResult == false){
-                            float balance = Float.parseFloat(acc_balance.getText().toString());
-                            Boolean regResult = db.insertData(user, pass, balance);
-                            if (regResult == true){
-                                Toast.makeText(RegisterActivity.this, "Registrierung erfolgreich.", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                                startActivity(intent);
-                            } else {
-                                Toast.makeText(RegisterActivity.this, "Registrierung fehlgeschlagen.", Toast.LENGTH_SHORT).show();
-                            }
+            if (user.equals("") || pass.equals("") || pass_rep.equals("") || str_balance.equals("")) {
+                Toast.makeText(RegisterActivity.this, "Bitte fülle alle Felder aus", Toast.LENGTH_SHORT).show();
+            } else {
+                if (pass.equals(pass_rep)) {
+                    Boolean userCheckResult = db.checkUsername(user);
+                    if (!userCheckResult) {
+                        float balance = Float.parseFloat(acc_balance.getText().toString());
+                        Boolean regResult = db.insertData(user, pass, balance);
+                        if (regResult) {
+                            Toast.makeText(RegisterActivity.this, "Registrierung erfolgreich.", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                            startActivity(intent);
                         } else {
-                            Toast.makeText(RegisterActivity.this, "Benutzername existiert bereits.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Registrierung fehlgeschlagen.", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(RegisterActivity.this, "Die Passwörter stimmen nicht überein.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "Benutzername existiert bereits.", Toast.LENGTH_SHORT).show();
                     }
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Die Passwörter stimmen nicht überein.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-        btn_login.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-                startActivity(intent);
-            }
+        btn_login.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
         });
 
     }

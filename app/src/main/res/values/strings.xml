@@ -3,7 +3,6 @@
 
     <!-->Buttons<-->
     <string name="btn_login">Login</string>
-    <string name="btn_logout">Logout</string>
     <string name="btn_login_nav">zum Login</string>
     <string name="btn_register">Registrieren</string>
     <string name="btn_register_nav">zur Registrierung</string>
@@ -18,19 +17,21 @@
     <string name="h_register">Account erstellen</string>
     <string name="h_welcome">Willkommen</string>
     <string name="h_balance">auf deinem Bankkonto</string>
-    <string name="h_spendings">Buchungen</string>
     <string name="h_bookings">Buchungen</string>
     <string name="h_account">Kontostand</string>
     <string name="h_income">Einkommen</string>
+    <string name="h_income2">Einnahme</string>
     <string name="h_expenses">Ausgaben</string>
+    <string name="h_expense">Ausgabe</string>
     <string name="h_emptyAccount">0 €</string>
+    <string name="eurosign">%1$s €</string>
+
 
     <!-->Hints<-->
     <string name="hint_username">Name</string>
     <string name="hint_password">Passwort</string>
     <string name="hint_password_rep">Passwort wiederholen</string>
     <string name="hint_newEntry">neue Ausgabe</string>
-    <string name="hint_category">Kategorie</string>
     <string name="hint_note">Notiz</string>
     <string name="hint_date">Datum auswählen</string>
 

@@ -59,7 +59,7 @@ public class EntriesDataSource {
     }
 
     // Insert Data into the table of our SQLite database
-    public Entries createEntries(int userID, double entryAmount, String entryNotice,
+    public void createEntries(int userID, double entryAmount, String entryNotice,
                                  String entryDate, int entryDay, int entryMonth, int entryYear) {
         ContentValues values = new ContentValues();
         values.put(EntriesDbHelper.COLUMN_USER_ID, userID);
@@ -69,7 +69,6 @@ public class EntriesDataSource {
         values.put(EntriesDbHelper.COLUMN_ENTRY_DAY, entryDay);
         values.put(EntriesDbHelper.COLUMN_ENTRY_MONTH, entryMonth);
         values.put(EntriesDbHelper.COLUMN_ENTRY_YEAR, entryYear);
-
 
         // Insert values into database
         // Return value is the ID of the created dataset
@@ -87,8 +86,6 @@ public class EntriesDataSource {
         cursor.moveToFirst();
         Entries entries = cursorToEntry(cursor);
         cursor.close();
-
-        return entries;
     }
 
     // Convert Data into Entries objects
@@ -119,32 +116,6 @@ public class EntriesDataSource {
                 entry_date, entry_day, entry_month, entry_year);
 
         return entries;
-    }
-
-    // Read all existing records from the table
-    public List<Entries> getAllEntries() {
-        List<Entries> entriesList = new ArrayList<>();
-
-        // Search query where all records are returned
-        Cursor cursor = database.query(EntriesDbHelper.ENTRIES_LIST, columns,
-                null, null, null, null, null);
-
-        //Set the obtained cursor object to the first position
-        cursor.moveToFirst();
-        Entries entries;
-
-        // Read all data of the search query and convert them into Entries objects
-        // Add them to the EntriesList
-        // Output to the console
-        while (!cursor.isAfterLast()) {
-            entries = cursorToEntry(cursor);
-            entriesList.add(entries);
-            Log.d(LOG_TAG, "ID: " + entries.getId() + ", Inhalt: "
-                    + entries);
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return entriesList;
     }
 
     // Read all existing records from a User from the table

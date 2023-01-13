@@ -9,18 +9,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
-    // variables
     EditText username, password;
     Button btn_register, btn_login;
     DB_user db;
     public static String currentUsername;
-    public static int currentUserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,37 +34,30 @@ public class LoginActivity extends AppCompatActivity {
         db = new DB_user(this);
 
         // Login
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String user = username.getText().toString();
-                String pass = password.getText().toString();
+        btn_login.setOnClickListener(view -> {
+            String user = username.getText().toString();
+            String pass = password.getText().toString();
 
-                setCurrentUser();
+            setCurrentUser();
 
-                // Check if fields are empty
-                if (user.equals("") || pass.equals("")) {
-                    Toast.makeText(LoginActivity.this, "Bitte fülle alle Felder aus.", Toast.LENGTH_SHORT).show();
+            // Check if fields are empty
+            if (user.equals("") || pass.equals("")) {
+                Toast.makeText(LoginActivity.this, "Bitte fülle alle Felder aus.", Toast.LENGTH_SHORT).show();
+            } else {
+                //check if user is in Database
+                if (db.checkUsernamePassword(user, pass)) {
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                    startActivity(intent);
                 } else {
-                    //check if user is in Database
-                    if (db.checkUsernamePassword(user, pass)) {
-                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Passwort oder Nutzername falsch.", Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(LoginActivity.this, "Passwort oder Nutzername falsch.", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
         // Button zur Registrierung
-        btn_register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class); // TODO: später neu verlinken zur Register Activity
-                startActivity(intent);
-            }
+        btn_register.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), RegisterActivity.class); // TODO: später neu verlinken zur Register Activity
+            startActivity(intent);
         });
     }
 
@@ -75,6 +65,4 @@ public class LoginActivity extends AppCompatActivity {
     public void setCurrentUser() {
         currentUsername = username.getText().toString();
     }
-
-
 }

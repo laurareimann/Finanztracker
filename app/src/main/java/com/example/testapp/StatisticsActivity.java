@@ -1,10 +1,14 @@
 package com.example.testapp;
-/**  SOURCES: **/
-// BarChart: CodingMark: "Android Studio: Create a Bar Chart using SqLite", URL: https://www.youtube.com/watch?v=niLkRACZEMg, 16.12.2022
-// Wilson Yeung: "Using MPAndroidChart for Android Application — BarChart", URL: https://medium.com/@clyeung0714/using-mpandroidchart-for-android-application-barchart-540a55b4b9ef, 31.12.2022
-// MenuBar: jangirkaran17: "How to Implement Bottom Navigation With Activities in Android?", MenuBar: URL: https://www.geeksforgeeks.org/how-to-implement-bottom-navigation-with-activities-in-android/, 19.12.2022
+/**
+ * SOURCES:
+ * BarChart: CodingMark: "Android Studio: Create a Bar Chart using SqLite", URL: https://www.youtube.com/watch?v=niLkRACZEMg, 16.12.2022
+ * Wilson Yeung: "Using MPAndroidChart for Android Application — BarChart", URL: https://medium.com/@clyeung0714/using-mpandroidchart-for-android-application-barchart-540a55b4b9ef, 31.12.2022
+ * MenuBar: jangirkaran17: "How to Implement Bottom Navigation With Activities in Android?", MenuBar: URL: https://www.geeksforgeeks.org/how-to-implement-bottom-navigation-with-activities-in-android/, 19.12.2022
+ **/
 
-/**  IMPORTS: **/
+import static com.example.testapp.R.id.addEntry;
+import static com.example.testapp.R.id.home;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -34,7 +38,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class StatisticsActivity extends AppCompatActivity{
+public class StatisticsActivity extends AppCompatActivity {
 
     Button btn_months, btn_years;
     BottomNavigationView bNV_statistics;
@@ -48,7 +52,7 @@ public class StatisticsActivity extends AppCompatActivity{
     int currentYear = calendar.get(Calendar.YEAR);
     int currentMonth = calendar.get(Calendar.MONTH);
 
-    private final List<String> months = Arrays.asList("Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember");
+    private final List<String> months = Arrays.asList("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -81,7 +85,8 @@ public class StatisticsActivity extends AppCompatActivity{
 
         btn_years.setOnClickListener(view -> {
             btn_months.setBackgroundColor(getResources().getColor(R.color.dark_blue_buttons));
-            btn_years.setBackgroundColor(getResources().getColor(R.color.blue_primary));            initBarChart(barChart_statistics_yearOverview);
+            btn_years.setBackgroundColor(getResources().getColor(R.color.blue_primary));
+            initBarChart(barChart_statistics_yearOverview);
             barChart_statistics_monthOverview.setVisibility(View.INVISIBLE);
             barChart_statistics_yearOverview.setVisibility(View.VISIBLE);
             showBarChartYears();
@@ -97,17 +102,14 @@ public class StatisticsActivity extends AppCompatActivity{
         // Perform item selected listener
         bNV_statistics.setOnNavigationItemSelectedListener(item -> {
 
-            switch (item.getItemId()) {
-                case R.id.home:
-                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                    overridePendingTransition(0, 0);
-                    return true;
-                case R.id.addEntry:
-                    startActivity(new Intent(getApplicationContext(), EntriesActivity.class));
-                    overridePendingTransition(0, 0);
-                    return true;
-                case R.id.statistics:
-                    return true;
+            if (item.getItemId() == home) {
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                overridePendingTransition(0, 0);
+            }
+
+            if (item.getItemId() == addEntry) {
+                startActivity(new Intent(getApplicationContext(), EntriesActivity.class));
+                overridePendingTransition(0, 0);
             }
             return false;
         });
@@ -125,27 +127,28 @@ public class StatisticsActivity extends AppCompatActivity{
         // Kontostand mit Dezimal Punkt:
         TextView balance = findViewById(R.id.txt_statistics_balance);
         NumberFormat nf = NumberFormat.getNumberInstance(Locale.GERMAN);
-        DecimalFormat dform = (DecimalFormat)nf;
+        DecimalFormat dform = (DecimalFormat) nf;
         double balanceAsDouble = Double.parseDouble(dbUser.getUserBalance(currentUser));
-        balance.setText(dform.format(balanceAsDouble) + " €");
+        balance.setText(getString(R.string.eurosign, dform.format(balanceAsDouble)));
+
 
         TextView month = findViewById(R.id.txt_statistics_month);
         month.setText(months.get(currentMonth));
 
         TextView expensesMonth = findViewById(R.id.txt_statistics_expenses);
-        double expensesMonthAsDouble = Double.parseDouble(String.valueOf(dataSource.sumExpensesMonth(currentMonth+1,currentYear)));
-        expensesMonth.setText(dform.format(expensesMonthAsDouble) + " €");
+        double expensesMonthAsDouble = Double.parseDouble(String.valueOf(dataSource.sumExpensesMonth(currentMonth + 1, currentYear)));
+        expensesMonth.setText(getString(R.string.eurosign, dform.format(expensesMonthAsDouble)));
 
         TextView year = findViewById(R.id.txt_statistics_h_year);
         year.setText(String.valueOf(currentYear));
 
         TextView income = findViewById(R.id.txt_statistics_incomeyear);
         double sumIncomeYearAsDouble = Double.parseDouble(String.valueOf(dataSource.sumIncomeYear(currentYear)));
-        income.setText(dform.format(sumIncomeYearAsDouble) + " €");
+        income.setText(getString(R.string.eurosign, dform.format(sumIncomeYearAsDouble)));
 
         TextView expenses = findViewById(R.id.txt_statistics_expensesyear);
         double sumExpensesYearAsDouble = Double.parseDouble(String.valueOf(dataSource.sumExpensesYear(currentYear)));
-        expenses.setText(dform.format(sumExpensesYearAsDouble)  + " €");
+        expenses.setText(getString(R.string.eurosign, dform.format(sumExpensesYearAsDouble)));
     }
 
     @Override
@@ -215,19 +218,6 @@ public class StatisticsActivity extends AppCompatActivity{
         //setting the shape of the legend form to line, default square shape
         legend.setForm(Legend.LegendForm.NONE);
 
-        /*
-        //setting the text size of the legend
-        legend.setTextSize(0f);
-        //setting the alignment of legend toward the chart
-        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
-        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
-        //setting the stacking direction of legend
-        legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
-        //setting the location of legend outside the chart, default false if not set
-        legend.setDrawInside(false);
-
-         */
-
     }
 
     // Jahresübersicht:
@@ -239,7 +229,7 @@ public class StatisticsActivity extends AppCompatActivity{
 
         //input data
         for (int i = 0; i < yearsWithData.size(); i++) {
-            valueList.add((dataSource.sumExpensesYear(yearsWithData.get(i)))*-1);
+            valueList.add((dataSource.sumExpensesYear(yearsWithData.get(i))) * -1);
         }
 
         //fit the data into a bar
@@ -284,7 +274,7 @@ public class StatisticsActivity extends AppCompatActivity{
 
         //input data
         for (int i = 0; i < 12; i++) {
-            valueList.add((dataSource.sumExpensesMonth(i, currentYear))*-1);
+            valueList.add((dataSource.sumExpensesMonth(i, currentYear)) * -1);
         }
 
         //fit the data into a bar
@@ -300,7 +290,7 @@ public class StatisticsActivity extends AppCompatActivity{
         // Format x-Axis for month chart
         // String setter in x-Axis for Month-Graph
         XAxis xAxis = barChart_statistics_monthOverview.getXAxis();
-        List<String> xAxisValues = new ArrayList<>(Arrays.asList("Jan", "Feb", "Mär", "Apr", "Mai", "Jun","Jul", "Aug", "Sep", "Olt", "Nov", "Dez"));
+        List<String> xAxisValues = new ArrayList<>(Arrays.asList("Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Olt", "Nov", "Dez"));
         xAxis.setValueFormatter(new com.github.mikephil.charting.formatter.IndexAxisValueFormatter(xAxisValues));
         xAxis.setLabelCount(12);
         initBarChart(barChart_statistics_monthOverview);
