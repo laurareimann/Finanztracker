@@ -41,14 +41,14 @@
                 android:id="@+id/btn_statistics_months"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="@dimen/margins_elements_small"
+                android:layout_marginStart="@dimen/margins_sides"
                 android:text="@string/btn_months"
                 android:textSize="@dimen/font_buttons"
                 app:backgroundTint="@color/dark_blue_buttons"
                 app:layout_constraintBottom_toTopOf="@+id/barchart_statistics_years"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/colored_bar"
                 app:layout_constraintVertical_bias="1.0" />
 
 
@@ -56,7 +56,7 @@
                 android:id="@+id/btn_statistics_years"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="@dimen/margins_sides"
                 android:text="@string/btn_years"
                 android:textSize="@dimen/font_buttons"
                 android:backgroundTint="@color/dark_blue_buttons"
@@ -274,6 +274,26 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/colored_bar"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@color/dark_blue_buttons"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/txt_statistics_budget2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/h_expenses"
+                android:textColor="@color/white_primary"
+                android:textSize="@dimen/font_normalText"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/margins_elements_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
