@@ -12,53 +12,104 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_small"
         android:layout_marginStart="@dimen/margins_sides"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="@dimen/margins_sides"
+        android:drawableLeft="@drawable/icon_entries_eurosign_blue"
+        android:drawablePadding="20dp"
         android:hint="@string/hint_newEntry"
         android:inputType="numberDecimal"
         android:textSize="@dimen/font_hints"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.241"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toBottomOf="@+id/switch1" />
 
     <EditText
-        android:id="@+id/editxt_entries_notice"
+        android:id="@+id/editxt_empty"
+
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_small"
-        android:layout_marginStart="@dimen/margins_sides"
-        android:layout_marginTop="30dp"
         android:layout_marginEnd="@dimen/margins_sides"
-        android:hint="@string/hint_note"
-        android:textSize="@dimen/font_hints"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/editxt_entries_amount"
-        app:layout_constraintTop_toBottomOf="@+id/editxt_entries_amount" />
+        app:layout_constraintEnd_toEndOf="@+id/editxt_entries_notice"
+        android:layout_marginTop="36dp"
+        android:layout_marginStart="@dimen/margins_sides"
+
+        app:layout_constraintStart_toStartOf="@+id/editxt_entries_notice"
+        app:layout_constraintTop_toBottomOf="@+id/editxt_entries_notice"
+        tools:ignore="SpeakableTextPresentCheck"
+        />
 
     <TextView
         android:id="@+id/editxt_entries_date"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_small"
         android:layout_marginStart="@dimen/margins_sides"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="@dimen/margins_sides"
+        android:drawableLeft="@drawable/icon_entries_calendar"
+        android:drawablePadding="20dp"
+        android:gravity="center_vertical"
         android:hint="@string/hint_date"
         android:textSize="@dimen/font_hints"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/editxt_entries_notice"
         app:layout_constraintTop_toBottomOf="@+id/editxt_entries_notice" />
+
     <Button
         android:id="@+id/button_entries_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="68dp"
         android:text="@string/btn_save"
         android:textSize="@dimen/font_buttons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editxt_entries_date" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margins_sides"
+        android:layout_marginTop="100dp"
+        android:checked="false"
+        android:minHeight="48dp"
+        android:paddingRight="@dimen/padding_icons"
+        android:text=""
+        app:layout_constraintEnd_toStartOf="@+id/switchText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/switchText"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:text="@string/switchText"
+        android:textColor="@color/red"
+        android:textSize="@dimen/font_hints"
+        app:layout_constraintBottom_toBottomOf="@+id/switch1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switch1"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <EditText
+        android:id="@+id/editxt_entries_notice"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_small"
+        android:layout_marginStart="@dimen/margins_sides"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="@dimen/margins_sides"
+        android:drawableLeft="@drawable/icon_entries_pen_blue"
+        android:drawablePadding="20dp"
+        android:hint="@string/hint_note"
+        android:textSize="@dimen/font_hints"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/editxt_entries_amount"
+        app:layout_constraintTop_toBottomOf="@+id/editxt_entries_amount" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav_entries"
@@ -72,30 +123,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_navigation" />
-
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/editxt_entries_amount"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:checked="false"/>
-
-    <TextView
-        android:id="@+id/switchText"
-        android:textSize="@dimen/font_normalText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/switchText"
-        android:textColor="@color/red"
-        app:layout_constraintBottom_toTopOf="@+id/editxt_entries_amount"
-        app:layout_constraintEnd_toStartOf="@+id/switch1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

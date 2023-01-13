@@ -10,10 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -129,6 +127,7 @@ public class EntriesActivity extends AppCompatActivity {
                 //shows date in entry
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
+
             }
         });
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -139,6 +138,7 @@ public class EntriesActivity extends AppCompatActivity {
                 Log.d(TAG,"ondateSet: mm/dd/yyy: " + month + "/" + day + "/" + year );
                 String date = month + "/" + day + "/" + year;
                 mDisplayDate.setText(date);
+                mDisplayDate.setTextColor(getResources().getColor(R.color.black));
 
                 // save date as ints
                 dayDB = day;

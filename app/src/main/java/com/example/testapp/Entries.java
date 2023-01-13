@@ -95,13 +95,22 @@ public class Entries {
         this.entry_year = entry_year;
     }
 
-    // Todo Ausgabe im Home screen fixen: Hier wird nicht der richtige Wert aus der Datenbank gelesen
     @Override
     public String toString() {
+
+        // Todo Ausgabe im Home screen fixen: Hier wird nicht der richtige Wert aus der Datenbank gelesen
         Log.d( "Entries","Method: toString: " + String.valueOf(entry_amount));
-        return "Einnahme/Ausgabe: " + entry_amount +
-                " € , Datum: " + entry_date +
-                ", Notiz: " + entry_notice;
+
+        if(entry_amount>0){
+            return "Einnahme: " + entry_amount +
+                    " € , Datum: " + entry_date +
+                    ", Notiz: " + entry_notice;
+
+        }else {
+            return "Ausgabe: " + entry_amount +
+                    " € , Datum: " + entry_date +
+                    ", Notiz: " + entry_notice;
+        }
 
     }
 }

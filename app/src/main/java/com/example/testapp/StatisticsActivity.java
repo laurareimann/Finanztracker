@@ -161,9 +161,7 @@ public class StatisticsActivity extends AppCompatActivity{
     // Formattierung:
     private void initBarDataSet(BarDataSet barDataSet) {
         //Changing the color of the bar
-        barDataSet.setColor(Color.parseColor("#0099FF"));
-        //barDataSet.setColor(Color.parseColor(String.valueOf(ContextCompat.getColor(this, R.color.blue_primary))));
-        //TODO: Farbe aufrufen mit ContextComat funktioniert noch nicht, ist aber erstmal nicht wichtig
+        barDataSet.setColor(getResources().getColor(R.color.blue_primary));
 
         //Setting the size of the form in the legend
         barDataSet.setFormSize(15f);
