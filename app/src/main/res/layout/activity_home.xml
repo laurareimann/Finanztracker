@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F0F0F0"
-    tools:context=".HomeActivity">
+    tools:context="com.example.earny.HomeActivity">
 
     <View
         android:id="@+id/box_home_coloredBar"

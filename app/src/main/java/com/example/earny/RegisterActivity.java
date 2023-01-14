@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.earny;
 
 /**
  * SOURCES
@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.testapp.R;
 
 public class RegisterActivity extends AppCompatActivity {
 

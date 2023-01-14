@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.earny;
 
 /**
  * SOURCES:
@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.testapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.DecimalFormat;

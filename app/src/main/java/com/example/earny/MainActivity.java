@@ -1,10 +1,12 @@
-package com.example.testapp;
+package com.example.earny;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+
+import com.example.testapp.R;
 
 public class MainActivity extends AppCompatActivity {
     Button btn_register, btn_login;

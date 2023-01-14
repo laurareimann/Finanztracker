@@ -5,7 +5,7 @@
     android:id="@+id/ConstrainedLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StatisticsActivity">
+    tools:context="com.example.earny.StatisticsActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav_statistics"

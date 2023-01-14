@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_login_farbverlauf"
-    tools:context=".MainActivity">
+    tools:context="com.example.earny.MainActivity">
 
     <ImageView
         android:id="@+id/img_login_earny_logo"
