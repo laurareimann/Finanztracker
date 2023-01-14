@@ -22,7 +22,6 @@ import org.junit.runner.RunWith;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.time.Instant;
 import java.util.Locale;
 
 @RunWith(AndroidJUnit4.class)
@@ -33,20 +32,20 @@ public class EarnyTest {
     // User Variables
     // todo: generate random balance
     String currentTimestamp = String.valueOf(new Timestamp(System.currentTimeMillis()));
-    private String testUserName = "newUser" + currentTimestamp;
-    private String testUserPassword = "Password";
-    private double testUserBalance = 1234.56;
+    private final String testUserName = "newUser" + currentTimestamp;
+    private final String testUserPassword = "Password";
+    private final double testUserBalance = 1234.56;
 
     // Entry Variables
-    private double EntryAmount = 123.45;
-    private String EntryNotice = "new Entry";
+    private final double EntryAmount = 123.45;
+    private final String EntryNotice = "new Entry";
 
     @Rule
     public ActivityScenarioRule<MainActivity> activityScenarioRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
-    public void EarnyTest() throws InterruptedException {
+    public void EarnyEspressoTest() {
         // Register
         registerAccountForTest();
 
@@ -74,8 +73,7 @@ public class EarnyTest {
     private String getGermanNumberFormat(double newBalance) {
         NumberFormat nf = NumberFormat.getNumberInstance(Locale.GERMAN);
         DecimalFormat dform = (DecimalFormat) nf;
-        String newBalanceAsString = dform.format(newBalance);
-        return newBalanceAsString;
+        return dform.format(newBalance);
     }
 
     private void addNewEntry() {
@@ -118,7 +116,6 @@ public class EarnyTest {
         onView(withId(R.id.btn_register_register)).perform(ViewActions.click());
     }
 
-
     private void loginWithTestUser() {
         // Login
         onView(withId(R.id.txt_login_username)).perform(ViewActions.typeText(testUserName));
@@ -127,5 +124,4 @@ public class EarnyTest {
         hideKeyboard();
         onView(withId(R.id.btn_login_login)).perform(ViewActions.click());
     }
-
 }
