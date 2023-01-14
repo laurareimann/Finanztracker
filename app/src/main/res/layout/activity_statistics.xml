@@ -71,7 +71,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.203"></com.github.mikephil.charting.charts.BarChart>
+                app:layout_constraintVertical_bias="0.203" />
 
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/barchart_statistics_months"
@@ -79,7 +79,7 @@
                 android:layout_height="200dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/barchart_statistics_years"></com.github.mikephil.charting.charts.BarChart>
+                app:layout_constraintTop_toTopOf="@+id/barchart_statistics_years" />
 
             <TextView
                 android:id="@+id/box_statistics_budgetbox"
