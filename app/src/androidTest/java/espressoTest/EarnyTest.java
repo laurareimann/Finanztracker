@@ -1,6 +1,7 @@
 package espressoTest;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.swipeUp;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -11,6 +12,7 @@ import android.widget.DatePicker;
 import androidx.annotation.NonNull;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.contrib.PickerActions;
+import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -29,7 +31,10 @@ import java.math.RoundingMode;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
@@ -59,12 +64,13 @@ public class EarnyTest {
 
     // Entry Variables
     private double EntryAmount = generateRandomEntryAmount(); // Genereates double with 2 decimal places between 0 and 150
-    private final String EntryNotice = "new Entry";
+    private String EntryNotice = "new Entry";
     private String BalanceGER;
-    private Date EntryDate = generateRandomEntryDate(); // Generates random Date between five years ago and five years from now
-    private int year = EntryDate.getYear();
-    private int month = EntryDate.getMonth();
-    private int day = EntryDate.getDay();
+    private int year;
+    private int month;
+    private int day;
+    private int expensecounter = 0;
+    private int incomecounter = 0;
 
     // Statistics Variables
     private final List<String> months = Arrays.asList("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
@@ -83,36 +89,42 @@ public class EarnyTest {
     public ActivityScenarioRule<MainActivity> activityScenarioRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
+    public EarnyTest() throws ParseException {
+    }
+
     @Test
-    public void EarnyEspressoTest() {
+    public void EarnyEspressoTest() throws ParseException {
         // Register
         registerAccountForTest();
 
         // Login
         loginWithTestUser();
 
-        // Check Balance
+        // Check Balance of Registration
         String testUserBalanceGER = getGermanNumberFormat(testUserBalance);
         onView(withId(R.id.txt_home_balance)).check(matches(withText((testUserBalanceGER + " €"))));
 
-        // Add new Entry Expense
-        addNewEntryExpense();
+        // add multiple entries
+        for (int i = 0; i < 1; i++) {
+            addNewEntryIncome();
+            addNewEntryExpense();
+        }
 
+        checkHomeActivity();
+        //checkStatisticsActivity();
+
+
+    }
+
+    private void checkHomeActivity() {
         // Navigate to HomeActivity
         NavigateTo(R.id.home);
 
         // Check Balance
         onView(withId(R.id.txt_home_balance)).check(matches(withText((BalanceGER + " €"))));
+    }
 
-        // Add new Entry Income
-        addNewEntryIncome();
-
-        // Navigate to HomeActivity
-        NavigateTo(R.id.home);
-
-        // Check Balance
-        onView(withId(R.id.txt_home_balance)).check(matches(withText((BalanceGER + " €"))));
-
+    private void checkStatisticsActivity() {
         // Check Numbers on StatisticsActivity
         // Navigate to StatisticsActivity
         NavigateTo(R.id.statistics);
@@ -126,30 +138,31 @@ public class EarnyTest {
         // Check Current Year Statistics
         onView(withId(R.id.txt_statistics_h_year)).check(matches(withText(currentYear)));
 
-        // TODO: format matches to fit the template
-        /*
         // Check Current Year/Month Expenses and Income
-        onView(withId(R.id.txt_statistics_expensesyear)).check(matches(withText(String.valueOf(currentYearExpenses))));
-        onView(withId(R.id.txt_statistics_incomeyear)).check(matches(withText(String.valueOf(currentYearIncome))));
-        onView(withId(R.id.txt_statistics_expenses)).check(matches(withText(String.valueOf(currentMonthExpenses))));
-         */
+        // Scroll into view
+        onView(withId(R.id.btn_statistics_months)).perform(swipeUp());
+        onView(withId(R.id.btn_statistics_months)).perform(swipeUp());
+
+        if (currentMonthExpenses > 0) {
+            onView(withId(R.id.txt_statistics_expenses)).check(matches(withText("-" + currentMonthExpenses + " €")));
+        }
+        if (currentYearExpenses != 0) {
+            onView(withId(R.id.txt_statistics_expensesyear)).check(matches(withText("-" + currentYearExpenses + " €")));
+        }
+        if (currentYearIncome > 0) {
+            onView(withId(R.id.txt_statistics_incomeyear)).check(matches(withText(currentYearIncome + " €")));
+        }
     }
 
-    private Date generateRandomEntryDate() {
-        //Generate random Date in 10 Year Timeframe
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.YEAR, 5); // to get previous year add -1
-        Date fiveYearsFromNow = cal.getTime();
+    private void generateRandomEntryDate() {
+        Random r_year = new Random();
+        year = r_year.nextInt(2025 - 2020) + 2020;
 
-        Calendar cal2 = Calendar.getInstance();
-        cal2.add(Calendar.YEAR, -5); // to get previous year add -1
-        Date fiveYearsAgo = cal2.getTime();
+        Random r_month = new Random();
+        month = r_month.nextInt(12 - 1) + 1;
 
-        Date EntryDate = between(fiveYearsAgo, fiveYearsFromNow);
-        year = EntryDate.getYear();
-        month = EntryDate.getMonth();
-        day = EntryDate.getDay();
-        return EntryDate;
+        Random r_day = new Random();
+        day = r_day.nextInt(28 - 1) + 1;
     }
 
     public static double round(double value, int places) {
@@ -186,7 +199,9 @@ public class EarnyTest {
 
         // Generate new Entry Variables
         EntryAmount = generateRandomEntryAmount();
-        EntryDate = generateRandomEntryDate();
+        expensecounter += 1;
+        EntryNotice = expensecounter + " new Expense";
+        generateRandomEntryDate();
 
         // Add new Entry
         onView(withId(R.id.txt_entries_amount)).perform(ViewActions.typeText(String.valueOf(EntryAmount)));
@@ -206,9 +221,9 @@ public class EarnyTest {
         testUserBalance -= EntryAmount;
         BalanceGER = getGermanNumberFormat(testUserBalance);
 
-        if (currentYear.equals(EntryDate.getYear())) {
+        if (currentYear.equals(year)) {
             currentYearExpenses += EntryAmount;
-            if (currentMonth.equals(EntryDate.getMonth())) {
+            if (currentMonth.equals(month)) {
                 currentMonthExpenses += EntryAmount;
             }
         }
@@ -220,7 +235,9 @@ public class EarnyTest {
 
         // Generate new Entry Variables
         EntryAmount = generateRandomEntryAmount();
-        EntryDate = generateRandomEntryDate();
+        incomecounter += 1;
+        EntryNotice = incomecounter + " new Income";
+        generateRandomEntryDate();
 
         // Activate Switch
         onView(withId(R.id.switch_entries_incomeOrExpense)).perform(ViewActions.click());
@@ -242,23 +259,13 @@ public class EarnyTest {
         // Adjust variables
         testUserBalance += EntryAmount;
         BalanceGER = getGermanNumberFormat(testUserBalance);
-        if (currentYear.equals(EntryDate.getYear())) {
+        if (currentYear.equals(year)) {
             currentYearIncome += EntryAmount;
         }
     }
 
     public void hideKeyboard() {
         onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());
-    }
-
-    public static Date between(Date startInclusive, Date endExclusive) {
-        long startMillis = startInclusive.getTime();
-        long endMillis = endExclusive.getTime();
-        long randomMillisSinceEpoch = ThreadLocalRandom
-                .current()
-                .nextLong(startMillis, endMillis);
-
-        return new Date(randomMillisSinceEpoch);
     }
 
     public void registerAccountForTest() {

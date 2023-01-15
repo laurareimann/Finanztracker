@@ -137,7 +137,7 @@
                     android:id="@+id/txt_statistics_expenses"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="@string/eurosign"
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_h1"
                     android:textStyle="bold"
