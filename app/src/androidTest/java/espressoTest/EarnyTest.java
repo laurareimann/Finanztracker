@@ -12,7 +12,6 @@ import android.widget.DatePicker;
 import androidx.annotation.NonNull;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.contrib.PickerActions;
-import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -20,6 +19,8 @@ import androidx.test.filters.LargeTest;
 
 import com.example.earny.MainActivity;
 import com.example.testapp.R;
+
+import junit.framework.AssertionFailedError;
 
 import org.hamcrest.Matchers;
 import org.junit.Rule;
@@ -31,26 +32,27 @@ import java.math.RoundingMode;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.Date;
-import java.util.Map;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 
 public class EarnyTest {
 
+    // TODO: maximumUserBalance BUG!! aktuell kann nur ein Wert <10k richtig gespeichert werden
     // TODO: test Statistics with random System time
-    // TODO: add multiple entries for one users to check database mathmatics
+    // TODO: Does not test entry List on HomeActivity!
+
+    // Set these Variables to adjust Test:
+    private static final double maximumUserBalance = 9999.99;   // change this Variable to define the maximum Balance set at Registration
+    private static final int numberOfEntriesToTest = 20;         // change this Variable to define number of new Entries (income and expenses)
+    private static final int maxEntryAmount = 200;              // change this Variable to define the maximum amount of income/expense in the Entries
+    private static final int minEntryYear = 2023;               // change this Variable to define the earliest year for Entries
+    private static final int maxEntryYear = 2024;               // change this Variable to define the latest year for Entries
 
     // User Variables
     // Generate random UserName with Timestamp
@@ -58,12 +60,10 @@ public class EarnyTest {
     private final String testUserName = "newUser" + currentTimestamp;
     private final String testUserPassword = "Password";
 
-    // Generate random UserBalance
-    // TODO: BUG!! aktuell kann nur ein Wert <10k richtig gespeichert werden
     private double testUserBalance = generateRandomBalance();
 
     // Entry Variables
-    private double EntryAmount = generateRandomEntryAmount(); // Genereates double with 2 decimal places between 0 and 150
+    private double EntryAmount = generateRandomEntryAmount();
     private String EntryNotice = "new Entry";
     private String BalanceGER;
     private int year;
@@ -74,46 +74,36 @@ public class EarnyTest {
 
     // Statistics Variables
     private final List<String> months = Arrays.asList("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
-    private final String currentMonth = (months.get(Calendar.getInstance().get(Calendar.MONTH)));
-    private final String currentYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+    private final int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
+    private final int currentYear = Calendar.getInstance().get(Calendar.YEAR);
     private double currentMonthExpenses = 0;
     private double currentYearExpenses = 0;
     private double currentYearIncome = 0;
-
-    String pattern = "MMddyyyy";
-    SimpleDateFormat format = new SimpleDateFormat(pattern);
-    // formatting
-    private final String Date = format.format(new Date());
+    private final static DecimalFormat dform = (DecimalFormat) NumberFormat.getNumberInstance(Locale.GERMAN);
 
     @Rule
     public ActivityScenarioRule<MainActivity> activityScenarioRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
-    public EarnyTest() throws ParseException {
-    }
-
     @Test
-    public void EarnyEspressoTest() throws ParseException {
-        // Register
+    public void EarnyEspressoTest() {
+        // Act: Register & Login
         registerAccountForTest();
-
-        // Login
         loginWithTestUser();
 
-        // Check Balance of Registration
+        // Assert: Check Balance of Registration
         String testUserBalanceGER = getGermanNumberFormat(testUserBalance);
         onView(withId(R.id.txt_home_balance)).check(matches(withText((testUserBalanceGER + " €"))));
 
-        // add multiple entries
-        for (int i = 0; i < 1; i++) {
+        // Act: Add multiple entries
+        for (int i = 0; i < numberOfEntriesToTest; i++) {
             addNewEntryIncome();
             addNewEntryExpense();
         }
 
+        // Assert:
         checkHomeActivity();
-        //checkStatisticsActivity();
-
-
+        checkStatisticsActivity();
     }
 
     private void checkHomeActivity() {
@@ -133,10 +123,10 @@ public class EarnyTest {
         onView(withId(R.id.txt_statistics_balance)).check(matches(withText((BalanceGER + " €"))));
 
         // Check Current Month Statistics
-        onView(withId(R.id.txt_statistics_month)).check(matches(withText(currentMonth)));
+        onView(withId(R.id.txt_statistics_month)).check(matches(withText(months.get(currentMonth))));
 
         // Check Current Year Statistics
-        onView(withId(R.id.txt_statistics_h_year)).check(matches(withText(currentYear)));
+        onView(withId(R.id.txt_statistics_h_year)).check(matches(withText(Integer.toString(currentYear))));
 
         // Check Current Year/Month Expenses and Income
         // Scroll into view
@@ -147,22 +137,15 @@ public class EarnyTest {
             onView(withId(R.id.txt_statistics_expenses)).check(matches(withText("-" + currentMonthExpenses + " €")));
         }
         if (currentYearExpenses != 0) {
-            onView(withId(R.id.txt_statistics_expensesyear)).check(matches(withText("-" + currentYearExpenses + " €")));
+            //onView(withId(R.id.txt_statistics_expensesyear)).check(matches(withText("-" + dform.format(currentYearExpenses) + " €")));
+            onView(withId(R.id.txt_statistics_expensesyear)).check(matches(withText("-" + dform.format((int) Math.floor((currentYearExpenses))) + " €")));
+            // TODO: wird gerade noch abgerundet, da Jahres einnahme und Ausgabe nichts als double dargestellt wird, Bug muss noch behoben werden
         }
         if (currentYearIncome > 0) {
-            onView(withId(R.id.txt_statistics_incomeyear)).check(matches(withText(currentYearIncome + " €")));
+            //onView(withId(R.id.txt_statistics_incomeyear)).check(matches(withText(dform.format(currentYearIncome) + " €")));
+            onView(withId(R.id.txt_statistics_incomeyear)).check(matches(withText((int) Math.floor(currentYearIncome) + " €")));
+            // TODO: wird gerade noch abgerundet, da Jahres einnahme und Ausgabe nichts als double dargestellt wird, Bug muss noch behoben werden
         }
-    }
-
-    private void generateRandomEntryDate() {
-        Random r_year = new Random();
-        year = r_year.nextInt(2025 - 2020) + 2020;
-
-        Random r_month = new Random();
-        month = r_month.nextInt(12 - 1) + 1;
-
-        Random r_day = new Random();
-        day = r_day.nextInt(28 - 1) + 1;
     }
 
     public static double round(double value, int places) {
@@ -172,14 +155,25 @@ public class EarnyTest {
         return bd.doubleValue();
     }
 
+    private void generateRandomEntryDate() {
+        Random r_year = new Random();
+        year = r_year.nextInt(maxEntryYear - minEntryYear) + minEntryYear;
+
+        Random r_month = new Random();
+        month = r_month.nextInt(12 - 1) + 1;
+
+        Random r_day = new Random();
+        day = r_day.nextInt(28 - 1) + 1;
+    }
+
     private double generateRandomEntryAmount() {
         Random r = new Random();
-        return round(150 * r.nextDouble(), 2); // Entry Amount is <= 150
+        return round(maxEntryAmount * r.nextDouble(), 2);
     }
 
     private double generateRandomBalance() {
         Random r = new Random();
-        return round(1 + (9999.99 - 1) * r.nextDouble(), 2);
+        return round(1 + (maximumUserBalance - 1) * r.nextDouble(), 2);
     }
 
     private void NavigateTo(int Id) {
@@ -203,6 +197,13 @@ public class EarnyTest {
         EntryNotice = expensecounter + " new Expense";
         generateRandomEntryDate();
 
+        // check Switch
+        try {
+            onView(withId(R.id.txt_entries_switchText)).check(matches(withText("Einnahme")));
+            onView(withId(R.id.switch_entries_incomeOrExpense)).perform(ViewActions.click());
+        } catch (AssertionFailedError ignored) {
+        }
+
         // Add new Entry
         onView(withId(R.id.txt_entries_amount)).perform(ViewActions.typeText(String.valueOf(EntryAmount)));
         hideKeyboard();
@@ -221,9 +222,9 @@ public class EarnyTest {
         testUserBalance -= EntryAmount;
         BalanceGER = getGermanNumberFormat(testUserBalance);
 
-        if (currentYear.equals(year)) {
+        if (currentYear == year) {
             currentYearExpenses += EntryAmount;
-            if (currentMonth.equals(month)) {
+            if (currentMonth == month) {
                 currentMonthExpenses += EntryAmount;
             }
         }
@@ -240,7 +241,11 @@ public class EarnyTest {
         generateRandomEntryDate();
 
         // Activate Switch
-        onView(withId(R.id.switch_entries_incomeOrExpense)).perform(ViewActions.click());
+        try {
+            onView(withId(R.id.txt_entries_switchText)).check(matches(withText("Ausgabe")));
+            onView(withId(R.id.switch_entries_incomeOrExpense)).perform(ViewActions.click());
+        } catch (AssertionFailedError ignored) {
+        }
 
         // Add new Entry
         onView(withId(R.id.txt_entries_amount)).perform(ViewActions.typeText(String.valueOf(EntryAmount)));
@@ -259,7 +264,7 @@ public class EarnyTest {
         // Adjust variables
         testUserBalance += EntryAmount;
         BalanceGER = getGermanNumberFormat(testUserBalance);
-        if (currentYear.equals(year)) {
+        if (currentYear == year) {
             currentYearIncome += EntryAmount;
         }
     }

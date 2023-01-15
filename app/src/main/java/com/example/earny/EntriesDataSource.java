@@ -151,6 +151,7 @@ public class EntriesDataSource {
         for (Entries e : allEntries) {
             if (e.getEntry_year() == year && e.getEntry_amount() < 0) {
                 sumYearExpenses -= e.getEntry_amount();
+                // TODO: getEntry_amount() scheint keinen double Wert zurück zu geben. Gleiches Problem wie bei der Liste auf der HomeActivity?
             }
         }
         return sumYearExpenses * -1;
@@ -163,6 +164,7 @@ public class EntriesDataSource {
         for (Entries e : allEntries) {
             if (e.getEntry_year() == year && e.getEntry_amount() > 0) {
                 sumYearIncome += e.getEntry_amount();
+                // TODO: getEntry_amount() scheint keinen double Wert zurück zu geben. Gleiches Problem wie bei der Liste auf der HomeActivity?
             }
         }
         return sumYearIncome;

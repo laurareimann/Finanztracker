@@ -101,10 +101,10 @@ public class DB_user extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT user_balance FROM users WHERE user_name=\"" + username + "\"", null);
 
         cursor.moveToFirst();
-        double balanceInt = cursor.getDouble(0);
+        double balanceDouble = cursor.getDouble(0);
         cursor.close();
 
-        return balanceInt;
+        return balanceDouble;
     }
 
     public void updateBalance(double amount, String username) {
