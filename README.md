@@ -12,17 +12,20 @@ Die App wurde mit Android Studio erstellt.
 tbc
 
 ## Tests:
-Es steht ein Espresso-Test zur Verfügung (EarnyTest). 
+Es steht ein Espresso-Test zur Verfügung (EarnyTest). In der Testung wurde diese Form des UI Testings JUnit-Tests vorgezogen, weil diese eher im Development Prozess hilfreich sind, um die Funktion von Methoden zu testen, während sich noch viel an der App ändert. 
+
+Da die Tests erst zum Ende des Projekts umgesetzt werden konnten, wurde deshalb ein UI-Test vorgezogen, der zwar langsamer läuft, dafür jedoch das Endergebnis besser testet. Die Methoden, die ansonsten per JUnit Test überprüft würden, lassen sich so über das im User Interface angezeigte Ergebnis testen.
+
 
 Getestet wird:
 - Registrierung eines neuen Accounts
 - Anmeldung zu diesem Account
 - Korrekte Wiedergabe des registrierten Kontostands
 - Hinzufügen von neuen Einnahmen und Ausgaben
-- Korrente Verrechnung der neuen Eingaben mit dem Kontostand und den Statistik-Werten
+- Korrekte Verrechnung der neuen Eingaben mit dem Kontostand und den Statistik-Werten
 
 
-Der Test genereiert folgende randomisierte Werte, um möglichst breit zu testen:
+Der Test generiert folgende randomisierte Werte, um möglichst breit zu testen:
 - Nutzername (mittels Timestamp)
 - Kontostand (Double Wert mit 2 Nachkommastellen)
 - Neuer Eintrag-Wert (Double Wert mit 2 Nachkommastellen)
@@ -34,4 +37,5 @@ Zur individuellen Testung lassen sich folgende Variablen manipulieren:
 - Anzahl der Einträge (je 1x Einnahme und Ausgabe) pro Testdurchlauf
 - Maximale Höhes der Einträge
 - Frühestes und spätestes Eintragsjahr
+
 
