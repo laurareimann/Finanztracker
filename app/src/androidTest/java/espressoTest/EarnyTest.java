@@ -7,6 +7,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import static java.util.Calendar.*;
+
 import android.widget.DatePicker;
 
 import androidx.annotation.NonNull;
@@ -33,7 +35,6 @@ import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -44,27 +45,23 @@ import java.util.Random;
 public class EarnyTest {
 
     // TODO: maximumUserBalance BUG!! aktuell kann nur ein Wert <10k richtig gespeichert werden
-    // TODO: test Statistics with random System time
-    // TODO: Does not test entry List on HomeActivity!
 
     // Set these Variables to adjust Test:
     private static final double maximumUserBalance = 9999.99;   // change this Variable to define the maximum Balance set at Registration
-    private static final int numberOfEntriesToTest = 20;         // change this Variable to define number of new Entries (income and expenses)
+    private static final int numberOfEntriesToTest = 20;        // change this Variable to define number of new Entries (income and expenses)
     private static final int maxEntryAmount = 200;              // change this Variable to define the maximum amount of income/expense in the Entries
     private static final int minEntryYear = 2023;               // change this Variable to define the earliest year for Entries
     private static final int maxEntryYear = 2024;               // change this Variable to define the latest year for Entries
 
     // User Variables
-    // Generate random UserName with Timestamp
-    String currentTimestamp = String.valueOf(new Timestamp(System.currentTimeMillis()));
+    private final String currentTimestamp = String.valueOf(new Timestamp(System.currentTimeMillis()));
     private final String testUserName = "newUser" + currentTimestamp;
     private final String testUserPassword = "Password";
-
     private double testUserBalance = generateRandomBalance();
 
     // Entry Variables
     private double EntryAmount = generateRandomEntryAmount();
-    private String EntryNotice = "new Entry";
+    private String EntryNotice;
     private String BalanceGER;
     private int year;
     private int month;
@@ -74,8 +71,8 @@ public class EarnyTest {
 
     // Statistics Variables
     private final List<String> months = Arrays.asList("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
-    private final int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
-    private final int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+    private final int currentMonth = getInstance().get(MONTH);
+    private final int currentYear = getInstance().get(YEAR);
     private double currentMonthExpenses = 0;
     private double currentYearExpenses = 0;
     private double currentYearIncome = 0;
