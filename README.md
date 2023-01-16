@@ -8,6 +8,13 @@ Software Engineering Projekt, HAW Hamburg, 4. Semester
 Dieses Repository beinhaltet eine Android App zum Tracken von Finanzen.
 Die App wurde mit Android Studio erstellt.
 
+## Table of Contents
+1. [Installation](#installation)
+2. [Tests](#tests)
+3. [Installation](#installation)
+4. [Collaboration](#collaboration)
+5. [FAQs](#faqs)
+
 ## Installation:
 tbc
 
