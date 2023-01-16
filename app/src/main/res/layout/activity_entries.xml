@@ -116,12 +116,12 @@
         android:id="@+id/bottomNav_entries"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/blue_primary"
         app:itemBackground="@color/blue_primary"
         app:itemIconTint="@drawable/selector_menu"
         app:itemTextColor="@drawable/selector_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_navigation" />
 
