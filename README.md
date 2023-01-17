@@ -16,14 +16,15 @@ Die App wurde mit Android Studio erstellt und kann sowohl per Emulator in Androi
 5. [FAQs](#faqs)
 
 ## Installation:
-1. Clone or download this repository.
-2. Open Android Studio.
-3. In IDEA, select File -> Open and navigate to the critter directory within this repository. Select that directory to open.
-4. The project should open in IDEA. In the project structure, navigate to src/main/java/com.udacity.jdnd.course3.critter.
-5. Within that directory, click on CritterApplication.java and select Run -> Debug CritterApplication.
-6. Open a browser and navigate to the url: http://localhost:8082/test
+1. Clone oder download dieses repository.
+2. Öffne Android Studio.
+3. In Android Studio: select File -> New ->  Project from Version Control -> füge die URL des repository ein und wähle ein Directory/Pfad aus. Dann auf Clone klicken.
+4. Das Projekt sollte sich nun öffnen. Kann einige Minuten dauern bis Gradle alles aufgebaut hat und die Projektstruktur angezeigt wird.
+5. Um das Gerät per Emulator zu bedienen, unter Device Manager -> Virtual ->  Create Device das gewünschte Gerät erzeugen und die API 33 auswählen.
+   Alternativ auch möglich mit richtigem Android Gerät die App zu starten: Device Manager -> Physical ->  Pair using Wi-Fi
+6. Auf "Run" App klicken, um die Applikation zu starten.
 
-You should see the message "Critter Starter installed successfully" in your browser.
+ Die App sollte nun ein "Willkommen" Screen anzeigen, damit man zur Registrierung oder zum Login gelangt.
 
 ## Tests:
 Es steht ein Espresso-Test zur Verfügung (EarnyTest). In der Testung wurde diese Form des UI Testings JUnit-Tests vorgezogen, weil diese eher im Development Prozess hilfreich sind, um die Funktion von Methoden zu testen, während sich noch viel an der App ändert. 
@@ -70,10 +71,7 @@ readme md
 
 Daher ist eine Readme MD online oder offline ein einfacher und schlichter Text, der grundlegende Informationen zu Dateien und Anleitungen enthält. Sie können sie verwenden, um eine Installationsanleitung zu schreiben. Sie ist auch nützlich, um eine grundlegende Dokumentation innerhalb des Projektverzeichnisses zu erstellen. Wenn Sie sich also mit dem MD-Dateiformat befassen, müssen Sie verstehen, wie eine Markdown-Datei erstellt wird, nämlich durch ein Markdown-Skript, das als schriftliche Readme-MD-Datei bereitgestellt wird.
 
-Eine Readme-MD-Datei ist sehr wichtig und sollte daher in Ihr Projekt oder Programm aufgenommen werden, da sie die folgenden Details enthält:
 
-Sie informiert die Leser darüber, worum es in dem Projekt geht
-Sie informiert darüber, wie Sie das Projekt verwenden
 Sie zeigt die Bedeutung des Projekts, insbesondere für Sie, den Ersteller
 Sie informiert darüber, für wen das Programm erstellt wird
 Sie zeigt, wo sich die wichtigsten Komponenten darin befinden
