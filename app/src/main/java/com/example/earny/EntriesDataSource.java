@@ -22,12 +22,12 @@ public class EntriesDataSource {
     private static final String LOG_TAG = EntriesDataSource.class.getSimpleName();
 
     private SQLiteDatabase database;
-    private EntriesDbHelper dbHelper;
+    private final EntriesDbHelper dbHelper;
 
 
     // Array needed for search queries
     // It contains the names of the columns in our entries table.
-    private String[] columns = {
+    private final String[] columns = {
             EntriesDbHelper.COLUMN_ID,
             EntriesDbHelper.COLUMN_USER_ID,
             EntriesDbHelper.COLUMN_ENTRY_AMOUNT,
@@ -112,10 +112,9 @@ public class EntriesDataSource {
         int entry_year = cursor.getInt(idYear);
 
         // Save read data for further use
-        Entries entries = new Entries(id, user_id, entry_amount, entry_notice,
-                entry_date, entry_day, entry_month, entry_year);
 
-        return entries;
+        return new Entries(id, user_id, entry_amount, entry_notice,
+                entry_date, entry_day, entry_month, entry_year);
     }
 
     // Read all existing records from a User from the table
@@ -179,9 +178,7 @@ public class EntriesDataSource {
         for (Entries e : allEntries) {
             yearsWithDataSet.add(e.getEntry_year());
         }
-        ArrayList<Integer> yearsWithData = new ArrayList<>();
-        yearsWithData.addAll(yearsWithDataSet);
-        return yearsWithData;
+        return new ArrayList<>(yearsWithDataSet);
     }
 
     // get sum of all expenses for a certain year

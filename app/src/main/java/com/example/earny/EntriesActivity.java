@@ -37,13 +37,13 @@ public class EntriesActivity extends AppCompatActivity {
 
     private EntriesDataSource dataSource;
     private UserDbHelper dbUser;
-    BottomNavigationView bNV_entries;
+    private BottomNavigationView bNV_entries;
     private String currentUser;
     private int currentUserID;
 
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-    Switch expensesSwitch;
+    private Switch expensesSwitch;
     private TextView switchText;
     public static boolean checkExpenseValue = false;
     int yearDB;

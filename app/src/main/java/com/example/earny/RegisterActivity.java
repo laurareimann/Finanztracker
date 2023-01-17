@@ -17,9 +17,9 @@ import com.example.testapp.R;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText username, password, password_rep, acc_balance;
-    Button btn_register, btn_login;
-    UserDbHelper db;
+    private EditText username, password, password_rep, acc_balance;
+    private Button btn_register, btn_login;
+    private UserDbHelper db;
 
 
     @Override

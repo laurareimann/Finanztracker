@@ -36,11 +36,11 @@ public class EntriesDbHelper extends SQLiteOpenHelper{
                     "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_USER_ID + " INTEGER NOT NULL, " +
                     COLUMN_ENTRY_AMOUNT + " REAL NOT NULL, " +
-                    COLUMN_ENTRY_DATE + " STRING NOT NULL, " +
+                    COLUMN_ENTRY_DATE + " TEXT NOT NULL, " +
                     COLUMN_ENTRY_DAY + " INTEGER NOT NULL, " +
                     COLUMN_ENTRY_MONTH + " INTEGER NOT NULL, " +
                     COLUMN_ENTRY_YEAR + " INTEGER NOT NULL, " +
-                    COLUMN_ENTRY_NOTICE + " STRING);";
+                    COLUMN_ENTRY_NOTICE + " TEXT);";
 
       // Constructor
     public EntriesDbHelper(Context context){

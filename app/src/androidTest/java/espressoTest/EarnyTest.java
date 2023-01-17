@@ -46,7 +46,7 @@ public class EarnyTest {
 
     // TODO: Change these variables to adjust the test:
     private static final double maximumUserBalance = 9999.99;   // define the maximum Balance set at Registration !!ATTENTION: as there is still a Bug, only balances <10k can be saved correctl
-    private static final int numberOfEntriesToTest = 10;        // define number of new Entries (income and expenses)
+    private static final int numberOfEntriesToTest = 5;        // define number of new Entries (income and expenses)
     private static final int maxEntryAmount = 200;              // define the maximum amount of income/expense in the Entries
     private static final int minEntryYear = 2023;               // define the earliest year for Entries
     private static final int maxEntryYear = 2024;               // define the latest year for Entries

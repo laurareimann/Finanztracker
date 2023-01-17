@@ -41,17 +41,17 @@ import java.util.Locale;
 
 public class StatisticsActivity extends AppCompatActivity {
 
-    Button btn_months, btn_years;
-    BottomNavigationView bNV_statistics;
+    private Button btn_months, btn_years;
+    private BottomNavigationView bNV_statistics;
     private BarChart barChart_statistics_monthOverview, barChart_statistics_yearOverview;
     private EntriesDataSource dataSource;
 
     private UserDbHelper dbUser;
     private String currentUser;
 
-    Calendar calendar = Calendar.getInstance();
-    int currentYear = calendar.get(Calendar.YEAR);
-    int currentMonth = calendar.get(Calendar.MONTH);
+    private final Calendar calendar = Calendar.getInstance();
+    private final int currentYear = calendar.get(Calendar.YEAR);
+    private final int currentMonth = calendar.get(Calendar.MONTH);
 
     private final List<String> months = Arrays.asList("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
 

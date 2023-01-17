@@ -16,9 +16,9 @@ import android.widget.Toast;
 import com.example.testapp.R;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText username, password;
-    Button btn_register, btn_login;
-    UserDbHelper db;
+    private EditText username, password;
+    private Button btn_register, btn_login;
+    private UserDbHelper db;
     public static String currentUsername;
 
     @Override
