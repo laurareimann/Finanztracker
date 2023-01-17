@@ -183,6 +183,9 @@ public class StatisticsActivity extends AppCompatActivity {
         //remove border of the chart, default false if not set
         barChart.setDrawBorders(false);
 
+        // disable scaleing on click:
+        barChart.setScaleEnabled(false);
+
         //remove the description label text located at the lower right corner
         Description description = new Description();
         description.setEnabled(false);
