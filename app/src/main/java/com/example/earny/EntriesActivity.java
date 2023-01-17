@@ -118,7 +118,7 @@ public class EntriesActivity extends AppCompatActivity {
     }
 
 
-    private void activateDatePicker(){
+    private void activateDatePicker() {
         mDisplayDate.setOnClickListener(view -> {
             Calendar cal = Calendar.getInstance();
             int year = cal.get(Calendar.YEAR);
@@ -139,9 +139,15 @@ public class EntriesActivity extends AppCompatActivity {
             // January would be month 0 und December would be month 11 so:
             month = month + 1;
             if (month < 10) {
-                Log.d(LOG_TAG, "ondateSet: dd.mm.yyy: " + day + ".0" + month + "." + year);
-                String date = day + ".0" + month + "." + year;
-                mDisplayDate.setText(date);
+                if (day < 10) {
+                    Log.d(LOG_TAG, "ondateSet: dd.mm.yyy: " + "0" + day + ".0" + month + "." + year);
+                    String date = "0" + day + ".0" + month + "." + year;
+                    mDisplayDate.setText(date);
+                } else {
+                    Log.d(LOG_TAG, "ondateSet: dd.mm.yyy: " + day + ".0" + month + "." + year);
+                    String date = day + ".0" + month + "." + year;
+                    mDisplayDate.setText(date);
+                }
             } else {
                 Log.d(LOG_TAG, "ondateSet: dd.mm.yyy: " + day + "." + month + "." + year);
                 String date = day + "." + month + "." + year;
