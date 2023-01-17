@@ -19,6 +19,7 @@
     <string name="h_balance">auf deinem Bankkonto</string>
     <string name="h_bookings">Buchungen</string>
     <string name="h_account">Kontostand</string>
+    <string name="h_total">gesamt</string>
     <string name="h_income">Einkommen</string>
     <string name="h_income2">Einnahme</string>
     <string name="h_expenses">Ausgaben</string>

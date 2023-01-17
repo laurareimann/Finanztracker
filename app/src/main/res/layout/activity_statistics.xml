@@ -175,7 +175,6 @@
                     android:id="@+id/txt_statistics_h_balance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="36dp"
                     android:text="@string/h_account"
                     android:textColor="@color/turquoise_secondary"
                     android:textSize="@dimen/font_normalText"
@@ -183,6 +182,17 @@
                     app:layout_constraintEnd_toEndOf="@+id/box_statistics_darkblue"
                     app:layout_constraintHorizontal_bias="0.131"
                     app:layout_constraintStart_toStartOf="@+id/box_statistics_darkblue"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_statistics_h_total" />
+
+                <TextView
+                    android:id="@+id/txt_statistics_h_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/h_total"
+                    android:layout_marginTop="@dimen/margins_sides"
+                    android:textColor="@color/turquoise_secondary"
+                    android:textSize="@dimen/font_small"
+                    app:layout_constraintStart_toStartOf="@+id/txt_statistics_h_balance"
                     app:layout_constraintTop_toTopOf="@+id/box_statistics_darkblue" />
 
                 <TextView
