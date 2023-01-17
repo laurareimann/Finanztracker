@@ -74,9 +74,6 @@ Kein Programm ist perfekt und deshalb sollten Sie Informationen zur Fehlerbehebu
 folgt...
 ///Da Sie sich der Herausforderungen bewusst sind, die die Benutzer bei der Verwendung des Programms erleben werden, ist dies der perfekte Ort, um die bekannten Probleme anzuzeigen. Sie sollten bestätigen, dass Sie aktiv an ihnen arbeiten.
 
-### Kontaktinformationen bei Fragen oder Verbesserungsvorschlägen
-Bei Fragen stehen wir euch gerne unter folgenden Daten zur Verfüng: kjdnfs@dnd.com
-Gerne hören wir uns auch Tipps zur Optimierung und Fehlerkorrektur unserer Software an.
 
 ///Die Benutzer Ihres Programms werden mit Sicherheit aus verschiedenen Gründen mit Ihnen oder Ihren Teammitgliedern in Kontakt treten wollen, weshalb Ihre Kontaktinformationen wichtig sind. Sie sollten also den Namen, Links zu sozialen Medien, E-Mail und andere Kontaktmöglichkeiten angeben.
 
@@ -89,14 +86,6 @@ Referenzen und Tutorials, die uns zur Erstellung des Projekts geholfen und die w
 ///Notizen (wird noch entfernt)
 Sie zeigt, wo sich die wichtigsten Komponenten darin befinden
 
-Eine Dateiliste
+/// Eine Dateiliste
 Die Liste der enthaltenen Dateien ist gut, obwohl sie von der Größe Ihres Codes abhängt. Das bedeutet, dass Sie den Dateibaum weglassen können. Welchen Weg Sie auch immer wählen, geben Sie zumindest eine Erklärung, wie Sie sich durch den Code bewegen.
 Sie können zum Beispiel erklären, wie der Code modularisiert ist. Wurde die MVC-Methode angewandt? Solche Informationen liefern Details über die Dateistruktur.
-
-Informationen zu Lizenzierung und Copyright
-Lizenzen sind kritisch und daher sehr empfehlenswert für Leute, die Open-Source-Projekte produzieren. Sie sollten niemals die Lizenz- und Copyright-Informationen weglassen, da sie andere wissen lassen, was sie mit Ihrem Code tun dürfen und was nicht. Sie können es aber auch weglassen, da die Standard-Urheberrechtsgesetze weiterhin gelten. Letztendlich behalten Sie also das Recht an Ihrem Quellcode, so dass es für andere Personen unmöglich oder illegal ist, Ihren Code zu verbreiten, zu vervielfältigen oder davon abzuleiten.
-
-Ein Changelog
-
-
-
