@@ -3,6 +3,7 @@ package com.example.earny;
 /**
  * SOURCES
  * Database: BTech Days: "Login and Register Form using SQLite Database in Android Studio | Login Registration Android Studio", URL: https://www.youtube.com/watch?v=o9CVZ1gQgQo, 09.01.2023
+ * Database: sqlite.org  "Datatypes In SQLite", URL: https://www.sqlite.org/datatype3.html, 25.12.2022
  **/
 
 import android.content.ContentValues;
