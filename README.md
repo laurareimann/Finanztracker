@@ -21,14 +21,14 @@ Die App wurde mit Android Studio entwickelt und kann per Emulator sowie über ei
 
 ## Installation:
 
-1. Clone oder downloade dieses Repository.
-2. Öffne Android Studio.
-3. In Android Studio: Select File -> New ->  Project from Version Control auswählen.
-4. Füge die URL des Repository ein und wähle ein Directory/Pfad aus. Dann auf Clone klicken.
-5. Das Projekt sollte sich nun öffnen. Es kann einige Minuten dauern bis Gradle alles aufgebaut hat und die Projektstruktur angezeigt wird.
-6. Um das Gerät per Emulator zu bedienen, unter Device Manager -> Virtual ->  Create Device das gewünschte Gerät erzeugen und die API 33 auswählen.
-   Alternativ auch möglich die App mit richtigem Android Gerät zu starten: Device Manager -> Physical ->  Pair using Wi-Fi
-7. Auf "Run 'App'" klicken, um die Applikation zu starten.
+   1. Clone oder downloade dieses Repository.
+   2. Öffne Android Studio.
+   3. In Android Studio: Select File -> New ->  Project from Version Control auswählen.
+   4. Füge die URL des Repository ein und wähle ein Directory/Pfad aus. Dann auf Clone klicken.
+   5. Das Projekt sollte sich nun öffnen. Es kann einige Minuten dauern bis Gradle alles aufgebaut hat und die Projektstruktur angezeigt wird.
+   6. Um das Gerät per Emulator zu bedienen, unter Device Manager -> Virtual ->  Create Device das gewünschte Gerät erzeugen und die API 33 auswählen.
+      Alternativ auch möglich die App mit richtigem Android Gerät zu starten: Device Manager -> Physical ->  Pair using Wi-Fi
+   7. Auf "Run 'App'" klicken, um die Applikation zu starten.
 
     Die App sollte nun ein "Willkommen" Screen anzeigen, damit man zur Registrierung oder zum Login gelangt.
  
