@@ -26,7 +26,7 @@ public class EntriesDataSource {
 
 
     // Array needed for search queries
-    // It contains the names of thee columns in our entries table.
+    // It contains the names of the columns in our entries table.
     private String[] columns = {
             EntriesDbHelper.COLUMN_ID,
             EntriesDbHelper.COLUMN_USER_ID,

@@ -50,7 +50,6 @@ public class Entries {
 
     @Override
     public String toString() {
-        // Todo Ausgabe im Home screen fixen: Hier wird nicht der richtige Wert aus der Datenbank gelesen
         Log.d("Entries", "Method: toString: " + entry_amount);
 
         if (entry_amount > 0) {

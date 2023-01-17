@@ -43,12 +43,6 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Button btn_logout = (Button) findViewById(R.id.btn_home_logout);
-
-        btn_logout.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class); // TODO: später neu verlinken zur Register Activity
-            startActivity(intent);
-        });
 
         /*** Nagivation Bar ***/
         // Initialize and assign variable
@@ -72,17 +66,20 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         /*** Databases ***/
-        // the object calls the two constructors of the EntriesDataSource and
-        // EntriesDbHelper classes.
         Log.d(LOG_TAG, "The data source is opened.");
         dataSource = new EntriesDataSource(this);
         UserDbHelper dbUser = new UserDbHelper(this);
 
-        /*** Views ***/
+        /*** Views & Listeners***/
+        activateLogoutButton();
+        TextView balance = findViewById(R.id.txt_home_balance);
+
+        /*** User Data ***/
         String currentUser = LoginActivity.currentUsername;
         currentUserID = dbUser.getUserID(currentUser);
-        TextView balance = findViewById(R.id.txt_home_balance);
-        // Kontostand mit Dezimal Punkt:
+
+        /*** Formatting ***/
+        // show balance with decimal point
         NumberFormat nf = NumberFormat.getNumberInstance(Locale.GERMAN);
         DecimalFormat dform = (DecimalFormat) nf;
         double balanceAsDouble = Double.parseDouble(dbUser.getUserBalance(currentUser));
@@ -106,6 +103,15 @@ public class HomeActivity extends AppCompatActivity {
 
         Log.d(LOG_TAG, "Die Datenquelle wird geschlossen.");
         dataSource.close();
+    }
+
+    private void activateLogoutButton(){
+        Button btn_logout = (Button) findViewById(R.id.btn_home_logout);
+
+        btn_logout.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class); // TODO: später neu verlinken zur Register Activity
+            startActivity(intent);
+        });
     }
 
 

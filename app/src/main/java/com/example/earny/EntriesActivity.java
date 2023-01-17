@@ -34,7 +34,6 @@ public class EntriesActivity extends AppCompatActivity {
 
     // LOGTAG
     public static final String LOG_TAG = EntriesActivity.class.getSimpleName();
-    private static final String TAG = "EntriesActivity";
 
     private EntriesDataSource dataSource;
     private UserDbHelper dbUser;
@@ -44,9 +43,9 @@ public class EntriesActivity extends AppCompatActivity {
 
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-    Switch einAusgabeSwitch;
+    Switch expensesSwitch;
     private TextView switchText;
-    public static boolean checker = false;
+    public static boolean checkExpenseValue = false;
     int yearDB;
     int monthDB;
     int dayDB;
@@ -90,49 +89,13 @@ public class EntriesActivity extends AppCompatActivity {
         dataSource.open();
 
 
-        /*** Views ***/
+        /*** Views & Listeners ***/
         activateAddButton();
+        activateDatePicker();
+
+        /*** get User Info ***/
         currentUser = LoginActivity.currentUsername;
         currentUserID = dbUser.getUserID(currentUser);
-
-
-        /*** Date ***/
-        mDisplayDate.setOnClickListener(view -> {
-            Calendar cal = Calendar.getInstance();
-            int year = cal.get(Calendar.YEAR);
-            int month = cal.get(Calendar.MONTH);
-            int day = cal.get(Calendar.DAY_OF_MONTH);
-
-            DatePickerDialog dialog = new DatePickerDialog(
-                    EntriesActivity.this,
-                    android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                    mDateSetListener,
-                    year, month, day);
-            //shows date in entry
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            dialog.show();
-
-        });
-        mDateSetListener = (datePicker, year, month, day) -> {
-            // January would be month 0 und December would be month 11 so:
-            month = month + 1;
-            if (month < 10) {
-                Log.d(TAG, "ondateSet: dd.mm.yyy: " + day + ".0" + month + "." + year);
-                String date = day + ".0" + month + "." + year;
-                mDisplayDate.setText(date);
-            } else {
-                Log.d(TAG, "ondateSet: dd.mm.yyy: " + day + "." + month + "." + year);
-                String date = day + "." + month + "." + year;
-                mDisplayDate.setText(date);
-            }
-
-            mDisplayDate.setTextColor(getResources().getColor(color.black));
-
-            // save date as ints
-            dayDB = day;
-            monthDB = month;
-            yearDB = year;
-        };
     }
 
 
@@ -155,6 +118,46 @@ public class EntriesActivity extends AppCompatActivity {
     }
 
 
+    private void activateDatePicker(){
+        mDisplayDate.setOnClickListener(view -> {
+            Calendar cal = Calendar.getInstance();
+            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH);
+            int day = cal.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog dialog = new DatePickerDialog(
+                    EntriesActivity.this,
+                    android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                    mDateSetListener,
+                    year, month, day);
+            //shows date in entry
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
+
+        });
+        mDateSetListener = (datePicker, year, month, day) -> {
+            // January would be month 0 und December would be month 11 so:
+            month = month + 1;
+            if (month < 10) {
+                Log.d(LOG_TAG, "ondateSet: dd.mm.yyy: " + day + ".0" + month + "." + year);
+                String date = day + ".0" + month + "." + year;
+                mDisplayDate.setText(date);
+            } else {
+                Log.d(LOG_TAG, "ondateSet: dd.mm.yyy: " + day + "." + month + "." + year);
+                String date = day + "." + month + "." + year;
+                mDisplayDate.setText(date);
+            }
+
+            mDisplayDate.setTextColor(getResources().getColor(color.black));
+
+            // save date as ints
+            dayDB = day;
+            monthDB = month;
+            yearDB = year;
+        };
+    }
+
+
     private void activateAddButton() {
         // References Widget-Objects
         Button buttonAddProduct = (Button) findViewById(btn_entries_addentry);
@@ -163,19 +166,19 @@ public class EntriesActivity extends AppCompatActivity {
         final TextView textViewDate = (TextView) findViewById(txt_entries_date);
 
         switchText = (TextView) findViewById(txt_entries_switchText);
-        einAusgabeSwitch = (Switch) findViewById(switch_entries_incomeOrExpense);
+        expensesSwitch = (Switch) findViewById(switch_entries_incomeOrExpense);
 
 
         /*** Switch ***/
-        einAusgabeSwitch.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+        expensesSwitch.setOnCheckedChangeListener((compoundButton, isChecked) -> {
             if (isChecked) {
-                checker = true;
+                checkExpenseValue = true;
                 switchText.setText(string.h_income2);
                 switchText.setTextColor(Color.parseColor("#7fff00"));
                 editTextAmount.setHint("Neue Einnahme");
 
             } else {
-                checker = false;
+                checkExpenseValue = false;
                 switchText.setText(string.h_expense);
                 switchText.setTextColor(Color.parseColor("#ff0000"));
                 editTextAmount.setHint("Neue Ausgabe");
@@ -221,7 +224,7 @@ public class EntriesActivity extends AppCompatActivity {
 
             // create new row in DB
             // Constructor: userID, amount, notice, String date, day, month, year
-            if (!einAusgabeSwitch.isChecked()) {
+            if (!expensesSwitch.isChecked()) {
                 amount *= -1;
             }
 
@@ -233,8 +236,8 @@ public class EntriesActivity extends AppCompatActivity {
             amount = Double.parseDouble(deciFormat.format(amount));
 
             dataSource.createEntries(currentUserID, amount, notice, date, dayDB, monthDB, yearDB);
-
             dbUser.updateBalance(amount, currentUser);
+
             // Hide Keyboard
             InputMethodManager inputMethodManager;
             inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);

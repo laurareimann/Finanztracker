@@ -27,17 +27,20 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        // declare variables with input from frontend
+        /*** Views & Listener ***/
         username = (EditText) findViewById(R.id.txt_register_username);
         password = (EditText) findViewById(R.id.txt_register_password);
         acc_balance = (EditText) findViewById(R.id.txt_register_balance);
         password_rep = (EditText) findViewById(R.id.txt_register_password_rep);
-
         btn_register = (Button) findViewById(R.id.btn_register_register);
         btn_login = (Button) findViewById(R.id.btn_register_login);
 
+        activateLoginButton();
+
+        /*** Database ***/
         db = new UserDbHelper(this);
 
+        /*** Register functionality ***/
         // Functionality of Register Button
         btn_register.setOnClickListener(v -> {
             String user = username.getText().toString();
@@ -69,11 +72,12 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
+    private void activateLoginButton(){
         btn_login.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
         });
-
     }
 }

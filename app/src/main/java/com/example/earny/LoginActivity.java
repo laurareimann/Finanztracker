@@ -26,16 +26,17 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // initialize variables
+        /*** Views & Listener***/
         username = (EditText) findViewById(R.id.txt_login_username);
         password = (EditText) findViewById(R.id.txt_login_password);
-
-        //MaterialButton loginbtn = (MaterialButton) findViewById(R.id.btn_login_login);
         btn_login = (Button) findViewById(R.id.btn_login_login);
         btn_register = (Button) findViewById(R.id.btn_login_register);
+        activateRegisterButton();
+
+        /*** Database ***/
         db = new UserDbHelper(this);
 
-        // Login
+        /*** Login functionality ***/
         btn_login.setOnClickListener(view -> {
             String user = username.getText().toString();
             String pass = password.getText().toString();
@@ -56,7 +57,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        // Button zur Registrierung
+    }
+
+    private void activateRegisterButton(){
         btn_register.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), RegisterActivity.class); // TODO: später neu verlinken zur Register Activity
             startActivity(intent);
