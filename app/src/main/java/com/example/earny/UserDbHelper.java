@@ -11,16 +11,16 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DB_user extends SQLiteOpenHelper {
+public class UserDbHelper extends SQLiteOpenHelper {
 
-    public DB_user(Context context) {
+    public UserDbHelper(Context context) {
         super(context, "DB_Users.db", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create Table users(" +
-                "user_id integer primary key autoincrement, " +
+        db.execSQL("CREATE TABLE users(" +
+                "user_id integer PRIMARY KEY AUTOINCREMENT, " +
                 "user_name text, " +
                 "user_password text, " +
                 "user_balance double NOT NULL)");
@@ -28,7 +28,7 @@ public class DB_user extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("drop Table if exists users");
+        db.execSQL("DROP TABLE IF EXISTS users");
     }
 
     // insert Data into Database, return true if successful
@@ -49,7 +49,7 @@ public class DB_user extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         // INFO: Cursor is an interface and it is used to retrieve data from collection object, one by one
         // put all users with the entered username in an array
-        Cursor cursor = db.rawQuery("select * from users where user_name = ?", new String[]{username});
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE user_name = ?", new String[]{username});
         // check if cursor has data --> if true user is already in Database
         if (cursor.getCount() > 0) {
             cursor.close();
@@ -64,7 +64,7 @@ public class DB_user extends SQLiteOpenHelper {
     // check username and password
     public Boolean checkUsernamePassword(String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select * from users where user_name = ? and user_password = ?", new String[]{username, password});
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE user_name = ? AND user_password = ?", new String[]{username, password});
 
         if (cursor.getCount() > 0) {
             cursor.close();

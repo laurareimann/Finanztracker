@@ -104,7 +104,7 @@ public class EntriesDataSource {
         // get contents with indexes from above
         long id = cursor.getLong(idIndex);
         int user_id = cursor.getInt(idUserId);
-        double entry_amount = cursor.getInt(idAmount);
+        double entry_amount = cursor.getDouble(idAmount);
         String entry_notice = cursor.getString(idNotice);
         String entry_date = cursor.getString(idDate);
         int entry_day = cursor.getInt(idDay);

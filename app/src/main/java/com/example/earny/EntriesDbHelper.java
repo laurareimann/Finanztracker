@@ -35,7 +35,7 @@ public class EntriesDbHelper extends SQLiteOpenHelper{
             "CREATE TABLE " + ENTRIES_LIST +
                     "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_USER_ID + " INTEGER NOT NULL, " +
-                    COLUMN_ENTRY_AMOUNT + " DOUBLE NOT NULL, " +
+                    COLUMN_ENTRY_AMOUNT + " REAL NOT NULL, " +
                     COLUMN_ENTRY_DATE + " STRING NOT NULL, " +
                     COLUMN_ENTRY_DAY + " INTEGER NOT NULL, " +
                     COLUMN_ENTRY_MONTH + " INTEGER NOT NULL, " +

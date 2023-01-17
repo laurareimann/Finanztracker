@@ -19,7 +19,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     EditText username, password, password_rep, acc_balance;
     Button btn_register, btn_login;
-    DB_user db;
+    UserDbHelper db;
 
 
     @Override
@@ -36,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
         btn_register = (Button) findViewById(R.id.btn_register_register);
         btn_login = (Button) findViewById(R.id.btn_register_login);
 
-        db = new DB_user(this);
+        db = new UserDbHelper(this);
 
         // Functionality of Register Button
         btn_register.setOnClickListener(v -> {
@@ -52,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (pass.equals(pass_rep)) {
                     Boolean userCheckResult = db.checkUsername(user);
                     if (!userCheckResult) {
-                        float balance = Float.parseFloat(acc_balance.getText().toString());
+                        double balance = Double.parseDouble(acc_balance.getText().toString());
                         Boolean regResult = db.insertData(user, pass, balance);
                         if (regResult) {
                             Toast.makeText(RegisterActivity.this, "Registrierung erfolgreich.", Toast.LENGTH_SHORT).show();

@@ -18,7 +18,7 @@ import com.example.testapp.R;
 public class LoginActivity extends AppCompatActivity {
     EditText username, password;
     Button btn_register, btn_login;
-    DB_user db;
+    UserDbHelper db;
     public static String currentUsername;
 
     @Override
@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         //MaterialButton loginbtn = (MaterialButton) findViewById(R.id.btn_login_login);
         btn_login = (Button) findViewById(R.id.btn_login_login);
         btn_register = (Button) findViewById(R.id.btn_login_register);
-        db = new DB_user(this);
+        db = new UserDbHelper(this);
 
         // Login
         btn_login.setOnClickListener(view -> {

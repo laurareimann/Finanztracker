@@ -46,7 +46,7 @@ public class StatisticsActivity extends AppCompatActivity {
     private BarChart barChart_statistics_monthOverview, barChart_statistics_yearOverview;
     private EntriesDataSource dataSource;
 
-    private DB_user dbUser;
+    private UserDbHelper dbUser;
     private String currentUser;
 
     Calendar calendar = Calendar.getInstance();
@@ -62,7 +62,7 @@ public class StatisticsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_statistics);
 
         dataSource = new EntriesDataSource(this);
-        dbUser = new DB_user(this);
+        dbUser = new UserDbHelper(this);
         currentUser = LoginActivity.currentUsername;
 
 

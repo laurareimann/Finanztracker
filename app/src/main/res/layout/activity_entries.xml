@@ -61,6 +61,7 @@
         android:layout_marginTop="68dp"
         android:text="@string/btn_save"
         android:textSize="@dimen/font_buttons"
+        android:backgroundTint="@color/dark_blue_buttons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

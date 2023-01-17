@@ -76,7 +76,7 @@ public class HomeActivity extends AppCompatActivity {
         // EntriesDbHelper classes.
         Log.d(LOG_TAG, "The data source is opened.");
         dataSource = new EntriesDataSource(this);
-        DB_user dbUser = new DB_user(this);
+        UserDbHelper dbUser = new UserDbHelper(this);
 
         /*** Views ***/
         String currentUser = LoginActivity.currentUsername;

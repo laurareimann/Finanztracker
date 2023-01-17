@@ -37,7 +37,7 @@ public class EntriesActivity extends AppCompatActivity {
     private static final String TAG = "EntriesActivity";
 
     private EntriesDataSource dataSource;
-    private DB_user dbUser;
+    private UserDbHelper dbUser;
     BottomNavigationView bNV_entries;
     private String currentUser;
     private int currentUserID;
@@ -84,7 +84,7 @@ public class EntriesActivity extends AppCompatActivity {
         // the object calls the two constructors of the EntriesDataSource and
         // EntriesDbHelper classes.
         dataSource = new EntriesDataSource(this);
-        dbUser = new DB_user(this);
+        dbUser = new UserDbHelper(this);
 
         Log.d(LOG_TAG, "The data source is opened.");
         dataSource.open();
