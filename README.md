@@ -3,10 +3,13 @@
 </p>
 
 # Finanztracker App - Earny
-Software Engineering Projekt, HAW Hamburg, 4. Semester
+Software Engineering Projekt, HAW Hamburg, 4. Semester, Jahr: 2022/2023
 
-Dieses Repository beinhaltet eine Android App zum Tracken von Finanzen, um einen Überblick über Ein- und Ausgaben zu haben.
-Die App wurde mit Android Studio erstellt und kann sowohl per Emulator in Android Studio sowie über eine Anroid Smartphone ausgeführt werden.
+Dieses Repository beinhaltet eine Android App zum Tracken von Finanzen.
+Earny soll den NUtzer*innen dabei helfen, einen Überblick über Ein- und Ausgaben zu behalten, so dass man die eigenen FInanzen besser managen kann.
+Die App wurde mit Android Studio erstellt und kann sowohl per Emulator sowie über eine Android Smartphone in Android Studio ausgeführt werden.
+
+
 
 ## Table of Contents
 1. [Installation](#installation)
@@ -16,6 +19,11 @@ Die App wurde mit Android Studio erstellt und kann sowohl per Emulator in Androi
 5. [FAQs](#faqs)
 
 ## Installation:
+
+Anweisungen für die Installation
+
+Die Installationsanleitung enthält mehrere Punkte. Die grundlegendsten sollten alle Abhängigkeiten und Pakete sein, die benötigt werden, um die Funktionsfähigkeit des Programms zu gewährleisten
+
 1. Clone oder download dieses repository.
 2. Öffne Android Studio.
 3. In Android Studio: select File -> New ->  Project from Version Control -> füge die URL des repository ein und wähle ein Directory/Pfad aus. Dann auf Clone klicken.
@@ -55,45 +63,23 @@ Zur individuellen Testung lassen sich folgende Variablen manipulieren:
 
 ## FAQs:
 
+# Fehlerbehebung
+Kein Programm ist perfekt und deshalb sollten Sie Informationen zur Fehlerbehebung bereitstellen. Dies hilft den Anwendern bei der Bewältigung häufiger Herausforderungen bei der Verwendung des Programms.
 
+# Bekannte Bugs
+Da Sie sich der Herausforderungen bewusst sind, die die Benutzer bei der Verwendung des Programms erleben werden, ist dies der perfekte Ort, um die bekannten Probleme anzuzeigen. Sie sollten bestätigen, dass Sie aktiv an ihnen arbeiten.
 
+# Danksagungen und Credits
 
+Referenzen und Tutorials, die uns zur Fertigstellung des Projekts geholfen und die wir benutzt haben, haben wir im Code angegeben.
 
 
 
 ///Notizen (wird noch entfernt)
-Teil 1. Was ist eine Readme MD-Datei?
-Die Readme MD-Datei, die mit der Dateierweiterung README.MD versehen ist, ist eine übliche MD-Datei, eine Markdown-Datei, die Textanweisungen enthält. Projekte, die mit Repository-Anbietern wie GitHub, Bitbucket und GitLab erstellt werden, verwenden häufig eine Datei mit dem Format Readme MD, die das Readme des Projekts enthält.
 
-GitHub bezieht sich auf ein Online-Versionskontrollsystem, das recht beliebt ist. Die Readme-Datei eines Projekts bezieht sich auf eine Textdatei, die nützliche Daten über ein Programm enthält. Sie wird entweder mit dem Programm installiert oder kommt mit dem Installationsprogramm des Programms. Sie enthält vor allem Anweisungen zur Installation des Programms, zur Verwendung seiner Grundfunktionen und zum Zweck.
-
-readme md
-
-Daher ist eine Readme MD online oder offline ein einfacher und schlichter Text, der grundlegende Informationen zu Dateien und Anleitungen enthält. Sie können sie verwenden, um eine Installationsanleitung zu schreiben. Sie ist auch nützlich, um eine grundlegende Dokumentation innerhalb des Projektverzeichnisses zu erstellen. Wenn Sie sich also mit dem MD-Dateiformat befassen, müssen Sie verstehen, wie eine Markdown-Datei erstellt wird, nämlich durch ein Markdown-Skript, das als schriftliche Readme-MD-Datei bereitgestellt wird.
-
-
-Sie zeigt die Bedeutung des Projekts, insbesondere für Sie, den Ersteller
-Sie informiert darüber, für wen das Programm erstellt wird
 Sie zeigt, wo sich die wichtigsten Komponenten darin befinden
-Sie informiert darüber, wie das Projekt/Programm für andere von Nutzen ist
 Grundsätzlich kann die Readme MD das Interesse von jemandem wecken, so dass er Ihren Code überprüfen und verifizieren kann, dass er gültig und aussagekräftig ist.
 
-Teil 2. Wie man eine Readme MD-Datei schreibt
-Wenn Sie eine Readme MD Datei schreiben, müssen Sie die wichtigsten Details kennen, die enthalten sein sollten, um sie einfach und robust zu halten. Am wichtigsten ist, dass Sie die Readme MD-Datei an einem leicht auffindbaren Ort ablegen, z.B. im obersten Verzeichnis, dem Stammverzeichnis in der Hierarchie des Projektsystems. Die folgenden traditionellen, aber wichtigen Abschnitte helfen Ihnen, wie Sie eine Readme-MD-Datei schreiben.
-
-Name des Programms/Projekts
-Projektübersicht
-Die Projektübersicht informiert über: Worum es sich bei dem Programm handelt; für wen es geschaffen wurde; warum es für Sie von Bedeutung ist; wo Sie die offizielle Dokumentation finden; das Erstellungsdatum und wie Sie es richtig verwenden.
-
-readme md format
-
-Anweisungen zur Konfiguration
-
-Sie müssen die Konfigurationsanweisungen in Ihre Readme MD-Datei aufnehmen, da Software- und Computerkonfigurationen wichtig sind, um eine optimale Leistung auf Basis verschiedener Betriebssysteme wie iOS, Mac, Windows und Android zu erreichen.
-
-Anweisungen für die Installation
-
-Die Installationsanleitung enthält mehrere Punkte. Die grundlegendsten sollten alle Abhängigkeiten und Pakete sein, die benötigt werden, um die Funktionsfähigkeit des Programms zu gewährleisten
 
 Eine Dateiliste
 
@@ -109,20 +95,7 @@ Kontaktinformationen des Programmierers oder Händlers
 
 Die Benutzer Ihres Programms werden mit Sicherheit aus verschiedenen Gründen mit Ihnen oder Ihren Teammitgliedern in Kontakt treten wollen, weshalb Ihre Kontaktinformationen wichtig sind. Sie sollten also den Namen, Links zu sozialen Medien, E-Mail und andere Kontaktmöglichkeiten angeben.
 
-Fehlerbehebung
-
-Kein Programm ist perfekt und deshalb sollten Sie Informationen zur Fehlerbehebung bereitstellen. Dies hilft den Anwendern bei der Bewältigung häufiger Herausforderungen bei der Verwendung des Programms.
-
-Bekannte Bugs
-
-Da Sie sich der Herausforderungen bewusst sind, die die Benutzer bei der Verwendung des Programms erleben werden, ist dies der perfekte Ort, um die bekannten Probleme anzuzeigen. Sie sollten bestätigen, dass Sie aktiv an ihnen arbeiten.
-
-Danksagungen und Credits
-
-Das Teilen von Informationen ist vorausschauend. Daher sollte jeder, der Ihnen bei der Erstellung der Software geholfen hat, gewürdigt werden, unabhängig von der Größe des Beitrags. Geben Sie also die mitwirkenden Autoren, den Code, den Sie als Referenz verwendet haben und die Tutorials, die Sie zur Fertigstellung des Projekts benutzt haben, an.
-
 Ein Changelog
 
-Ein Changelog ist vor allem für andere Programmierer nützlich. Es ist eine chronologische Liste der Änderungen, die Sie an der Software vorgenommen haben, insbesondere der bemerkenswerten. Diese können neben anderen Aufzeichnungen von Änderungen auch neue Funktionen, Bugfixes, neu verwendete Frameworks und Verbesserungen beinhalten.
 
 
