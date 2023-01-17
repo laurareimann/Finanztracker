@@ -44,14 +44,12 @@ import java.util.Random;
 
 public class EarnyTest {
 
-    // TODO: maximumUserBalance BUG!! aktuell kann nur ein Wert <10k richtig gespeichert werden
-
-    // Set these Variables to adjust Test:
-    private static final double maximumUserBalance = 9999.99;   // change this Variable to define the maximum Balance set at Registration
-    private static final int numberOfEntriesToTest = 20;        // change this Variable to define number of new Entries (income and expenses)
-    private static final int maxEntryAmount = 200;              // change this Variable to define the maximum amount of income/expense in the Entries
-    private static final int minEntryYear = 2023;               // change this Variable to define the earliest year for Entries
-    private static final int maxEntryYear = 2024;               // change this Variable to define the latest year for Entries
+    // TODO: Change these variables to adjust the test:
+    private static final double maximumUserBalance = 9999.99;   // define the maximum Balance set at Registration !!ATTENTION: as there is still a Bug, only balances <10k can be saved correctl
+    private static final int numberOfEntriesToTest = 10;        // define number of new Entries (income and expenses)
+    private static final int maxEntryAmount = 200;              // define the maximum amount of income/expense in the Entries
+    private static final int minEntryYear = 2023;               // define the earliest year for Entries
+    private static final int maxEntryYear = 2024;               // define the latest year for Entries
 
     // User Variables
     private final String currentTimestamp = String.valueOf(new Timestamp(System.currentTimeMillis()));
@@ -134,14 +132,10 @@ public class EarnyTest {
             onView(withId(R.id.txt_statistics_expenses)).check(matches(withText("-" + currentMonthExpenses + " €")));
         }
         if (currentYearExpenses != 0) {
-            //onView(withId(R.id.txt_statistics_expensesyear)).check(matches(withText("-" + dform.format(currentYearExpenses) + " €")));
-            onView(withId(R.id.txt_statistics_expensesyear)).check(matches(withText("-" + dform.format((int) Math.floor((currentYearExpenses))) + " €")));
-            // TODO: wird gerade noch abgerundet, da Jahres einnahme und Ausgabe nichts als double dargestellt wird, Bug muss noch behoben werden
+            onView(withId(R.id.txt_statistics_expensesyear)).check(matches(withText("-" + dform.format(currentYearExpenses) + " €")));
         }
         if (currentYearIncome > 0) {
-            //onView(withId(R.id.txt_statistics_incomeyear)).check(matches(withText(dform.format(currentYearIncome) + " €")));
-            onView(withId(R.id.txt_statistics_incomeyear)).check(matches(withText((int) Math.floor(currentYearIncome) + " €")));
-            // TODO: wird gerade noch abgerundet, da Jahres einnahme und Ausgabe nichts als double dargestellt wird, Bug muss noch behoben werden
+            onView(withId(R.id.txt_statistics_incomeyear)).check(matches(withText(dform.format(currentYearIncome) + " €")));
         }
     }
 
