@@ -10,13 +10,12 @@ Earny soll den NUtzer*innen dabei helfen, einen Überblick über Ein- und Ausgab
 Die App wurde mit Android Studio erstellt und kann sowohl per Emulator sowie über eine Android Smartphone in Android Studio ausgeführt werden.
 
 
-
 ## Table of Contents
 1. [Installation](#installation)
 2. [Tests](#tests)
 3. [Installation](#installation)
-4. [Collaboration](#collaboration)
-5. [FAQs](#faqs)
+4. [FAQs](#faqs)
+5. [Credits](#credits)
 
 ## Installation:
 
@@ -63,13 +62,13 @@ Zur individuellen Testung lassen sich folgende Variablen manipulieren:
 
 ## FAQs:
 
-# Fehlerbehebung
+### Fehlerbehebung
 Kein Programm ist perfekt und deshalb sollten Sie Informationen zur Fehlerbehebung bereitstellen. Dies hilft den Anwendern bei der Bewältigung häufiger Herausforderungen bei der Verwendung des Programms.
 
-# Bekannte Bugs
+### Bekannte Bugs
 Da Sie sich der Herausforderungen bewusst sind, die die Benutzer bei der Verwendung des Programms erleben werden, ist dies der perfekte Ort, um die bekannten Probleme anzuzeigen. Sie sollten bestätigen, dass Sie aktiv an ihnen arbeiten.
 
-# Danksagungen und Credits
+## Credits
 
 Referenzen und Tutorials, die uns zur Fertigstellung des Projekts geholfen und die wir benutzt haben, haben wir im Code angegeben.
 
@@ -78,21 +77,16 @@ Referenzen und Tutorials, die uns zur Fertigstellung des Projekts geholfen und d
 ///Notizen (wird noch entfernt)
 
 Sie zeigt, wo sich die wichtigsten Komponenten darin befinden
-Grundsätzlich kann die Readme MD das Interesse von jemandem wecken, so dass er Ihren Code überprüfen und verifizieren kann, dass er gültig und aussagekräftig ist.
 
 
 Eine Dateiliste
-
 Die Liste der enthaltenen Dateien ist gut, obwohl sie von der Größe Ihres Codes abhängt. Das bedeutet, dass Sie den Dateibaum weglassen können. Welchen Weg Sie auch immer wählen, geben Sie zumindest eine Erklärung, wie Sie sich durch den Code bewegen.
-
 Sie können zum Beispiel erklären, wie der Code modularisiert ist. Wurde die MVC-Methode angewandt? War das Routersystem von Bedeutung? Solche Informationen liefern Details über die Dateistruktur.
 
 Informationen zu Lizenzierung und Copyright
-
 Lizenzen sind kritisch und daher sehr empfehlenswert für Leute, die Open-Source-Projekte produzieren. Sie sollten niemals die Lizenz- und Copyright-Informationen weglassen, da sie andere wissen lassen, was sie mit Ihrem Code tun dürfen und was nicht. Sie können es aber auch weglassen, da die Standard-Urheberrechtsgesetze weiterhin gelten. Letztendlich behalten Sie also das Recht an Ihrem Quellcode, so dass es für andere Personen unmöglich oder illegal ist, Ihren Code zu verbreiten, zu vervielfältigen oder davon abzuleiten.
 
 Kontaktinformationen des Programmierers oder Händlers
-
 Die Benutzer Ihres Programms werden mit Sicherheit aus verschiedenen Gründen mit Ihnen oder Ihren Teammitgliedern in Kontakt treten wollen, weshalb Ihre Kontaktinformationen wichtig sind. Sie sollten also den Namen, Links zu sozialen Medien, E-Mail und andere Kontaktmöglichkeiten angeben.
 
 Ein Changelog
