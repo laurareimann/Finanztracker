@@ -6,37 +6,36 @@
 6. [Credits](#credits)
 
 
-
 ## General Info
 <p align="center">
   <img src="app/src/main/res/drawable/logo_earny_bunt.png" width="350" title="Earny_Logo">
 </p>
 
 ### Finanztracker App - Earny
-Software Engineering Projekt, HAW Hamburg, 4. Semester, Jahr: 2022/2023
+Software Engineering Projekt, HAW Hamburg, 4. Semester, Erstellungsjahr: 2022/2023
 
 Dieses Repository beinhaltet eine Android App zum Tracken von Finanzen.
-Earny soll den NUtzer*innen dabei helfen, einen Überblick über Ein- und Ausgaben zu behalten, so dass man die eigenen FInanzen besser managen kann.
-Die App wurde mit Android Studio erstellt und kann sowohl per Emulator sowie über eine Android Smartphone in Android Studio ausgeführt werden.
+Earny soll der nutzenden Person dabei helfen, einen Überblick über Ein- und Ausgaben zu behalten, so dass man die eigenen Finanzen besser managen kann.
+Die App wurde mit Android Studio entwickelt und kann per Emulator sowie über ein Android Smartphone in Android Studio ausgeführt werden.
 
 
 ## Installation:
 
-Anweisungen für die Installation
-
-Die Installationsanleitung enthält mehrere Punkte. Die grundlegendsten sollten alle Abhängigkeiten und Pakete sein, die benötigt werden, um die Funktionsfähigkeit des Programms zu gewährleisten
-
-1. Clone oder download dieses repository.
+1. Clone oder downloade dieses Repository.
 2. Öffne Android Studio.
-3. In Android Studio: select File -> New ->  Project from Version Control -> füge die URL des repository ein und wähle ein Directory/Pfad aus. Dann auf Clone klicken.
-4. Das Projekt sollte sich nun öffnen. Kann einige Minuten dauern bis Gradle alles aufgebaut hat und die Projektstruktur angezeigt wird.
-5. Um das Gerät per Emulator zu bedienen, unter Device Manager -> Virtual ->  Create Device das gewünschte Gerät erzeugen und die API 33 auswählen.
-   Alternativ auch möglich mit richtigem Android Gerät die App zu starten: Device Manager -> Physical ->  Pair using Wi-Fi
-6. Auf "Run" App klicken, um die Applikation zu starten.
+3. In Android Studio: Select File -> New ->  Project from Version Control auswählen.
+4. Füge die URL des Repository ein und wähle ein Directory/Pfad aus. Dann auf Clone klicken.
+5. Das Projekt sollte sich nun öffnen. Es kann einige Minuten dauern bis Gradle alles aufgebaut hat und die Projektstruktur angezeigt wird.
+6. Um das Gerät per Emulator zu bedienen, unter Device Manager -> Virtual ->  Create Device das gewünschte Gerät erzeugen und die API 33 auswählen.
+   Alternativ auch möglich die App mit richtigem Android Gerät zu starten: Device Manager -> Physical ->  Pair using Wi-Fi
+7. Auf "Run 'App'" klicken, um die Applikation zu starten.
 
- Die App sollte nun ein "Willkommen" Screen anzeigen, damit man zur Registrierung oder zum Login gelangt.
+    Die App sollte nun ein "Willkommen" Screen anzeigen, damit man zur Registrierung oder zum Login gelangt.
  
- 
+/// Eine Dateiliste
+Die Liste der enthaltenen Dateien ist gut, obwohl sie von der Größe Ihres Codes abhängt. Das bedeutet, dass Sie den Dateibaum weglassen können. Welchen Weg Sie auch immer wählen, geben Sie zumindest eine Erklärung, wie Sie sich durch den Code bewegen.
+Sie können zum Beispiel erklären, wie der Code modularisiert ist. Wurde die MVC-Methode angewandt? Solche Informationen liefern Details über die Dateistruktur.
+
 
 ## Tests:
 Es steht ein Espresso-Test zur Verfügung (EarnyTest). In der Testung wurde diese Form des UI Testings JUnit-Tests vorgezogen, weil diese eher im Development Prozess hilfreich sind, um die Funktion von Methoden zu testen, während sich noch viel an der App ändert. 
@@ -68,24 +67,20 @@ Zur individuellen Testung lassen sich folgende Variablen manipulieren:
 ## FAQs:
 
 ### Fehlerbehebung
-Kein Programm ist perfekt und deshalb sollten Sie Informationen zur Fehlerbehebung bereitstellen. Dies hilft den Anwendern bei der Bewältigung häufiger Herausforderungen bei der Verwendung des Programms.
+Es kann vorkommen, dass das Virtual Device im Emulator nicht funktioniert bzw. abstürzt. 
+In diesem Fall das Gerät löschen und noch mal über Create Device neu anlegen und es über ein anderes Geräte Model versuchen.
 
 ### Bekannte Bugs
-folgt...
-///Da Sie sich der Herausforderungen bewusst sind, die die Benutzer bei der Verwendung des Programms erleben werden, ist dies der perfekte Ort, um die bekannten Probleme anzuzeigen. Sie sollten bestätigen, dass Sie aktiv an ihnen arbeiten.
+Bug Ticket #XX
 
+Bug Ticket #XX
 
-///Die Benutzer Ihres Programms werden mit Sicherheit aus verschiedenen Gründen mit Ihnen oder Ihren Teammitgliedern in Kontakt treten wollen, weshalb Ihre Kontaktinformationen wichtig sind. Sie sollten also den Namen, Links zu sozialen Medien, E-Mail und andere Kontaktmöglichkeiten angeben.
+Bug Ticket #XX
 
+Bug Ticket #XX
+
+Bug Ticket #XX
 
 ## Credits
 
-Referenzen und Tutorials, die uns zur Erstellung des Projekts geholfen und die wir verwendet haben, wurden im Quellcode festgehalten.
-
-
-///Notizen (wird noch entfernt)
-Sie zeigt, wo sich die wichtigsten Komponenten darin befinden
-
-/// Eine Dateiliste
-Die Liste der enthaltenen Dateien ist gut, obwohl sie von der Größe Ihres Codes abhängt. Das bedeutet, dass Sie den Dateibaum weglassen können. Welchen Weg Sie auch immer wählen, geben Sie zumindest eine Erklärung, wie Sie sich durch den Code bewegen.
-Sie können zum Beispiel erklären, wie der Code modularisiert ist. Wurde die MVC-Methode angewandt? Solche Informationen liefern Details über die Dateistruktur.
+Referenzen und Tutorials, die zur Erstellung des Projekts geholfen und die wir verwendet haben, wurden im Quellcode festgehalten.
