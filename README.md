@@ -21,22 +21,21 @@ Die App wurde mit Android Studio entwickelt und kann per Emulator sowie über ei
 
 ## Installation:
 
-   1. Clone oder downloade dieses Repository.
-   2. Öffne Android Studio.
-   3. In Android Studio: Select File -> New ->  Project from Version Control auswählen.
-   4. Füge die URL des Repository ein und wähle ein Directory/Pfad aus. Dann auf Clone klicken.
-   5. Das Projekt sollte sich nun öffnen. Es kann einige Minuten dauern bis Gradle alles aufgebaut hat und die Projektstruktur angezeigt wird.
-   6. Um das Gerät per Emulator zu bedienen, unter Device Manager -> Virtual ->  Create Device das gewünschte Gerät erzeugen und die API 33 auswählen.
-      Alternativ auch möglich die App mit richtigem Android Gerät zu starten: Device Manager -> Physical ->  Pair using Wi-Fi
-   7. Auf "Run 'App'" klicken, um die Applikation zu starten.
+    1. Clone oder downloade dieses Repository.
+    2. Öffne Android Studio.
+    3. In Android Studio: Select File -> New ->  Project from Version Control auswählen.
+    4. Füge die URL des Repository ein und wähle ein Directory/Pfad aus. Dann auf Clone klicken.
+    5. Das Projekt sollte sich nun öffnen. Es kann einige Minuten dauern bis Gradle alles aufgebaut hat und die Projektstruktur angezeigt wird.
+    6. Um das Gerät per Emulator zu bedienen, unter Device Manager -> Virtual ->  Create Device das gewünschte Gerät erzeugen und die API 33 auswählen.
+       Alternativ auch möglich die App mit richtigem Android Gerät zu starten: Device Manager -> Physical ->  Pair using Wi-Fi
+    7. Auf "Run 'App'" klicken, um die Applikation zu starten.
 
 Die App sollte nun ein "Willkommen" Screen anzeigen, damit man zur Registrierung oder zum Login gelangt.
+[image](https://user-images.githubusercontent.com/94016790/213173358-308cd8d5-0096-4abd-93d9-11d10ed0d8b6.png)
+
+
+#### Hinweis: Eventuell müssen noch Gradle Updates vorgenommen sowie diverse Pakete heruntergeladen werden. Android Studio zeigt dies auch an und stellt die Downloads zur Verfügung.
  
-/// Eine Dateiliste
-Die Liste der enthaltenen Dateien ist gut, obwohl sie von der Größe Ihres Codes abhängt. Das bedeutet, dass Sie den Dateibaum weglassen können. Welchen Weg Sie auch immer wählen, geben Sie zumindest eine Erklärung, wie Sie sich durch den Code bewegen.
-Sie können zum Beispiel erklären, wie der Code modularisiert ist. Wurde die MVC-Methode angewandt? Solche Informationen liefern Details über die Dateistruktur.
-
-
 ## Tests:
 Es steht ein Espresso-Test zur Verfügung (EarnyTest). In der Testung wurde diese Form des UI Testings JUnit-Tests vorgezogen, weil diese eher im Development Prozess hilfreich sind, um die Funktion von Methoden zu testen, während sich noch viel an der App ändert. 
 
@@ -68,7 +67,7 @@ Zur individuellen Testung lassen sich folgende Variablen manipulieren:
 
 ### Fehlerbehebung
 Es kann vorkommen, dass das Virtual Device im Emulator nicht funktioniert bzw. abstürzt. 
-In diesem Fall das Gerät löschen und noch mal über Create Device neu anlegen und es über ein anderes Geräte Model versuchen.
+In diesem Fall das Gerät löschen und noch mal über Create Device ein neues Gerät anlegen und über ein anderes Geräte Model versuchen.
 
 ### Bekannte Bugs
 Durch die unterschiedlichen, angewandten Testing Verfahren, haben sich einige Bugs herauskristallisiert, die es noch zu beseitigen gilt. Die Bugs sind auf dem Github Ticketboard festgehalten. Zu den bekannten, größeren Bugs gehören:
