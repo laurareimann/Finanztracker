@@ -3,6 +3,7 @@ package com.example.earny;
 /**
  * SOURCES:
  * MenuBar: jangirkaran17: "How to Implement Bottom Navigation With Activities in Android?", MenuBar: URL: https://www.geeksforgeeks.org/how-to-implement-bottom-navigation-with-activities-in-android/, 19.12.2022
+ * Date: CodingWithMitch: "Android Beginner Tutorial #25 - DatePicker Dialog [Choosing a Date from a Dialog Pop-Up]", Date: URL: https://www.youtube.com/watch?v=hwe1abDO2Ag, 04.01.2023
  **/
 
 import static com.example.testapp.R.*;
