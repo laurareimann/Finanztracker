@@ -68,7 +68,7 @@ Zur individuellen Testung lassen sich folgende Variablen manipulieren:
 
 ### Fehlerbehebung
 Es kann vorkommen, dass das Virtual Device im Emulator nicht funktioniert bzw. abstürzt. 
-In diesem Fall das Gerät löschen und noch mal über Create Device ein neues Gerät anlegen und über ein anderes Geräte Model versuchen.
+In diesem Fall das Gerät löschen und noch mal über Create Device ein neues Gerät anlegen und es über ein anderes Geräte Model versuchen.
 
 ### Bekannte Bugs
 Durch die unterschiedlichen, angewandten Testing Verfahren, haben sich einige Bugs herauskristallisiert, die es noch zu beseitigen gilt. Die Bugs sind auf dem Github Ticketboard festgehalten. Zu den bekannten, größeren Bugs gehören:
