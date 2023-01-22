@@ -70,20 +70,12 @@ In diesem Fall das Gerät löschen und noch mal über Create Device ein neues Ge
 ### Bekannte Bugs
 Durch die unterschiedlichen, angewandten Testing Verfahren, haben sich einige Bugs herauskristallisiert, die es noch zu beseitigen gilt. Die Bugs sind auf dem Github Ticketboard festgehalten. Zu den bekannten, größeren Bugs gehören:
 
-No. 1 : Bei der Registrierung sind Eingaben mit 3 Nachkommastellen möglich. Dies wird in der Home Activity auch angezeigt. Bspw. der Wert: "20,999 € ". 
-Wenn man in der Eingabemaske etwas abziehen oder addieren möchte - wieder mit 3 Nachkommastellen - wird die 3. Nachkommastelle nicht bei der Berechnung beachtet. Die dritte Nachkommastelle ist also bei Berechnungen nicht existent, wird aber in der Anzeige des Kontostands weiter berücksichtigt.
+#### No. 1: (Github Tickets: #98, #106, #109)
+Generell muss die Sicherheit der Eingabemasken erhöht werden, indem klar definierte Regeln festgelegt werden, die zu der jeweiligen Eingabe passen. Dies ließe sich durch reguläre Ausdrücke umsetzen. Dadurch kann verhindert werden, dass Systembefehle zum Auslesen der Datenbank eingegeben werden oder unsinnige Eingaben zum Absturz der App führen. Insbesondere beim Anlegen der Nutzer:Innen besteht ein Sicherheitsrisiko, da keine Mindestanzahl an Ziffern/Buchstaben/Sonderzeichen beim Benutzernamen und Passwort festgelegt wurde. Eingaben wie ein “.” können nach wie vor als Benutzername und Passwort verwendet werden. Außerdem sind bei der Registrierung Eingaben mit 3 (oder mehr) Nachkommastellen möglich. Dies wird in der Home Activity auch angezeigt. Beispielsweise der Wert: "20,999 € ". 
+Des Weiteren kann man bei der Eingabe der Einnahmen/Ausgaben einen "." eingeben. Der Punkt wird nicht in den Buchungen eingetragen, aber die App kann abstürzen. 
 
-No. 2: Man kann bei der Eingabe Maske als Einnahme/Ausgabe "." eingeben. Der Punkt wird nicht in den Buchungen eingetragen, aber die App stürzt ab. Hier könnte man durch reguläre Ausdrücke Eingaben verbieten, die mit einem Punkt bzw. Sonderzeichen beginnen.
-
-No. 3: Im horizontalen Modus kann man sich nicht anmelden oder registrieren, weil die Buttons nicht erreichbar sind. 
-
-No. 4: Wenn man bei der Registrierung ein Double eingibt, wird das bei der Balance zu einem int aufgerundet. Auf dem Homescreen wird dann nicht der richtige Wert angezeigt, sondern ein Ganzzahliger. Der Fehler tritt nicht immer auf und scheint ein Rundungsfehler zu sein. Beispiel: 1234.56 geht, 91196.54 geht nicht. Die Tests haben ergeben, dass es wahrscheinlich nur mit einem Wert < 10.000 funktioniert.
-
-No. 5: Beträge mit Nachkommastellen werden auf 0 geändert in den Buchungen. 
-100.99 erscheint z.B. als 100.0 in den Buchungen.
-
-No. 6: Verbesserungsbedarf besteht bei der Registrierung. Bislang ist die Registrierung nicht sicher. Eingaben wie ein “.” können als Benutzername und Passwort verwendet werden. Für die Registrierung sollte eine Mindestanzahl an Ziffern/Buchstaben/Sonderzeichen festgelegt werden. Das könnte man durch reguläre Ausdrücke bei der Abfrage/Prüfung der Registrierung Eingabe umsetzen. 
-
+#### No. 2: (Github Ticket: #92) 
+Wenn man bei der Registrierung ein Double eingibt, wird das bei der Balance zu einem int aufgerundet. Auf dem Homescreen wird dann nicht der Richtige Wert angezeigt, sondern ein Ganzzahliger. Der Fehler tritt nicht immer auf, scheint ein Rundungsfehler zu sein. Beispiel: 1234.56 geht, 91196.54 geht nicht. Die Tests haben ergeben, dass es wahrscheinlich nur mit einem Wert < 10.000 funktioniert.
 
 ## Credits
 
