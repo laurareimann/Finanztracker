@@ -35,7 +35,7 @@ Die App wurde mit Android Studio entwickelt und kann per Emulator sowie über ei
 Die App sollte nun ein "Willkommen" Screen anzeigen, damit man zur Registrierung oder zum Login gelangt.
 ![image](https://user-images.githubusercontent.com/94016790/213174072-6352b1fb-b55f-42e5-961a-185d3bc844e1.png)
 
-#### Hinweis: Eventuell müssen noch Gradle Updates vorgenommen sowie diverse Pakete heruntergeladen werden. Android Studio zeigt dies auch an und stellt die Downloads zur Verfügung.
+#### Hinweis: Die App wurde optimiert für das Pixel 3a. Eventuell müssen noch Gradle Updates vorgenommen sowie diverse Pakete heruntergeladen werden. Android Studio zeigt dies auch an und stellt die Downloads zur Verfügung.
  
 ## Tests:
 Es steht ein Espresso-Test zur Verfügung (EarnyTest).
